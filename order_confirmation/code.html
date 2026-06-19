@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Success | 360 Econovations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#dfe4db",
+                        "tertiary-container": "#b85000",
+                        "on-background": "#181d17",
+                        "secondary-fixed": "#84faa7",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "surface-container-low": "#f0f5ec",
+                        "tertiary-fixed": "#ffdbca",
+                        "outline": "#6f7a6e",
+                        "surface": "#f6fbf2",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#d3ffd5",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#005323",
+                        "surface-container": "#eaefe6",
+                        "primary-fixed-dim": "#79db8d",
+                        "inverse-surface": "#2c322c",
+                        "secondary": "#006d37",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#00723a",
+                        "on-secondary-fixed-variant": "#005228",
+                        "on-surface-variant": "#3f493f",
+                        "secondary-container": "#81f8a4",
+                        "on-surface": "#181d17",
+                        "inverse-on-surface": "#edf2e9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#fff1eb",
+                        "secondary-fixed-dim": "#67dd8d",
+                        "tertiary": "#913e00",
+                        "surface-container-highest": "#dfe4db",
+                        "primary": "#00652c",
+                        "on-primary-fixed": "#00210a",
+                        "on-secondary-fixed": "#00210d",
+                        "surface-tint": "#006d30",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "primary-fixed": "#95f8a7",
+                        "inverse-primary": "#79db8d",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#becabc",
+                        "background": "#f6fbf2",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d6dcd3",
+                        "on-tertiary-fixed": "#341100",
+                        "primary-container": "#15803d",
+                        "surface-container-high": "#e4eae1",
+                        "surface-bright": "#f6fbf2",
+                        "action-orange": "#F97316",
+                        "highlight-gold": "#D4A017"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "md": "24px",
+                        "xs": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "xl": "80px",
+                        "sm": "16px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg-mobile": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "headline-sm": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .success-card-shadow {
+            box-shadow: 0px 4px 20px rgba(17, 17, 17, 0.06);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #D4A017;
+            top: -20px;
+            opacity: 0;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes fall {
+            0% { top: -10%; opacity: 1; transform: translateX(0) rotate(0deg); }
+            100% { top: 100%; opacity: 0; transform: translateX(100px) rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Order Confirmation Screen: Per UI Rules, Shell is suppressed for focus -->
+<main class="min-h-screen flex flex-col items-center justify-center px-margin-mobile md:px-margin-desktop py-xl relative">
+<!-- Background Atmospheric Element -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden">
+
+<!-- Decorative Confetti Pieces (Subtle) -->
+<div class="confetti-piece" style="left: 10%; animation-delay: 0s; background-color: #15803D;"></div>
+<div class="confetti-piece" style="left: 25%; animation-delay: 1.5s; background-color: #F97316;"></div>
+<div class="confetti-piece" style="left: 45%; animation-delay: 0.5s; background-color: #D4A017;"></div>
+<div class="confetti-piece" style="left: 70%; animation-delay: 2.2s; background-color: #15803D;"></div>
+<div class="confetti-piece" style="left: 85%; animation-delay: 1s; background-color: #F97316;"></div>
+</div>
+<div class="z-10 w-full max-w-[640px] flex flex-col items-center">
+<!-- Success Icon Section -->
+<div class="mb-lg flex flex-col items-center text-center">
+<div class="w-24 h-24 bg-primary-container rounded-full flex items-center justify-center mb-md float-animation shadow-lg">
+<span class="material-symbols-outlined text-on-primary-container !text-5xl" style="font-variation-settings: 'wght' 700;">check_circle</span>
+</div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-xs">Order Placed!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[480px]">
+                    Your order confirmation is on its way via <span class="font-bold text-primary">Email / WhatsApp</span>.
+                </p>
+</div>
+<!-- Summary Card -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-md md:p-lg success-card-shadow mb-lg border border-surface-variant/30">
+<div class="flex justify-between items-center mb-md border-b border-surface-variant pb-md">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Order Reference</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">#ECO-360-9921</span>
+</div>
+<span class="bg-highlight-gold text-black font-label-sm text-[12px] px-3 py-1 rounded-full uppercase tracking-tighter">Processed</span>
+</div>
+<!-- Bento-style Summary Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="space-y-unit">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Delivery Area</p>
+<p class="font-body-md text-body-md font-semibold">Embu Central, Kenya</p>
+</div>
+<div class="space-y-unit">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Payment Method</p>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-secondary text-sm">payments</span>
+<p class="font-body-md text-body-md font-semibold">Pay on Delivery</p>
+</div>
+</div>
+<div class="col-span-1 md:col-span-2 bg-surface-container-low rounded-lg p-md">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Items Summary</p>
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md">2x Recycled PET Pellets (Bulk)</span>
+<span class="font-body-md text-body-md font-semibold">KES 4,500</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md">1x Circular Economy Toolkit</span>
+<span class="font-body-md text-body-md font-semibold">KES 1,200</span>
+</div>
+<div class="pt-xs mt-xs border-t border-outline-variant flex justify-between items-center">
+<span class="font-headline-sm text-headline-sm text-primary">Total Amount</span>
+<span class="font-headline-sm text-headline-sm text-primary">KES 5,700</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col md:flex-row gap-md w-full md:w-auto">
+<a class="px-lg py-4 bg-action-orange text-white rounded-full font-label-sm text-label-sm text-center shadow-md hover:brightness-95 transition-all transform hover:scale-[1.02] active:scale-95" href="../product_catalog/code.html">
+                    Continue Shopping
+                </a>
+<a class="px-lg py-4 border-2 border-primary text-primary rounded-full font-label-sm text-label-sm text-center hover:bg-primary/5 transition-all transform hover:scale-[1.02] active:scale-95" href="../my_orders_account_area/code.html">
+                    View My Orders
+                </a>
+</div>
+<!-- Support Link -->
+<div class="mt-lg">
+<p class="font-label-sm text-label-sm text-on-surface-variant text-center">
+                    Need help with your order? <a class="text-secondary font-bold underline decoration-secondary/30 hover:decoration-secondary" href="../contact_us/code.html">Contact Support</a>
+</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest">
+<div class="w-full px-margin-mobile md:px-margin-desktop py-lg max-w-[1280px] mx-auto flex flex-col gap-md">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-xl">
+<div class="md:col-span-2">
+<div class="flex items-center gap-xs mb-md">
+<img alt="360 Econovations" class="h-8 w-auto object-contain" src="../Images/360 logo.png"/>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">360 ECONOVATIONS</span>
+</div>
+<p class="text-on-surface-variant font-body-md max-w-md">
+                        Kenya's leading waste-to-value enterprise focused on glass and biomass recovery. Partnering for a cleaner, greener tomorrow.
+                    </p>
+</div>
+<div>
+<h5 class="font-label-sm text-label-sm font-bold text-on-surface mb-md">Quick Links</h5>
+<ul class="flex flex-col gap-xs">
+<li><a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../homepage/code.html">Home</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../product_catalog/code.html">Shop</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../about_us/code.html">About</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../about_us/code.html">Impact</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-sm text-label-sm font-bold text-on-surface mb-md">Connect</h5>
+<ul class="flex flex-col gap-xs">
+<li><a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors flex items-center gap-xs" href="mailto:raymond@africaymca.org"><span class="material-symbols-outlined text-[18px]">mail</span> Email</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors flex items-center gap-xs" href="../contact_us/code.html"><span class="material-symbols-outlined text-[18px]">location_on</span> Embu Location</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-outline-variant pt-md flex flex-col md:flex-row justify-between items-center gap-md">
+<p class="text-on-surface-variant font-label-sm text-label-sm text-center">
+                    © 2024 360 Econovations Enterprise.
+                </p>
+</div>
+</div>
+</footer>
+<!-- Floating WhatsApp Button -->
+<a id="whatsapp-float" href="#" aria-label="Chat on WhatsApp"
+   class="fixed right-6 z-40 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-8 h-8">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+<script>
+        // Micro-interaction for the success icon to pulse on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const icon = document.querySelector('.float-animation');
+            icon.classList.add('scale-110');
+            setTimeout(() => {
+                icon.classList.remove('scale-110');
+            }, 500);
+        });
+
+        // Simple parallax effect for confetti on scroll (if any)
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelectorAll('.confetti-piece').forEach((piece, index) => {
+                const speed = 0.1 + (index * 0.05);
+                piece.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Floating WhatsApp button — dock just above footer when footer is visible
+        const whatsappBtn = document.getElementById('whatsapp-float');
+        const footer = document.querySelector('footer');
+        const GAP = 16;
+        const isMobile = () => window.innerWidth < 768;
+
+        function updateWhatsappPosition() {
+            const footerTop = footer.getBoundingClientRect().top;
+            const defaultBottom = isMobile() ? 80 : 24;
+            if (footerTop < window.innerHeight) {
+                whatsappBtn.style.bottom = (window.innerHeight - footerTop + GAP) + 'px';
+            } else {
+                whatsappBtn.style.bottom = defaultBottom + 'px';
+            }
+        }
+
+        window.addEventListener('scroll', updateWhatsappPosition, { passive: true });
+        window.addEventListener('resize', updateWhatsappPosition, { passive: true });
+        updateWhatsappPosition();
+    </script>
+</body></html>

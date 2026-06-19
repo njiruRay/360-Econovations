@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Orders - 360 ECONOVATIONS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#dfe4db",
+                    "tertiary-container": "#b85000",
+                    "on-background": "#181d17",
+                    "secondary-fixed": "#84faa7",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "surface-container-low": "#f0f5ec",
+                    "tertiary-fixed": "#ffdbca",
+                    "outline": "#6f7a6e",
+                    "surface": "#f6fbf2",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-container": "#d3ffd5",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#005323",
+                    "surface-container": "#eaefe6",
+                    "primary-fixed-dim": "#79db8d",
+                    "inverse-surface": "#2c322c",
+                    "secondary": "#006d37",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#00723a",
+                    "on-secondary-fixed-variant": "#005228",
+                    "on-surface-variant": "#3f493f",
+                    "secondary-container": "#81f8a4",
+                    "on-surface": "#181d17",
+                    "inverse-on-surface": "#edf2e9",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#fff1eb",
+                    "secondary-fixed-dim": "#67dd8d",
+                    "tertiary": "#913e00",
+                    "surface-container-highest": "#dfe4db",
+                    "primary": "#00652c",
+                    "on-primary-fixed": "#00210a",
+                    "on-secondary-fixed": "#00210d",
+                    "surface-tint": "#006d30",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "primary-fixed": "#95f8a7",
+                    "inverse-primary": "#79db8d",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#becabc",
+                    "background": "#f6fbf2",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d6dcd3",
+                    "on-tertiary-fixed": "#341100",
+                    "primary-container": "#15803d",
+                    "surface-container-high": "#e4eae1",
+                    "surface-bright": "#f6fbf2",
+                    "action-orange": "#F97316",
+                    "highlight-gold": "#D4A017"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "md": "24px",
+                    "xs": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "64px",
+                    "xl": "80px",
+                    "sm": "16px",
+                    "lg": "48px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "headline-sm": ["Montserrat"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-shadow {
+            box-shadow: 0px 4px 20px rgba(17, 17, 17, 0.06);
+        }
+        .card-shadow-hover:hover {
+            box-shadow: 0px 8px 30px rgba(17, 17, 17, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar -->
+<nav class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-[1280px] mx-auto bg-surface dark:bg-surface-container shadow-sm dark:shadow-none">
+<div class="flex items-center gap-xs">
+<img alt="360 Econovations" class="h-10 w-auto object-contain" src="../Images/360 logo.png"/>
+<span class="font-display-lg-mobile text-display-lg-mobile font-bold text-primary dark:text-primary-fixed">360 ECONOVATIONS</span>
+</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="../homepage/code.html">Home</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="../product_catalog/code.html">Shop</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="../about_us/code.html">About</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="../about_us/code.html">Impact</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="../contact_us/code.html">Contact</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed p-2 rounded-full hover:bg-surface-container transition-colors" data-icon="shopping_cart" onclick="window.location.href='../shopping_cart/code.html'">shopping_cart</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-sm text-label-sm hover:opacity-90 transition-all" onclick="window.location.href='../checkout_gate_sign_in/code.html'">Sign In</button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-lg md:py-xl grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Sidebar Navigation -->
+<aside class="md:col-span-3 space-y-sm">
+<div class="p-md bg-surface-container-lowest rounded-xl card-shadow">
+<div class="flex items-center gap-sm mb-lg">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Welcome back,</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">Alex Mwangi</p>
+</div>
+</div>
+<nav class="flex flex-col gap-xs">
+<a class="flex items-center gap-sm p-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary" data-icon="account_circle">account_circle</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+<a class="flex items-center gap-sm p-sm rounded-lg bg-primary-container text-on-primary-container font-bold shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-sm text-label-sm">Orders</span>
+</a>
+<a class="flex items-center gap-sm p-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors group" href="../checkout_gate_sign_in/code.html">
+<span class="material-symbols-outlined group-hover:text-error" data-icon="logout">logout</span>
+<span class="font-label-sm text-label-sm">Log Out</span>
+</a>
+</nav>
+</div>
+<!-- Impact Card (Bonus for Brand Identity) -->
+<div class="p-md bg-primary text-on-primary rounded-xl overflow-hidden relative">
+<div class="relative z-10">
+<p class="font-label-sm text-label-sm opacity-80 uppercase tracking-widest mb-xs">Your Impact</p>
+<h3 class="font-headline-sm text-headline-sm mb-md">124kg of Plastic Recycled</h3>
+<div class="h-2 w-full bg-on-primary/20 rounded-full overflow-hidden">
+<div class="h-full bg-secondary-fixed w-3/4 rounded-full"></div>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="eco">eco</span>
+</div>
+</div>
+</aside>
+<!-- Orders List Content -->
+<section class="md:col-span-9">
+<header class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-xs">My Orders</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">Track your sustainable purchases and monitor the circular journey of your eco-industrial components.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-4 py-2 border-2 border-outline-variant rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="filter_list">filter_list</span>
+                        Filter
+                    </button>
+<button class="flex items-center gap-xs px-4 py-2 border-2 border-outline-variant rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="sort">sort</span>
+                        Sort
+                    </button>
+</div>
+</header>
+<div class="space-y-md">
+<!-- Order Card 1 -->
+<div class="bg-surface-container-lowest p-md md:p-lg rounded-xl card-shadow card-shadow-hover transition-all border border-surface-container">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md border-b border-surface-container pb-md mb-md">
+<div class="flex flex-wrap items-center gap-md">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Order Number</p>
+<p class="font-body-md text-body-md font-bold text-on-surface">#ECO-2948-X</p>
+</div>
+<div class="h-8 w-px bg-outline-variant hidden md:block"></div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Date Placed</p>
+<p class="font-body-md text-body-md text-on-surface">Oct 24, 2024</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="px-4 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="local_shipping" data-weight="fill" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+                                Out for Delivery
+                            </span>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-lg">
+<div class="flex items-center gap-md w-full md:w-auto">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Recycled Polymer Pellets" class="w-full h-full object-cover" data-alt="A macro close-up shot of high-quality recycled polymer pellets in various shades of industrial green and gray. The lighting is crisp and professional, emphasizing the uniform texture and cleanliness of the sustainable material. The background is a soft, blurred industrial laboratory setting, maintaining a bright, modern light-mode aesthetic with clean lines and a sense of precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuJkyKYiRrFFef4ye2i6ywVrcNIVrcsdNaklxWmkjLCZxFS0Kjn9V5YVYGqAxtnCfrx346sViV0FHLr0MOgVrlBanPAKVSRUwgUma2Cab_3Rp_NDvf_-ThzwaG7aqBghyOBiHH0gafrLiYKwJQWqUQtYGKUh89X7X0595MD2ISRBMDTRHVCIA2BPbkwhD-Ov2r4FsCpx9kcdSSLgvkgIgDJ7DppDPN2zHqDjEwSOpSx2LRd3vCadlnOQ"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Industrial Recycled Polymer (Grade A)</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Quantity: 500kg</p>
+</div>
+</div>
+<div class="flex items-center justify-between w-full md:w-auto md:flex-col md:items-end gap-sm">
+<div class="text-left md:text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Total Amount</p>
+<p class="font-headline-sm text-headline-sm text-primary">KES 45,200.00</p>
+</div>
+<a class="px-6 py-2 bg-surface-variant text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-outline-variant transition-colors flex items-center gap-xs" href="../order_confirmation/code.html">
+                                View Details
+                                <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Order Card 2 -->
+<div class="bg-surface-container-lowest p-md md:p-lg rounded-xl card-shadow card-shadow-hover transition-all border border-surface-container">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md border-b border-surface-container pb-md mb-md">
+<div class="flex flex-wrap items-center gap-md">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Order Number</p>
+<p class="font-body-md text-body-md font-bold text-on-surface">#ECO-1822-Y</p>
+</div>
+<div class="h-8 w-px bg-outline-variant hidden md:block"></div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Date Placed</p>
+<p class="font-body-md text-body-md text-on-surface">Oct 12, 2024</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="px-4 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Delivered
+                            </span>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-lg">
+<div class="flex items-center gap-md w-full md:w-auto">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Eco Bricks" class="w-full h-full object-cover" data-alt="Sturdy eco-friendly bricks made from compressed construction waste, stacked neatly in a sun-drenched architectural site. The bricks have a unique, textured appearance with earthy tones of terracotta and sand. The scene is bright and airy, with soft shadows and a high-key lighting style that reflects a clean, corporate modern aesthetic focused on sustainability and innovation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDECllVjEPGxXXbZYNLm67vx418iDfbP54qPNK_vnmA1DGpBlOSQ2YGbOoy3o19EYYq9c_tM57ibdO98ErQKTnm58w6qYbAch3HEdyR5NO-oz3YiNFCwK1pwTn8YRFcxqLaxDeh9J5clUb79VZGd1EzluBi2okRwolHuYtWpEM3Kx9YNufkBi35RjI1QfdgToaPSa_x0lj2ev2rxJ3UYSUmmg3oBf9mduucT010mkgn2Zs03MkZDKIT9A"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Circular Eco-Bricks (Pallet)</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Quantity: 2 units</p>
+</div>
+</div>
+<div class="flex items-center justify-between w-full md:w-auto md:flex-col md:items-end gap-sm">
+<div class="text-left md:text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Total Amount</p>
+<p class="font-headline-sm text-headline-sm text-primary">KES 12,800.00</p>
+</div>
+<a class="px-6 py-2 bg-surface-variant text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-outline-variant transition-colors flex items-center gap-xs" href="../order_confirmation/code.html">
+                                View Details
+                                <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Order Card 3 -->
+<div class="bg-surface-container-lowest p-md md:p-lg rounded-xl card-shadow card-shadow-hover transition-all border border-surface-container opacity-90">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md border-b border-surface-container pb-md mb-md">
+<div class="flex flex-wrap items-center gap-md">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Order Number</p>
+<p class="font-body-md text-body-md font-bold text-on-surface">#ECO-0911-Z</p>
+</div>
+<div class="h-8 w-px bg-outline-variant hidden md:block"></div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Date Placed</p>
+<p class="font-body-md text-body-md text-on-surface">Sep 28, 2024</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="px-4 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="pending">pending</span>
+                                Pending
+                            </span>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-lg">
+<div class="flex items-center gap-md w-full md:w-auto">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Bio-fertilizer" class="w-full h-full object-cover" data-alt="A bag of premium organic bio-fertilizer made from composted agricultural waste. The packaging is clean and minimalist with a green leaf motif. The lighting is natural and bright, showcasing the rich, dark texture of the fertilizer inside the partially opened bag. The setting is a modern garden or plant nursery, emphasizing the brand's connection to environmental stewardship and industrial efficiency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFsOa41H57WWq52NJtp1NIRbHtv1Q4wd36s20Y479oc91AH2fJMQHmfTpOamlVDgKu-FIQ-a1P3NWpzSGhMGTEOTcdv87HYNKwPTVslt4gELo_DIeszyXXQ-3RzG1fjHdIaJPfB4UwQNfIRIMLo-e4lf8_8MNOHLkkLXipd7wWfu6GFdl9iYNTXVuosSpDChAAKTCAgm4kgdbgaG-5bIzjiaiD_TBN0Nc6FwSw2aZgc6i9bzgfLR4ctw"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Organic Bio-Fertilizer (Large)</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Quantity: 10 units</p>
+</div>
+</div>
+<div class="flex items-center justify-between w-full md:w-auto md:flex-col md:items-end gap-sm">
+<div class="text-left md:text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Total Amount</p>
+<p class="font-headline-sm text-headline-sm text-primary">KES 8,500.00</p>
+</div>
+<a class="px-6 py-2 bg-surface-variant text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-outline-variant transition-colors flex items-center gap-xs" href="../order_confirmation/code.html">
+                                View Details
+                                <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination/Load More -->
+<div class="mt-lg flex justify-center">
+<button class="bg-surface-container hover:bg-surface-variant text-on-surface-variant px-8 py-3 rounded-full font-label-sm text-label-sm transition-all flex items-center gap-sm">
+                    Load More Orders
+                    <span class="material-symbols-outlined" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest">
+<div class="w-full px-margin-mobile md:px-margin-desktop py-lg max-w-[1280px] mx-auto flex flex-col gap-md">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-xl">
+<div class="md:col-span-2">
+<div class="flex items-center gap-xs mb-md">
+<img alt="360 Econovations" class="h-8 w-auto object-contain" src="../Images/360 logo.png"/>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">360 ECONOVATIONS</span>
+</div>
+<p class="text-on-surface-variant font-body-md max-w-md">
+                        Kenya's leading waste-to-value enterprise focused on glass and biomass recovery. Partnering for a cleaner, greener tomorrow.
+                    </p>
+</div>
+<div>
+<h5 class="font-label-sm text-label-sm font-bold text-on-surface mb-md">Quick Links</h5>
+<ul class="flex flex-col gap-xs">
+<li><a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../homepage/code.html">Home</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../product_catalog/code.html">Shop</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../about_us/code.html">About</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../about_us/code.html">Impact</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-sm text-label-sm font-bold text-on-surface mb-md">Connect</h5>
+<ul class="flex flex-col gap-xs">
+<li><a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors flex items-center gap-xs" href="mailto:raymond@africaymca.org"><span class="material-symbols-outlined text-[18px]">mail</span> Email</a></li>
+<li><a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors flex items-center gap-xs" href="../contact_us/code.html"><span class="material-symbols-outlined text-[18px]">location_on</span> Embu Location</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-outline-variant pt-md flex flex-col md:flex-row justify-between items-center gap-md">
+<p class="text-on-surface-variant font-label-sm text-label-sm text-center">
+                    © 2024 360 Econovations Enterprise.
+                </p>
+</div>
+</div>
+</footer>
+<!-- Floating WhatsApp Button -->
+<a id="whatsapp-float" href="#" aria-label="Chat on WhatsApp"
+   class="fixed right-6 z-40 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-8 h-8">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+<!-- Mobile Navigation (Suppressed based on context: but following the JSON TopNavBar for web/mobile pivot) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-outline-variant flex justify-around items-center py-2 px-4 z-50">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant" onclick="window.location.href='../homepage/code.html'">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary" onclick="window.location.href='../my_orders_account_area/code.html'">
+<span class="material-symbols-outlined" data-icon="shopping_bag" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="text-[10px] font-label-sm">Orders</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant" onclick="window.location.href='../about_us/code.html'">
+<span class="material-symbols-outlined" data-icon="eco">eco</span>
+<span class="text-[10px] font-label-sm">Impact</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant" onclick="window.location.href='../my_orders_account_area/code.html'">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="text-[10px] font-label-sm">Profile</span>
+</button>
+</div>
+<script>
+        // Micro-interaction for order card hover
+        document.querySelectorAll('.card-shadow-hover').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Floating WhatsApp button — dock just above footer when footer is visible
+        const whatsappBtn = document.getElementById('whatsapp-float');
+        const footer = document.querySelector('footer');
+        const GAP = 16;
+        const isMobile = () => window.innerWidth < 768;
+
+        function updateWhatsappPosition() {
+            const footerTop = footer.getBoundingClientRect().top;
+            const defaultBottom = isMobile() ? 80 : 24;
+            if (footerTop < window.innerHeight) {
+                whatsappBtn.style.bottom = (window.innerHeight - footerTop + GAP) + 'px';
+            } else {
+                whatsappBtn.style.bottom = defaultBottom + 'px';
+            }
+        }
+
+        window.addEventListener('scroll', updateWhatsappPosition, { passive: true });
+        window.addEventListener('resize', updateWhatsappPosition, { passive: true });
+        updateWhatsappPosition();
+    </script>
+</body></html>
