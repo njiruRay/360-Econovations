@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In / Register - 360 Econovations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#dfe4db",
+                        "tertiary-container": "#b85000",
+                        "on-background": "#181d17",
+                        "secondary-fixed": "#84faa7",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "surface-container-low": "#f0f5ec",
+                        "tertiary-fixed": "#ffdbca",
+                        "outline": "#6f7a6e",
+                        "surface": "#f6fbf2",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#d3ffd5",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#005323",
+                        "surface-container": "#eaefe6",
+                        "primary-fixed-dim": "#79db8d",
+                        "inverse-surface": "#2c322c",
+                        "secondary": "#006d37",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#00723a",
+                        "on-secondary-fixed-variant": "#005228",
+                        "on-surface-variant": "#3f493f",
+                        "secondary-container": "#81f8a4",
+                        "on-surface": "#181d17",
+                        "inverse-on-surface": "#edf2e9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#fff1eb",
+                        "secondary-fixed-dim": "#67dd8d",
+                        "tertiary": "#913e00",
+                        "surface-container-highest": "#dfe4db",
+                        "primary": "#00652c",
+                        "on-primary-fixed": "#00210a",
+                        "on-secondary-fixed": "#00210d",
+                        "surface-tint": "#006d30",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "primary-fixed": "#95f8a7",
+                        "inverse-primary": "#79db8d",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#becabc",
+                        "background": "#f6fbf2",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d6dcd3",
+                        "on-tertiary-fixed": "#341100",
+                        "primary-container": "#15803d",
+                        "surface-container-high": "#e4eae1",
+                        "surface-bright": "#f6fbf2",
+                        "action-orange": "#F97316",
+                        "highlight-gold": "#D4A017"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "16px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "md": "24px",
+                        "xs": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "xl": "80px",
+                        "sm": "16px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg-mobile": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "headline-sm": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .low-shadow {
+            box-shadow: 0px 4px 20px rgba(17, 17, 17, 0.06);
+        }
+        .active-shadow {
+            box-shadow: 0px 8px 30px rgba(17, 17, 17, 0.1);
+        }
+        input:focus {
+            outline: none;
+            border-color: #15803D !important;
+            box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-[1280px] mx-auto bg-surface dark:bg-surface-container shadow-sm dark:shadow-none">
+<div class="flex items-center gap-2">
+<span class="font-display-lg-mobile text-display-lg-mobile font-bold text-primary dark:text-primary-fixed">360 ECONOVATIONS</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant dark:text-outline-variant font-label-sm text-label-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-label-sm text-label-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Shop</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-label-sm text-label-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">About</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-label-sm text-label-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Impact</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-label-sm text-label-sm hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="relative flex items-center gap-1 group cursor-pointer">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="shopping_cart">shopping_cart</span>
+<span class="bg-highlight-gold text-on-background px-2 py-0.5 rounded-full text-[10px] font-bold absolute -top-2 -right-2">3</span>
+<span class="hidden md:inline font-label-sm text-label-sm text-primary dark:text-primary-fixed">3 items in cart</span>
+</div>
+<button class="hidden md:block font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors">Sign In</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center py-xl px-margin-mobile">
+<div class="w-full max-w-xl">
+<!-- Checkout Note Banner -->
+<div class="mb-8 text-center animate-fade-in">
+<h1 class="font-headline-md text-headline-md text-primary mb-2">Checkout Security</h1>
+<p class="text-on-surface-variant font-body-md">Sign in or create an account to complete your order.</p>
+</div>
+<!-- Authentic Card Container -->
+<div class="bg-surface-container-lowest rounded-2xl low-shadow overflow-hidden p-8 md:p-lg">
+<!-- Tab Toggle -->
+<div class="flex bg-surface-container rounded-full p-1 mb-8">
+<button class="flex-1 py-3 text-center rounded-full font-label-sm text-label-sm transition-all duration-300 bg-surface text-primary shadow-sm" id="signInTab" onclick="switchTab('signin')">
+                        Sign In
+                    </button>
+<button class="flex-1 py-3 text-center rounded-full font-label-sm text-label-sm transition-all duration-300 text-on-surface-variant hover:text-primary" id="registerTab" onclick="switchTab('register')">
+                        Register
+                    </button>
+</div>
+<!-- Sign In Form -->
+<div class="space-y-6" id="signInForm">
+<div class="space-y-4">
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Email Address</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 font-body-md focus:ring-2 focus:ring-primary/20" placeholder="name@company.com" type="email"/>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center px-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Password</label>
+<a class="text-[12px] font-semibold text-primary hover:underline" href="#">Forgot password?</a>
+</div>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 font-body-md focus:ring-2 focus:ring-primary/20" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="w-full bg-action-orange text-white py-4 rounded-full font-label-sm text-label-sm active-shadow hover:brightness-110 transition-all transform active:scale-[0.98]">
+                        Sign In
+                    </button>
+<div class="relative py-2">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant"></div></div>
+<div class="relative flex justify-center text-xs uppercase"><span class="bg-surface-container-lowest px-2 text-outline">Or continue with</span></div>
+</div>
+<button class="w-full border-2 border-outline-variant text-on-surface py-4 rounded-full font-label-sm text-label-sm flex items-center justify-center gap-3 hover:bg-surface transition-colors">
+<img alt="Google Logo" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaq299NqyhfXZakHzx3c9NS4ECubtrSPkRyiG68JuR8Y18HBD56DJHGodQ7I4koFkK3b_RuOqdkg9A-FwWZAennnCgW0RCmpIgv10n-Uki9zm8TdumKPP_VpzzBjl2uCzL7SyYKmjzLcM6N2l8p7PBW7ICE2XAIhkAHLl-tqgSmiWBq_CcSpul3CzZUVSbqzPB4gvclcdrjjLD1X6JzhSE8odYHpwXy3eGWxBLuruVKYhnNitRxjyQUA"/>
+                        Continue with Google
+                    </button>
+</div>
+<!-- Register Form (Hidden by default) -->
+<div class="hidden space-y-6" id="registerForm">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Full Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 font-body-md" placeholder="John Doe" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Email Address</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 font-body-md" placeholder="john@example.com" type="email"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Phone (M-PESA/WhatsApp)</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 font-body-md" placeholder="+254..." type="tel"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Confirm Phone</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 font-body-md" placeholder="+254..." type="tel"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Password</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 font-body-md" placeholder="••••••••" type="password"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Confirm Password</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 font-body-md" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="w-full bg-action-orange text-white py-4 rounded-full font-label-sm text-label-sm active-shadow hover:brightness-110 transition-all transform active:scale-[0.98]">
+                        Create Account
+                    </button>
+</div>
+<!-- Browsing Disclaimer -->
+<div class="mt-8 pt-6 border-t border-surface-container flex items-start gap-3">
+<span class="material-symbols-outlined text-highlight-gold flex-shrink-0" data-icon="info">info</span>
+<p class="text-on-surface-variant text-[13px] leading-relaxed">
+                        Browsing and adding to cart never requires an account — sign-in is only needed to check out.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Section -->
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-lg max-w-[1280px] mx-auto flex flex-col gap-md bg-surface-container-low dark:bg-surface-container-highest">
+<div class="flex flex-col md:flex-row justify-between gap-lg">
+<div class="flex flex-col gap-4 max-w-sm">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">360 ECONOVATIONS</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Empowering the circular economy through sustainable logistics and industrial innovation in East Africa.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-3">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Explore</span>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-secondary transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-secondary transition-colors" href="#">Shop</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-secondary transition-colors" href="#">About</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Connect</span>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-secondary transition-colors" href="#">Email</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-secondary transition-colors" href="#">WhatsApp</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-secondary transition-colors" href="#">Location</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Partner</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="handshake">handshake</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">World YMCA</span>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 360 Econovations Enterprise. In partnership with World YMCA</p>
+<div class="flex gap-6">
+<a class="material-symbols-outlined text-primary hover:scale-110 transition-transform" data-icon="public" href="#">public</a>
+<a class="material-symbols-outlined text-primary hover:scale-110 transition-transform" data-icon="mail" href="#">mail</a>
+</div>
+</div>
+</footer>
+<script>
+        function switchTab(tab) {
+            const signInForm = document.getElementById('signInForm');
+            const registerForm = document.getElementById('registerForm');
+            const signInTab = document.getElementById('signInTab');
+            const registerTab = document.getElementById('registerTab');
+
+            if (tab === 'signin') {
+                signInForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                signInTab.classList.add('bg-surface', 'text-primary', 'shadow-sm');
+                signInTab.classList.remove('text-on-surface-variant');
+                registerTab.classList.remove('bg-surface', 'text-primary', 'shadow-sm');
+                registerTab.classList.add('text-on-surface-variant');
+            } else {
+                signInForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                registerTab.classList.add('bg-surface', 'text-primary', 'shadow-sm');
+                registerTab.classList.remove('text-on-surface-variant');
+                signInTab.classList.remove('bg-surface', 'text-primary', 'shadow-sm');
+                signInTab.classList.add('text-on-surface-variant');
+            }
+        }
+
+        // Lightweight atmospheric effect: gentle mouse follow parallax on the card
+        document.addEventListener('mousemove', (e) => {
+            const card = document.querySelector('.bg-surface-container-lowest');
+            if(!card) return;
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+    </script>
+</body></html>

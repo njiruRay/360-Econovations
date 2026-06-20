@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shop Manager | 360 Econovations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for a cleaner UI */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f6fbf2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #becabc;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6f7a6e;
+        }
+        /* Side Panel Transition */
+        #product-panel {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #product-panel.open {
+            transform: translateX(0);
+        }
+        .glass-blur {
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#7d283c",
+                      "secondary-container": "#98f3af",
+                      "secondary": "#006d37",
+                      "surface-container-highest": "#dfe4dc",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#84d992",
+                      "background": "#f6fbf2",
+                      "surface-container": "#ebefe7",
+                      "primary-fixed": "#9ff6ac",
+                      "primary-container": "#00652c",
+                      "on-secondary-container": "#0b723b",
+                      "tertiary-fixed-dim": "#ffb2bd",
+                      "on-primary-container": "#8ae098",
+                      "tertiary-container": "#92384c",
+                      "surface-bright": "#f6fbf2",
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-container": "#ffbbc5",
+                      "surface-container-high": "#e5eae1",
+                      "surface": "#f6fbf2",
+                      "error-container": "#ffdad6",
+                      "inverse-primary": "#84d992",
+                      "on-secondary": "#ffffff",
+                      "surface-tint": "#106d33",
+                      "surface-dim": "#d7dbd3",
+                      "tertiary": "#742136",
+                      "on-surface-variant": "#3f493f",
+                      "secondary-fixed-dim": "#80d997",
+                      "on-secondary-fixed": "#00210c",
+                      "outline": "#6f7a6e",
+                      "secondary-fixed": "#9bf6b2",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#400014",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#004b1f",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#eef2ea",
+                      "outline-variant": "#bfc9bc",
+                      "on-primary-fixed": "#00210a",
+                      "on-surface": "#181d18",
+                      "surface-variant": "#dfe4dc",
+                      "on-background": "#181d18",
+                      "inverse-surface": "#2d322c",
+                      "tertiary-fixed": "#ffd9de",
+                      "surface-container-low": "#f1f5ec",
+                      "on-primary-fixed-variant": "#005323",
+                      "on-secondary-fixed-variant": "#005228"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "xl": "32px",
+                      "2xl": "48px",
+                      "container-max": "1440px",
+                      "gutter": "24px",
+                      "margin-desktop": "32px",
+                      "xs": "4px",
+                      "base": "4px",
+                      "3xl": "64px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "body-sm": ["Inter"],
+                      "headline-lg-mobile": ["Montserrat"],
+                      "label-sm": ["Inter"],
+                      "headline-sm": ["Montserrat"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Montserrat"],
+                      "headline-lg": ["Montserrat"]
+              },
+              "fontSize": {
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-40 flex justify-between items-center px-margin-desktop h-16 w-full ml-0 md:ml-64 bg-background/80 backdrop-blur-md border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<span class="md:hidden material-symbols-outlined text-primary cursor-pointer" onclick="toggleSidebar()">menu</span>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Shop Manager</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="hover:bg-surface-container-high rounded-full p-2 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a business administrator with a friendly expression, set against a blurred corporate office background with soft green and white tones, reflecting a trustworthy and reliable professional atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkeTTi7p9iNUB0tfbQYeaN2fIc2s9mzTdm_FRaWzgNKFUAV8-tQU2guHL-NapRvwB3TPC9IvX13EhmNJpWAOQ8CV9kUvEgIiHHN0qWkHexW3OWOAZYpacWc3KHMWVe9EDIAPyuzGq7gAsnkfTAKlMXonQhXUMy-7bm_6lRAHj5GaLwxH1OvoPUDYfLls8Fz5SEXyIctwCPN3XoqsvU64HjGXxmrJ0dMa8KeptZAbPecAK9qi_zAssfk08iE0ivC2B8PPKPykblcTFT"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<nav class="fixed left-0 top-0 h-screen flex flex-col p-4 z-50 bg-surface-container-lowest border-r border-outline-variant w-64 transition-all duration-300 -translate-x-full md:translate-x-0" id="sidebar">
+<div class="mb-8 px-2">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">360 Econovations</h2>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Waste-to-Value Admin</p>
+</div>
+<div class="flex-grow space-y-1">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_dashboard_overview/code.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<!-- Navigation Manager -->
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_navigation_manager/code.html">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span class="font-label-md text-label-md">Navigation Manager</span>
+</a>
+<!-- Pages Manager -->
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_pages_manager/code.html">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-md text-label-md">Pages Manager</span>
+</a>
+<!-- Shop Manager (ACTIVE) -->
+<a class="flex items-center gap-3 px-4 py-2 bg-primary-container/10 text-primary font-bold rounded-full transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="shopping_bag" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="font-label-md text-label-md">Shop Manager</span>
+</a>
+<!-- Editors -->
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_about_page_editor/code.html">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="font-label-md text-label-md">About Page Editor</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_contact_page_editor/code.html">
+<span class="material-symbols-outlined" data-icon="contact_mail">contact_mail</span>
+<span class="font-label-md text-label-md">Contact Page Editor</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="view_stream">view_stream</span>
+<span class="font-label-md text-label-md">Footer Manager</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_analytics_bi_overview/code.html">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Analytics &amp; BI</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_branding_logo/code.html">
+<span class="material-symbols-outlined" data-icon="palette">palette</span>
+<span class="font-label-md text-label-md">Branding &amp; Logo</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_settings/code.html">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant">
+<button class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-error transition-colors w-full" onclick="window.location.href='../admin_sign_in/code.html'">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-0 md:ml-64 p-margin-desktop min-h-screen">
+<!-- Header Actions Area -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Product Inventory</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage your environmental products and stock levels.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-full text-body-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all w-64" placeholder="Search products..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Inventory Table Card -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden mb-24">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-sm uppercase tracking-wider border-b border-outline-variant">
+<th class="px-6 py-4">Thumbnail</th>
+<th class="px-6 py-4">Product Name</th>
+<th class="px-6 py-4">Short Description</th>
+<th class="px-6 py-4">Price (KES)</th>
+<th class="px-6 py-4">Stock Status</th>
+<th class="px-6 py-4">Visibility</th>
+<th class="px-6 py-4">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Product 1: Emerald Glass Cullet -->
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden border border-outline-variant bg-white">
+<img class="w-full h-full object-cover" data-alt="High-quality close-up of crushed recycled glass cullet in various shades of emerald and clear white. The lighting is soft and natural, emphasizing the translucent and sparkling texture of the material, representing sustainable waste-to-value industrial processes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARj-veMlwRfSSAZLdrdE0AJNDYH6i_xMlc--3y9O8RdHRZrExyMb_MzuP5JbVAeK562kLQYzK0ng-EQdJaBe6XL44JYdOTliTxI0zJ08gZjEsPU5PqBkaVhks86G6o3TvsQJ33RyZzjC98j-J2Q4twANSLoNFC_23B0qvXIjAhZBHWO0xfVamlLvTgvMFv31d6DexfSsp1p84yihxjdXrcFbTPkln1fYe-WJZcAXcAsTtkDJyUTDH8A5eOZ4_8j8xPnqgMilslkb0L"/>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">Emerald Glass Cullet</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant max-w-[200px] truncate">Pure crushed emerald glass cullet for architectural finishes and industrial manufacturing...</td>
+<td class="px-6 py-4 font-body-md text-on-surface">40/kg</td>
+<td class="px-6 py-4">
+<label class="inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="relative w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</td>
+<td class="px-6 py-4">
+<label class="inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="relative w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Product 2: High-Density Briquettes -->
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden border border-outline-variant bg-white">
+<img class="w-full h-full object-cover" data-alt="A macro photograph of eco-friendly biomass briquettes made from agricultural waste. The cylinders are dark brown with a fibrous texture, neatly stacked in a clean, minimalist setting. Warm, bright light highlights the organic details, conveying a message of renewable energy and environmental stewardship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVLsW4sgrsbdmVwkXh3y40DRjlWM5QpZugY4C1FZJ-ty2Pjeg_z7TweMbb4R-8dV2k9Dn1fx7YklP2nQt3Y4Qx-Ub1DadeUiJSfj84EelW57x854wSDglK7egNh5ZJGrBsL4ar0_oZkbChmSRKwkR3YhXNcJj1sUhqiTPHRkRnwoSCn8Ttt8a1jos08dvghRc0ufvub5vuFNpdYZl01neDhVJY94ab2_OSX6y5zmDNvbKB2YbP5oMtKvVilGZnvGCVllTepXF8Pwjz"/>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">High-Density Briquettes</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant max-w-[200px] truncate">Carbon-neutral heating solution made from pressed organic agricultural waste...</td>
+<td class="px-6 py-4 font-body-md text-on-surface">25/kg</td>
+<td class="px-6 py-4">
+<label class="inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="relative w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</td>
+<td class="px-6 py-4">
+<label class="inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="relative w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Product 3: Sterilized Amber Bottles -->
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden border border-outline-variant bg-white">
+<img class="w-full h-full object-cover" data-alt="A row of clean, clear glass bottles arranged on a bright mint-white surface. The lighting is crisp and modern, casting soft shadows. The bottles look pristine and sustainable, symbolizing a circular economy and responsible consumption within a modern eco-conscious corporate framework." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG9GJarRItTbd2uXNfxJTLH1G2o0fuFHmN5VvwsuJtQz7mnPeIGP1fYTZxL-PRU70rosfkz6W0VCo-vRDR6JTZlUsTJygFSKmurDYulaZUDk3p55o6yGZhA7_fzeMCXHOAkeGx0IS_OkS_73FVxu6vhr9BW_CZNjakTPJjKAgiOkqc_jzrjuz22joabNx-hmMPaD1tnFwNYDV7muUcZvv1aBQ87TA1gke_e6EfofLnBvEdJ7o0t8OpPx4htutEUJCqeRxlD0HVKlE7"/>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">Sterilized Amber Bottles</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant max-w-[200px] truncate">Reused 500ml amber bottles, sterilized and ready for beverage or pharmaceutical use...</td>
+<td class="px-6 py-4 font-body-md text-on-surface">15/pc</td>
+<td class="px-6 py-4">
+<label class="inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="relative w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</td>
+<td class="px-6 py-4">
+<label class="inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="relative w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Product 4: Pristine White Cullet -->
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden border border-outline-variant bg-white">
+<img class="w-full h-full object-cover" data-alt="Ultra-clear pristine white glass cullet chips, perfectly crushed and sorted, arranged on a white surface. Macro photography capturing the transparent, glassy quality, used for terrazzo flooring and decorative applications." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARj-veMlwRfSSAZLdrdE0AJNDYH6i_xMlc--3y9O8RdHRZrExyMb_MzuP5JbVAeK562kLQYzK0ng-EQdJaBe6XL44JYdOTliTxI0zJ08gZjEsPU5PqBkaVhks86G6o3TvsQJ33RyZzjC98j-J2Q4twANSLoNFC_23B0qvXIjAhZBHWO0xfVamlLvTgvMFv31d6DexfSsp1p84yihxjdXrcFbTPkln1fYe-WJZcAXcAsTtkDJyUTDH8A5eOZ4_8j8xPnqgMilslkb0L"/>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">Pristine White Cullet</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant max-w-[200px] truncate">Ultra-clear glass chips suitable for high-end terrazzo flooring and decorative landscaping...</td>
+<td class="px-6 py-4 font-body-md text-on-surface">55/kg</td>
+<td class="px-6 py-4">
+<label class="inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="relative w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</td>
+<td class="px-6 py-4">
+<label class="inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="relative w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer -->
+<div class="p-4 bg-surface-container flex items-center justify-between">
+<span class="font-label-sm text-on-surface-variant">Showing 4 of 4 items</span>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-8 right-8 flex items-center gap-2 px-6 py-4 bg-[#f2994a] text-white rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 z-40" onclick="openPanel()">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span class="font-label-md font-bold">+ Add Product</span>
+</button>
+<!-- Overlay Back-drop -->
+<div class="fixed inset-0 bg-black/20 backdrop-blur-sm z-[55] hidden transition-opacity duration-300" id="panel-overlay" onclick="closePanel()"></div>
+<!-- Side Panel (Open State) -->
+<aside class="fixed top-0 right-0 h-screen w-full md:w-[480px] bg-surface-container-lowest shadow-2xl z-[60] flex flex-col p-8 overflow-y-auto border-l border-outline-variant" id="product-panel">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Add New Product</h3>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="closePanel()">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<form class="space-y-6">
+<!-- Image Upload area -->
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">Product Image</label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors mb-2" data-icon="cloud_upload">cloud_upload</span>
+<p class="font-body-sm text-on-surface-variant text-center">Drag and drop or <span class="text-primary font-semibold">Browse</span></p>
+<p class="text-xs text-on-surface-variant opacity-60 mt-1">PNG, JPG up to 10MB</p>
+</div>
+</div>
+<!-- Product Name -->
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">Product Name</label>
+<input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="e.g. Recycled Glass Pebbles" type="text"/>
+</div>
+<!-- Category -->
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">Category</label>
+<select class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all appearance-none">
+<option>Glass Products</option>
+<option>Renewable Energy</option>
+<option>Bottles</option>
+</select>
+</div>
+<!-- Description (Rich Text Editor Simulation) -->
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">Full Description</label>
+<div class="border border-outline-variant rounded-xl overflow-hidden">
+<div class="bg-surface-container px-4 py-2 flex gap-2 border-b border-outline-variant">
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors" type="button"><span class="material-symbols-outlined !text-[18px]" data-icon="format_bold">format_bold</span></button>
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors" type="button"><span class="material-symbols-outlined !text-[18px]" data-icon="format_italic">format_italic</span></button>
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors" type="button"><span class="material-symbols-outlined !text-[18px]" data-icon="format_list_bulleted">format_list_bulleted</span></button>
+</div>
+<textarea class="w-full px-4 py-3 bg-white border-none outline-none focus:ring-0" placeholder="Enter detailed product description..." rows="4"></textarea>
+</div>
+</div>
+<!-- Pricing & Stock -->
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-md text-on-surface-variant mb-2">Price (KES)</label>
+<input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="0.00" type="number"/>
+</div>
+<div class="flex flex-col justify-end">
+<label class="flex items-center gap-3 cursor-pointer mb-3">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="relative w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+<span class="font-label-md text-on-surface">In Stock</span>
+</label>
+</div>
+</div>
+<!-- Footer Buttons -->
+<div class="pt-8 mt-8 border-t border-outline-variant flex items-center justify-end gap-4">
+<button class="px-6 py-2 rounded-full font-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="closePanel()" type="button">Cancel</button>
+<button class="px-8 py-2 bg-[#f2994a] text-white rounded-full font-label-md font-bold shadow hover:shadow-md hover:scale-105 transition-all" type="submit">Save Product</button>
+</div>
+</form>
+</aside>
+<script>
+        function openPanel() {
+            document.getElementById('product-panel').classList.add('open');
+            document.getElementById('panel-overlay').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('panel-overlay').classList.add('opacity-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePanel() {
+            document.getElementById('product-panel').classList.remove('open');
+            document.getElementById('panel-overlay').classList.remove('opacity-100');
+            setTimeout(() => {
+                document.getElementById('panel-overlay').classList.add('hidden');
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        }
+
+        // Close sidebar on window resize if hidden
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                document.getElementById('sidebar').classList.remove('-translate-x-full');
+            } else {
+                document.getElementById('sidebar').classList.add('-translate-x-full');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | 360 Econovations Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#7d283c",
+                    "secondary-container": "#98f3af",
+                    "secondary": "#006d37",
+                    "surface-container-highest": "#dfe4dc",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#84d992",
+                    "background": "#f6fbf2",
+                    "surface-container": "#ebefe7",
+                    "primary-fixed": "#9ff6ac",
+                    "primary-container": "#00652c",
+                    "on-secondary-container": "#0b723b",
+                    "tertiary-fixed-dim": "#ffb2bd",
+                    "on-primary-container": "#8ae098",
+                    "tertiary-container": "#92384c",
+                    "surface-bright": "#f6fbf2",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#ffbbc5",
+                    "surface-container-high": "#e5eae1",
+                    "surface": "#f6fbf2",
+                    "error-container": "#ffdad6",
+                    "inverse-primary": "#84d992",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#106d33",
+                    "surface-dim": "#d7dbd3",
+                    "tertiary": "#742136",
+                    "on-surface-variant": "#3f493f",
+                    "secondary-fixed-dim": "#80d997",
+                    "on-secondary-fixed": "#00210c",
+                    "outline": "#6f7a6e",
+                    "secondary-fixed": "#9bf6b2",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#400014",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#004b1f",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#eef2ea",
+                    "outline-variant": "#bfc9bc",
+                    "on-primary-fixed": "#00210a",
+                    "on-surface": "#181d18",
+                    "surface-variant": "#dfe4dc",
+                    "on-background": "#181d18",
+                    "inverse-surface": "#2d322c",
+                    "tertiary-fixed": "#ffd9de",
+                    "surface-container-low": "#f1f5ec",
+                    "on-primary-fixed-variant": "#005323",
+                    "on-secondary-fixed-variant": "#005228"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "xl": "32px",
+                    "2xl": "48px",
+                    "container-max": "1440px",
+                    "gutter": "24px",
+                    "margin-desktop": "32px",
+                    "xs": "4px",
+                    "base": "4px",
+                    "3xl": "64px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "headline-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f6fbf2;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-shadow {
+            box-shadow: 0px 4px 20px rgba(24, 29, 23, 0.05);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-margin-mobile md:p-margin-desktop overflow-hidden">
+<!-- Atmospheric Background Decoration -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden">
+<div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-secondary-container/20 blur-3xl"></div>
+<div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-primary-fixed/20 blur-3xl"></div>
+</div>
+<!-- Login Container -->
+<main class="relative z-10 w-full max-w-[440px]">
+<!-- Brand Header -->
+<div class="flex flex-col items-center mb-8">
+<div class="mb-4 p-3 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="recycling">recycling</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">360 Econovations</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Waste-to-Value Administration</p>
+</div>
+<!-- Login Card -->
+<div class="bg-surface-container-lowest card-shadow rounded-2xl border border-outline-variant p-8 md:p-10 transition-all duration-300">
+<form class="space-y-6" id="login-form">
+<!-- Welcome Text -->
+<div class="text-center mb-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Welcome Back</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Sign in to manage your ecosystem</p>
+</div>
+<!-- Fields -->
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-2" for="email">
+<span class="material-symbols-outlined text-[18px]" data-icon="mail">mail</span>
+                            EMAIL ADDRESS
+                        </label>
+<input class="w-full px-4 py-3 rounded-xl border border-outline-variant bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md" id="email" name="email" placeholder="admin@360econovations.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-2" for="password">
+<span class="material-symbols-outlined text-[18px]" data-icon="lock">lock</span>
+                            PASSWORD
+                        </label>
+<div class="relative">
+<input class="w-full px-4 py-3 rounded-xl border border-outline-variant bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md" id="password" name="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Error Message (Visible Example) -->
+<div class="flex items-center gap-3 p-3 bg-error-container/40 border border-error/20 rounded-lg animate-in fade-in slide-in-from-top-2 duration-300">
+<span class="material-symbols-outlined text-error text-[20px]" data-icon="error">error</span>
+<p class="font-label-md text-label-md text-on-error-container">Invalid credentials. Please check your email and password.</p>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary text-on-primary py-4 rounded-full font-label-md text-label-md hover:bg-primary-container transition-all duration-200 active:scale-95 flex justify-center items-center gap-2 shadow-lg shadow-primary/10" type="submit">
+                    Sign In
+                    <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Footer Text -->
+<div class="pt-4 text-center border-t border-outline-variant/30">
+<div class="flex items-center justify-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="info">info</span>
+<p class="font-body-sm text-body-sm">Access by invite only.</p>
+</div>
+<a class="mt-4 inline-block font-label-sm text-label-sm text-secondary hover:underline" href="#">Forgot password?</a>
+</div>
+</form>
+</div>
+<!-- System Status Placeholder -->
+<div class="mt-8 flex justify-center gap-4 text-on-surface-variant/60 font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                System Operational
+            </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified_user">verified_user</span>
+                Secure Access
+            </div>
+</div>
+</main>
+<script>
+        // Simple form interaction
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin" data-icon="progress_activity">progress_activity</span> Authenticating...';
+            btn.classList.add('opacity-80');
+            setTimeout(() => {
+                window.location.href = '../admin_dashboard_overview/code.html';
+            }, 1200);
+        });
+
+        // Toggle Password visibility logic
+        const togglePass = document.querySelector('button[type="button"]');
+        const passInput = document.querySelector('#password');
+        togglePass.addEventListener('click', () => {
+            const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passInput.setAttribute('type', type);
+            const icon = type === 'password' ? 'visibility' : 'visibility_off';
+            togglePass.querySelector('.material-symbols-outlined').textContent = icon;
+        });
+    </script>
+</body></html>

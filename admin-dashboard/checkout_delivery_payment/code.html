@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | 360 Econovations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#dfe4db",
+                    "tertiary-container": "#b85000",
+                    "on-background": "#181d17",
+                    "secondary-fixed": "#84faa7",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "surface-container-low": "#f0f5ec",
+                    "tertiary-fixed": "#ffdbca",
+                    "outline": "#6f7a6e",
+                    "surface": "#f6fbf2",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-container": "#d3ffd5",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#005323",
+                    "surface-container": "#eaefe6",
+                    "primary-fixed-dim": "#79db8d",
+                    "inverse-surface": "#2c322c",
+                    "secondary": "#006d37",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#00723a",
+                    "on-secondary-fixed-variant": "#005228",
+                    "on-surface-variant": "#3f493f",
+                    "secondary-container": "#81f8a4",
+                    "on-surface": "#181d17",
+                    "inverse-on-surface": "#edf2e9",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#fff1eb",
+                    "secondary-fixed-dim": "#67dd8d",
+                    "tertiary": "#913e00",
+                    "surface-container-highest": "#dfe4db",
+                    "primary": "#00652c",
+                    "on-primary-fixed": "#00210a",
+                    "on-secondary-fixed": "#00210d",
+                    "surface-tint": "#006d30",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "primary-fixed": "#95f8a7",
+                    "inverse-primary": "#79db8d",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#becabc",
+                    "background": "#f6fbf2",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d6dcd3",
+                    "on-tertiary-fixed": "#341100",
+                    "primary-container": "#15803d",
+                    "surface-container-high": "#e4eae1",
+                    "surface-bright": "#f6fbf2",
+                    "action-orange": "#F97316",
+                    "primary-green": "#15803D",
+                    "highlight-gold": "#D4A017"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "md": "24px",
+                    "xs": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "64px",
+                    "xl": "80px",
+                    "sm": "16px",
+                    "lg": "48px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "headline-sm": ["Montserrat"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-sm": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { color: #00652c; font-weight: 700; }
+        .step-inactive { color: #6f7a6e; }
+        .custom-shadow-low { box-shadow: 0px 4px 20px rgba(17, 17, 17, 0.06); }
+        .custom-shadow-hover:hover { box-shadow: 0px 8px 30px rgba(17, 17, 17, 0.1); }
+        
+        /* Hide steps logic */
+        .checkout-step { display: none; }
+        .checkout-step.active { display: block; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-[1280px] mx-auto bg-surface dark:bg-surface-container shadow-sm dark:shadow-none">
+<div class="font-display-lg-mobile text-display-lg-mobile font-bold text-primary dark:text-primary-fixed">360 ECONOVATIONS</div>
+<nav class="hidden md:flex gap-md items-center">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 font-label-sm text-label-sm" href="#">Shop</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">About</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Impact</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-sm text-label-sm" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed p-xs hover:bg-surface-variant rounded-full transition-all" data-icon="shopping_cart">shopping_cart</button>
+<button class="font-label-sm text-label-sm px-md py-2 bg-primary text-on-primary rounded-full hover:opacity-80 transition-all">Sign In</button>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Progress Indicator -->
+<div class="flex items-center justify-center mb-xl">
+<div class="flex items-center w-full max-w-2xl relative">
+<!-- Step 1 Indicator -->
+<div class="flex flex-col items-center z-10 flex-1" id="ind-1">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary mb-2 transition-all">1</div>
+<span class="font-label-sm text-label-sm step-active">Delivery</span>
+</div>
+<div class="h-1 bg-surface-variant flex-1 -mx-8 mt-[-24px]"></div>
+<!-- Step 2 Indicator -->
+<div class="flex flex-col items-center z-10 flex-1" id="ind-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-variant text-outline mb-2 transition-all" id="dot-2">2</div>
+<span class="font-label-sm text-label-sm step-inactive" id="text-2">Payment</span>
+</div>
+<div class="h-1 bg-surface-variant flex-1 -mx-8 mt-[-24px]"></div>
+<!-- Step 3 Indicator -->
+<div class="flex flex-col items-center z-10 flex-1" id="ind-3">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-variant text-outline mb-2 transition-all" id="dot-3">3</div>
+<span class="font-label-sm text-label-sm step-inactive" id="text-3">Confirm</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+<!-- Main Content Area -->
+<div class="lg:col-span-8">
+<!-- STEP 1: DELIVERY -->
+<section class="checkout-step active" id="step-1">
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow-low">
+<h2 class="font-headline-sm text-headline-sm mb-md text-primary">Delivery Information</h2>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Full Name</label>
+<input class="bg-surface p-md rounded-xl border border-outline-variant focus:border-primary-green focus:ring-1 focus:ring-primary-green outline-none transition-all font-body-md text-body-md" placeholder="John Doe" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Phone Number</label>
+<input class="bg-surface p-md rounded-xl border border-outline-variant focus:border-primary-green focus:ring-1 focus:ring-primary-green outline-none transition-all font-body-md text-body-md" placeholder="+254 7XX XXX XXX" type="tel"/>
+</div>
+<div class="md:col-span-2 flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Street Address / Landmark (Embu Area)</label>
+<textarea class="bg-surface p-md rounded-xl border border-outline-variant focus:border-primary-green focus:ring-1 focus:ring-primary-green outline-none transition-all font-body-md text-body-md" placeholder="e.g. Near Embu Level 5 Hospital, Gate 4" rows="3"></textarea>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Sub-County</label>
+<select class="bg-surface p-md rounded-xl border border-outline-variant focus:border-primary-green focus:ring-1 focus:ring-primary-green outline-none transition-all font-body-md text-body-md">
+<option>Embu West</option>
+<option>Embu North</option>
+<option>Embu East</option>
+<option>Mbeere North</option>
+<option>Mbeere South</option>
+</select>
+</div>
+</form>
+</div>
+</section>
+<!-- STEP 2: PAYMENT -->
+<section class="checkout-step" id="step-2">
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow-low">
+<h2 class="font-headline-sm text-headline-sm mb-md text-primary">Select Payment Method</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- M-PESA Card -->
+<div class="payment-card border-2 border-outline-variant rounded-xl p-md cursor-pointer flex items-center gap-md hover:bg-surface transition-all custom-shadow-hover relative group active-method border-primary-green bg-surface" onclick="selectPayment(this)">
+<div class="bg-primary-container text-on-primary-container p-xs rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="smartphone">smartphone</span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm">M-PESA</h4>
+<p class="text-on-surface-variant text-[12px]">Pay via Sim Tool Kit</p>
+</div>
+<div class="absolute top-2 right-2 opacity-0 group-[.active-method]:opacity-100">
+<span class="material-symbols-outlined text-primary-green" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+</div>
+<!-- Bitcoin Card -->
+<div class="payment-card border-2 border-outline-variant rounded-xl p-md cursor-pointer flex items-center gap-md hover:bg-surface transition-all custom-shadow-hover relative group" onclick="selectPayment(this)">
+<div class="bg-tertiary-container text-on-tertiary-container p-xs rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="currency_bitcoin">currency_bitcoin</span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm">Bitcoin</h4>
+<p class="text-on-surface-variant text-[12px]">Lightning Network accepted</p>
+</div>
+<div class="absolute top-2 right-2 opacity-0 group-[.active-method]:opacity-100">
+<span class="material-symbols-outlined text-primary-green" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+</div>
+<!-- Cash Card -->
+<div class="payment-card border-2 border-outline-variant rounded-xl p-md cursor-pointer flex items-center gap-md hover:bg-surface transition-all custom-shadow-hover relative group" onclick="selectPayment(this)">
+<div class="bg-surface-variant text-on-surface-variant p-xs rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm">Cash on Delivery</h4>
+<p class="text-on-surface-variant text-[12px]">Pay when you receive</p>
+</div>
+<div class="absolute top-2 right-2 opacity-0 group-[.active-method]:opacity-100">
+<span class="material-symbols-outlined text-primary-green" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+</div>
+<!-- Placeholder Card -->
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-md flex items-center gap-md opacity-60">
+<div class="bg-surface-container-high text-outline p-xs rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm">More coming soon</h4>
+<p class="text-on-surface-variant text-[12px]">Adding Visa &amp; PayPal</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP 3: CONFIRM -->
+<section class="checkout-step" id="step-3">
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow-low flex flex-col gap-lg">
+<div>
+<h2 class="font-headline-sm text-headline-sm mb-md text-primary">Confirmation Channel</h2>
+<p class="text-on-surface-variant mb-md font-body-md">How should we send your order updates?</p>
+<div class="flex gap-md">
+<label class="flex-1 cursor-pointer">
+<input checked="" class="hidden peer" name="channel" type="radio"/>
+<div class="p-md rounded-xl border-2 border-outline-variant flex flex-col items-center gap-xs peer-checked:border-primary-green peer-checked:bg-surface transition-all">
+<span class="material-symbols-outlined text-primary-green" data-icon="mail" data-weight="fill">mail</span>
+<span class="font-label-sm text-label-sm">Email</span>
+</div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input class="hidden peer" name="channel" type="radio"/>
+<div class="p-md rounded-xl border-2 border-outline-variant flex flex-col items-center gap-xs peer-checked:border-primary-green peer-checked:bg-surface transition-all">
+<span class="material-symbols-outlined text-[#25D366]" data-icon="chat" data-weight="fill">chat</span>
+<span class="font-label-sm text-label-sm">WhatsApp</span>
+</div>
+</label>
+</div>
+</div>
+<div class="bg-surface p-md rounded-xl">
+<h3 class="font-label-sm text-label-sm mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" data-icon="visibility">visibility</span>
+                                Quick Review
+                            </h3>
+<div class="flex justify-between text-body-md py-xs border-b border-outline-variant">
+<span>Items Subtotal</span>
+<span>KES 4,500</span>
+</div>
+<div class="flex justify-between text-body-md py-xs border-b border-outline-variant">
+<span>Delivery (Embu West)</span>
+<span>KES 200</span>
+</div>
+<div class="flex justify-between font-bold text-headline-sm pt-md text-primary">
+<span>Total Payable</span>
+<span>KES 4,700</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Navigation Buttons -->
+<div class="mt-lg flex justify-between items-center">
+<button class="invisible flex items-center gap-xs font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" id="prev-btn" onclick="prevStep()">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+                        Back
+                    </button>
+<button class="bg-action-orange text-on-primary px-lg py-md rounded-full font-headline-sm text-headline-sm hover:opacity-90 transition-all custom-shadow-low flex items-center gap-sm" id="next-btn" onclick="nextStep()">
+                        Continue
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Sticky Sidebar Summary -->
+<aside class="lg:col-span-4 lg:sticky lg:top-24">
+<div class="bg-surface-container rounded-xl p-md custom-shadow-low flex flex-col gap-md">
+<h3 class="font-headline-sm text-headline-sm">Order Summary</h3>
+<div class="space-y-sm">
+<!-- Item 1 -->
+<div class="flex gap-sm items-center">
+<img class="w-16 h-16 rounded-lg object-cover bg-white" data-alt="A clean, minimalist product shot of a sustainable recycled plastic planter with a grainy eco-friendly texture. The lighting is bright and industrial-modern, highlighting the durable forest green material. The product sits on a white marble surface, embodying a corporate yet environmental stewardship aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADXDGOO0Y8dHyRjs7QPIljhAkh1Z9Wekvu3kBgMPBP5RT-27fPwKpgV5UtGPLk3k7y_cjOucYrI6Ya1fSeAevYV2xqDxdCvk0SdzaeWh-65Qz7wP5QeELPS33BKRwTLxK-o21edSU1OqeasxfCpGAvyaHk2Xoi5xuo6OChFgM2IYH1JSgbKCXxv1KeIkGC8tH-C0GfI3v9KgVt40aRoD_ZMO-Z9BNbfKV-4R9cPYl-iwnL91LXuGNndQ"/>
+<div class="flex-1">
+<h4 class="font-label-sm text-label-sm line-clamp-1">Recycled Eco-Planter</h4>
+<p class="text-on-surface-variant text-[12px]">Qty: 1 • Large</p>
+<span class="font-bold text-primary">KES 2,500</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-sm items-center">
+<img class="w-16 h-16 rounded-lg object-cover bg-white" data-alt="A macro shot of premium organic bamboo fiber textiles neatly folded. The colors are natural creams and soft greens, lit with warm sunlight to create a trustworthy and optimistic atmosphere. The composition is clean and modular, focusing on the high-quality industrial weave of the sustainable material." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANb2W6No4MtM9jfqSnaDhYomWSs8mh4G3hUUPnu1qLLfrKaf9Lt1ktCXYEBN4fUujqvEKu9lmH5bfvv3gSZ4TA13Zmhk4JynRqNYOEevqpTRHHV6CO9DoGsTASXTvWmy8CmcJnb0FC8o9q9DW2oK961NIymbYohU4uXi2FsVOIhw2-t0S3ODzK-6datrrcNH3rhqY7RtVIhuUebspsAKpmwiwqMJwqmensbvSyBvjkitqqt17UmICX5Q"/>
+<div class="flex-1">
+<h4 class="font-label-sm text-label-sm line-clamp-1">Organic Bamboo Towel</h4>
+<p class="text-on-surface-variant text-[12px]">Qty: 2 • Cream</p>
+<span class="font-bold text-primary">KES 2,000</span>
+</div>
+</div>
+</div>
+<hr class="border-outline-variant"/>
+<div class="space-y-xs">
+<div class="flex justify-between text-on-surface-variant">
+<span class="font-body-md text-body-md">Subtotal</span>
+<span class="font-body-md text-body-md">KES 4,500</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="font-body-md text-body-md">Estimated Shipping</span>
+<span class="font-body-md text-body-md">KES 200</span>
+</div>
+<div class="flex justify-between items-center pt-sm">
+<span class="font-headline-sm text-headline-sm">Total</span>
+<span class="font-headline-sm text-headline-sm text-primary">KES 4,700</span>
+</div>
+</div>
+<div class="mt-xs">
+<div class="flex items-center gap-xs text-[12px] text-on-surface-variant bg-surface-container-high p-xs rounded-lg">
+<span class="material-symbols-outlined text-sm" data-icon="shield">shield</span>
+                            Secure Transaction via 360 Eco-Gateway
+                        </div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-lg max-w-[1280px] mx-auto flex flex-col gap-md bg-surface-container-low dark:bg-surface-container-highest">
+<div class="flex flex-col md:flex-row justify-between gap-lg">
+<div class="flex flex-col gap-sm">
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">360 ECONOVATIONS</div>
+<p class="text-on-surface-variant max-w-sm font-body-md text-body-md">Pioneering the circular economy in Kenya through sustainable manufacturing and community-led impact.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-lg">
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm font-bold text-primary">Quick Links</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Shop</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Impact</a>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm font-bold text-primary">Support</span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Contact</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">WhatsApp</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors font-label-sm text-label-sm" href="#">Email</a>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm font-bold text-primary">Location</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Embu, Kenya</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">World YMCA Partner</span>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant pt-md flex flex-col md:flex-row justify-between items-center gap-sm">
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 360 Econovations Enterprise. In partnership with World YMCA</p>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70" data-icon="language">language</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70" data-icon="share">share</span>
+</div>
+</div>
+</footer>
+<script>
+        let currentStep = 1;
+
+        function updateUI() {
+            // Hide all steps
+            document.querySelectorAll('.checkout-step').forEach(step => step.classList.remove('active'));
+            // Show current
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+
+            // Update button text
+            const nextBtn = document.getElementById('next-btn');
+            if (currentStep === 3) {
+                nextBtn.innerHTML = 'Place Order <span class="material-symbols-outlined">check_circle</span>';
+                nextBtn.classList.replace('bg-action-orange', 'bg-primary-green');
+            } else {
+                nextBtn.innerHTML = 'Continue <span class="material-symbols-outlined">arrow_forward</span>';
+                nextBtn.classList.replace('bg-primary-green', 'bg-action-orange');
+            }
+
+            // Update Back button visibility
+            const prevBtn = document.getElementById('prev-btn');
+            if (currentStep > 1) {
+                prevBtn.classList.remove('invisible');
+            } else {
+                prevBtn.classList.add('invisible');
+            }
+
+            // Update indicators
+            for (let i = 1; i <= 3; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                const text = document.getElementById(`text-${i}`);
+                if (i <= currentStep) {
+                    if (dot) dot.classList.replace('bg-surface-variant', 'bg-primary');
+                    if (dot) dot.classList.replace('text-outline', 'text-on-primary');
+                    if (text) text.classList.replace('step-inactive', 'step-active');
+                } else {
+                    if (dot) dot.classList.replace('bg-primary', 'bg-surface-variant');
+                    if (dot) dot.classList.replace('text-on-primary', 'text-outline');
+                    if (text) text.classList.replace('step-active', 'step-inactive');
+                }
+            }
+        }
+
+        function nextStep() {
+            if (currentStep < 3) {
+                currentStep++;
+                updateUI();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                alert('Order Successfully Placed! Thank you for choosing 360 Econovations.');
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateUI();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function selectPayment(element) {
+            document.querySelectorAll('.payment-card').forEach(card => {
+                card.classList.remove('active-method', 'border-primary-green', 'bg-surface');
+            });
+            element.classList.add('active-method', 'border-primary-green', 'bg-surface');
+        }
+    </script>
+</body></html>

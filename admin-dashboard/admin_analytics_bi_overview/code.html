@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Analytics Overview | 360 Econovations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Design System Hierarchy & Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "inverse-surface": "#2d322c",
+                "outline": "#6f7a6e",
+                "primary-fixed-dim": "#84d992",
+                "tertiary": "#742136",
+                "on-primary-fixed-variant": "#005323",
+                "surface-variant": "#dfe4dc",
+                "secondary-fixed": "#9bf6b2",
+                "surface-container-low": "#f1f5ec",
+                "surface-container": "#ebefe7",
+                "surface-dim": "#d7dbd3",
+                "on-surface": "#181d18",
+                "surface-bright": "#f6fbf2",
+                "surface-container-highest": "#dfe4dc",
+                "tertiary-container": "#92384c",
+                "tertiary-fixed": "#ffd9de",
+                "tertiary-fixed-dim": "#ffb2bd",
+                "surface-container-lowest": "#ffffff",
+                "on-secondary-fixed-variant": "#005228",
+                "on-secondary-fixed": "#00210c",
+                "on-error": "#ffffff",
+                "secondary": "#006d37",
+                "error-container": "#ffdad6",
+                "on-surface-variant": "#3f493f",
+                "inverse-primary": "#84d992",
+                "on-secondary-container": "#0b723b",
+                "primary-fixed": "#9ff6ac",
+                "on-background": "#181d18",
+                "primary": "#004b1f",
+                "on-primary-fixed": "#00210a",
+                "primary-container": "#00652c",
+                "on-tertiary-fixed": "#400014",
+                "on-primary-container": "#8ae098",
+                "on-tertiary-container": "#ffbbc5",
+                "on-error-container": "#93000a",
+                "secondary-fixed-dim": "#80d997",
+                "on-tertiary": "#ffffff",
+                "surface": "#f6fbf2",
+                "surface-tint": "#106d33",
+                "outline-variant": "#bfc9bc",
+                "background": "#f6fbf2",
+                "surface-container-high": "#e5eae1",
+                "on-tertiary-fixed-variant": "#7d283c",
+                "error": "#ba1a1a",
+                "on-primary": "#ffffff",
+                "secondary-container": "#98f3af",
+                "inverse-on-surface": "#eef2ea",
+                "on-secondary": "#ffffff",
+                "warm-orange": "#f97316"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "12px",
+                "full": "9999px"
+            },
+            "spacing": {
+                "xs": "4px",
+                "sm": "8px",
+                "gutter": "24px",
+                "3xl": "64px",
+                "margin-desktop": "32px",
+                "2xl": "48px",
+                "base": "4px",
+                "container-max": "1440px",
+                "lg": "24px",
+                "md": "16px",
+                "xl": "32px",
+                "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                "headline-sm": ["Montserrat"],
+                "headline-md": ["Montserrat"],
+                "headline-lg": ["Montserrat"],
+                "label-sm": ["Inter"],
+                "label-md": ["Inter"],
+                "body-sm": ["Inter"],
+                "body-md": ["Inter"],
+                "body-lg": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Montserrat', sans-serif; }
+        .glass-card {
+            background: rgba(234, 239, 230, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid #becabc;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #becabc; border-radius: 10px; }
+        .active-pill { background: #004b1f; color: #ffffff; }
+    </style>
+</head>
+<body class="bg-background text-on-surface flex min-h-screen">
+<!-- Subtle Background Shader -->
+
+<!-- Side Navigation Bar (Fixed) — Standard Admin Nav -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest border-r border-outline-variant p-4 flex flex-col z-50 transition-all duration-300">
+<div class="mb-8 px-2">
+<h1 class="text-primary font-headline font-bold text-headline-md tracking-tight">360 Econovations</h1>
+<p class="text-on-surface-variant font-label-md text-label-md">Waste-to-Value Admin</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto custom-scrollbar pr-2">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_dashboard_overview/code.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_navigation_manager/code.html">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span class="font-label-md text-label-md">Navigation Manager</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_pages_manager/code.html">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-md text-label-md">Pages Manager</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_shop_manager/code.html">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-md text-label-md">Shop Manager</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_about_page_editor/code.html">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="font-label-md text-label-md">About Page Editor</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_contact_page_editor/code.html">
+<span class="material-symbols-outlined" data-icon="contact_mail">contact_mail</span>
+<span class="font-label-md text-label-md">Contact Page Editor</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="view_stream">view_stream</span>
+<span class="font-label-md text-label-md">Footer Manager</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 bg-primary-container/10 text-primary font-bold rounded-full transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-md text-label-md">Analytics &amp; BI</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_branding_logo/code.html">
+<span class="material-symbols-outlined" data-icon="palette">palette</span>
+<span class="font-label-md text-label-md">Branding &amp; Logo</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_settings/code.html">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-outline-variant">
+<div class="flex items-center gap-3 px-2 mb-2">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="Admin user headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe5xW8CuJWIcx85v8mwFc6LGTvDugUot8mOvFhHTmeaT9lL5ECgcMymoGV3dvLNCbC6W9cLy19FlXCqjZq0Va8iSUnx_1LVBEFVotl9Z9stqwp1Wd_kroi3_-mUyfbaEPLlw7dZ7ofhFqTymRtQ4AMaQEKybu_98KPOLF5OnDMm92xwwNiNWufk8lXR-3i4Z0kh05fnRM05EiRSel6JliSJT9dOWey8pUrJ075-lp3ohgNODLYoTUspOolASrjhygPXiHK99X7inf3"/>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="font-label-md font-bold text-on-surface truncate">Admin User</p>
+<p class="text-[10px] text-on-surface-variant">Kenya Regional Office</p>
+</div>
+</div>
+<button class="w-full flex items-center gap-3 px-4 py-2 text-error hover:bg-error-container/10 transition-colors rounded-full font-label-md text-label-md" onclick="window.location.href='../admin_sign_in/code.html'">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 relative z-10 px-margin-desktop py-xl">
+<!-- Header -->
+<header class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-headline text-headline-lg text-primary tracking-tight">Analytics Dashboard</h2>
+<p class="text-on-surface-variant font-body-md">Performance overview for Q3 Waste Management Cycle</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-full text-label-md font-label-md hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="calendar_today">calendar_today</span>
+                    Last 30 Days
+                </button>
+<button class="flex items-center gap-2 px-6 py-2 bg-primary text-white rounded-full text-label-md font-label-md hover:opacity-90 transition-all shadow-md">
+<span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+                    Export Report
+                </button>
+</div>
+</header>
+<!-- Analytics Sub-Navigation -->
+<div class="flex gap-2 overflow-x-auto pb-2 mb-xl border-b border-outline-variant">
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-full text-label-sm font-label-sm whitespace-nowrap shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">bar_chart</span>Overview
+</button>
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-full text-label-sm font-label-sm whitespace-nowrap border border-outline-variant flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">shopping_bag</span>Sales &amp; Orders
+</button>
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-full text-label-sm font-label-sm whitespace-nowrap border border-outline-variant flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">person</span>Customers
+</button>
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-full text-label-sm font-label-sm whitespace-nowrap border border-outline-variant flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">payments</span>Payments
+</button>
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-full text-label-sm font-label-sm whitespace-nowrap border border-outline-variant flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>Delivery
+</button>
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-full text-label-sm font-label-sm whitespace-nowrap border border-outline-variant flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>Revenue &amp; P&amp;L
+</button>
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-full text-label-sm font-label-sm whitespace-nowrap border border-outline-variant flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">water_drop</span>Cash Flow
+</button>
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-full text-label-sm font-label-sm whitespace-nowrap border border-outline-variant flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>Product Streams
+</button>
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-full text-label-sm font-label-sm whitespace-nowrap border border-outline-variant flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">eco</span>Impact
+</button>
+<button class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-full text-label-sm font-label-sm whitespace-nowrap border border-outline-variant flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">history</span>Activity Log
+</button>
+</div>
+<!-- KPI Metrics Strip (8 cards) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl">
+<!-- Row 1 -->
+<div class="glass-card rounded-xl p-lg flex flex-col justify-between">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Monthly Revenue</p>
+<h3 class="font-headline text-headline-md font-bold my-2 text-primary">KES 94,000</h3>
+<span class="text-secondary font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> +8.0%
+                </span>
+</div>
+<div class="glass-card rounded-xl p-lg flex flex-col justify-between">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Net Profit</p>
+<h3 class="font-headline text-headline-md font-bold my-2 text-primary">KES 88,263</h3>
+<span class="text-error font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_down">trending_down</span> -3.7%
+                </span>
+</div>
+<div class="glass-card rounded-xl p-lg flex flex-col justify-between">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Cash Balance</p>
+<h3 class="font-headline text-headline-md font-bold my-2 text-primary">KES 1,190,239</h3>
+<span class="text-secondary font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> +8.0%
+                </span>
+</div>
+<div class="glass-card rounded-xl p-lg flex flex-col justify-between">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Club Partners</p>
+<h3 class="font-headline text-headline-md font-bold my-2 text-primary">10 Clubs</h3>
+<span class="text-secondary font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="add">add</span> +2 New
+                </span>
+</div>
+<!-- Row 2 -->
+<div class="glass-card rounded-xl p-lg flex flex-col justify-between">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Online Orders</p>
+<h3 class="font-headline text-headline-md font-bold my-2 text-primary">42 Orders</h3>
+<span class="text-secondary font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> +12%
+                </span>
+</div>
+<div class="glass-card rounded-xl p-lg flex flex-col justify-between">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Avg Order Value</p>
+<h3 class="font-headline text-headline-md font-bold my-2 text-primary">KES 4,700</h3>
+<span class="text-on-surface-variant font-label-sm">Steady volume</span>
+</div>
+<div class="glass-card rounded-xl p-lg flex flex-col justify-between">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Registered Customers</p>
+<h3 class="font-headline text-headline-md font-bold my-2 text-primary">156 Total</h3>
+<span class="text-secondary font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="group_add">group_add</span> +24
+                </span>
+</div>
+<div class="glass-card rounded-xl p-lg flex flex-col justify-between">
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Pending Deliveries</p>
+<div class="flex items-center justify-between mt-2">
+<h3 class="font-headline text-headline-md font-bold text-primary">5 Units</h3>
+<span class="bg-warm-orange text-white text-[10px] px-2 py-0.5 rounded-full font-bold">OUT FOR DELIVERY</span>
+</div>
+</div>
+</section>
+<!-- Sales & Order Activity -->
+<section class="grid grid-cols-12 gap-lg mb-xl">
+<!-- Pipeline -->
+<div class="col-span-12 glass-card rounded-xl p-lg">
+<h4 class="font-headline text-headline-sm mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+                    Order Pipeline
+                </h4>
+<div class="flex justify-between items-center relative px-8">
+<div class="absolute h-[2px] bg-outline-variant w-4/5 left-1/2 -translate-x-1/2 top-[24px] z-0"></div>
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined" data-icon="receipt">receipt</span>
+</div>
+<p class="text-label-md font-bold">Received</p>
+<p class="text-label-sm text-on-surface-variant">12 Today</p>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<p class="text-label-md font-bold">Processing</p>
+<p class="text-label-sm text-on-surface-variant">8 in Queue</p>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full bg-warm-orange text-white flex items-center justify-center animate-pulse">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+</div>
+<p class="text-label-md font-bold">Out for Delivery</p>
+<p class="text-label-sm text-on-surface-variant">5 On Road</p>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="task_alt">task_alt</span>
+</div>
+<p class="text-label-md font-bold">Delivered</p>
+<p class="text-label-sm text-on-surface-variant">17 Completed</p>
+</div>
+</div>
+</div>
+<!-- Recent Orders Table -->
+<div class="col-span-12 glass-card rounded-xl overflow-hidden">
+<div class="p-lg flex justify-between items-center border-b border-outline-variant">
+<h4 class="font-headline text-headline-sm">Recent Transactions</h4>
+<button class="text-primary text-label-md font-bold hover:underline">View All Orders</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant uppercase text-[11px] font-bold tracking-wider">
+<th class="px-lg py-3">Order #</th>
+<th class="px-lg py-3">Date</th>
+<th class="px-lg py-3">Customer</th>
+<th class="px-lg py-3">Product</th>
+<th class="px-lg py-3">Sub-county</th>
+<th class="px-lg py-3">Payment</th>
+<th class="px-lg py-3">Total</th>
+<th class="px-lg py-3">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-white/50 transition-colors">
+<td class="px-lg py-4 font-bold text-primary">#360-8842</td>
+<td class="px-lg py-4 text-label-md">Oct 24, 2023</td>
+<td class="px-lg py-4">James Kamau</td>
+<td class="px-lg py-4">Emerald Cullet (1T)</td>
+<td class="px-lg py-4">Embu West</td>
+<td class="px-lg py-4 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span> M-Pesa</td>
+<td class="px-lg py-4 font-bold">KES 12,400</td>
+<td class="px-lg py-4"><span class="bg-warm-orange/10 text-warm-orange px-3 py-1 rounded-full text-label-sm font-bold">Out for Delivery</span></td>
+</tr>
+<tr class="hover:bg-white/50 transition-colors">
+<td class="px-lg py-4 font-bold text-primary">#360-8841</td>
+<td class="px-lg py-4 text-label-md">Oct 24, 2023</td>
+<td class="px-lg py-4">Sarah Njeri</td>
+<td class="px-lg py-4">Briquettes (50kg)</td>
+<td class="px-lg py-4">Embu East</td>
+<td class="px-lg py-4 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary"></span> M-Pesa</td>
+<td class="px-lg py-4 font-bold">KES 3,200</td>
+<td class="px-lg py-4"><span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm font-bold">Processing</span></td>
+</tr>
+<tr class="hover:bg-white/50 transition-colors">
+<td class="px-lg py-4 font-bold text-primary">#360-8840</td>
+<td class="px-lg py-4 text-label-md">Oct 23, 2023</td>
+<td class="px-lg py-4">Green Hotels Ltd</td>
+<td class="px-lg py-4">Amber Bottles (400)</td>
+<td class="px-lg py-4">Mbeere North</td>
+<td class="px-lg py-4 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-outline"></span> Cash</td>
+<td class="px-lg py-4 font-bold">KES 28,000</td>
+<td class="px-lg py-4"><span class="bg-outline-variant/30 text-on-surface-variant px-3 py-1 rounded-full text-label-sm font-bold">Delivered</span></td>
+</tr>
+<tr class="hover:bg-white/50 transition-colors">
+<td class="px-lg py-4 font-bold text-primary">#360-8839</td>
+<td class="px-lg py-4 text-label-md">Oct 23, 2023</td>
+<td class="px-lg py-4">Alex Otieno</td>
+<td class="px-lg py-4">White Cullet (2T)</td>
+<td class="px-lg py-4">Embu West</td>
+<td class="px-lg py-4 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-500"></span> Bitcoin</td>
+<td class="px-lg py-4 font-bold">KES 24,800</td>
+<td class="px-lg py-4"><span class="bg-outline-variant/30 text-on-surface-variant px-3 py-1 rounded-full text-label-sm font-bold">Delivered</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Revenue & P&L Section -->
+<section class="grid grid-cols-12 gap-lg mb-xl">
+<div class="col-span-12 lg:col-span-8 glass-card rounded-xl p-lg">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline text-headline-sm">Revenue Streams</h4>
+<div class="flex gap-4">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-primary"></span> <span class="text-label-sm">Shop Orders</span></div>
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-primary-fixed-dim"></span> <span class="text-label-sm">B2B Contracts</span></div>
+</div>
+</div>
+<!-- Mock Chart Area -->
+<div class="h-64 flex items-end gap-1 px-4 border-b border-l border-outline-variant relative">
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20 py-2">
+<div class="border-t border-outline"></div><div class="border-t border-outline"></div><div class="border-t border-outline"></div><div class="border-t border-outline"></div>
+</div>
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary h-3/4 rounded-t-sm"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary h-2/3 rounded-t-sm"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary h-4/5 rounded-t-sm"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary h-full rounded-t-sm"></div>
+<div class="flex-1 bg-gradient-to-t from-primary-fixed-dim/40 to-primary-fixed-dim h-1/2 rounded-t-sm"></div>
+<div class="flex-1 bg-gradient-to-t from-primary-fixed-dim/40 to-primary-fixed-dim h-2/3 rounded-t-sm"></div>
+<div class="flex-1 bg-gradient-to-t from-primary-fixed-dim/40 to-primary-fixed-dim h-3/5 rounded-t-sm"></div>
+</div>
+<div class="flex justify-between text-label-sm text-on-surface-variant mt-4">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 glass-card rounded-xl p-lg">
+<h4 class="font-headline text-headline-sm mb-4">Financial Health</h4>
+<div class="space-y-3">
+<div class="flex justify-between py-2 border-b border-outline-variant">
+<span class="text-on-surface-variant font-body-md">Gross Revenue</span>
+<span class="font-bold">KES 142,500</span>
+</div>
+<div class="flex justify-between py-2 border-b border-outline-variant">
+<span class="text-on-surface-variant font-body-md">Total COGS</span>
+<span class="font-bold text-error">KES (48,230)</span>
+</div>
+<div class="flex justify-between py-2 border-b border-outline-variant">
+<span class="text-on-surface-variant font-body-md">Operating Expense</span>
+<span class="font-bold text-error">KES (6,007)</span>
+</div>
+<div class="flex justify-between py-3 bg-primary-container/10 px-2 rounded-lg">
+<span class="text-primary font-bold">Net Income</span>
+<span class="font-bold text-primary">KES 88,263</span>
+</div>
+<div class="flex justify-between py-3 bg-secondary-container/20 px-2 rounded-lg">
+<span class="text-secondary font-bold">Cash at Bank</span>
+<span class="font-bold text-secondary">KES 1.19M</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Cash Flow Analysis (Full Width) -->
+<section class="glass-card rounded-xl p-lg mb-xl">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h4 class="font-headline text-headline-sm">Cash Flow Analysis</h4>
+<p class="text-label-sm text-on-surface-variant">Operating vs Investing vs Financing</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2"><span class="w-3 h-2 bg-primary-fixed-dim"></span> <span class="text-label-sm">Op. Cash Flow</span></div>
+<div class="flex items-center gap-2"><span class="w-full h-0.5 bg-primary px-3"></span> <span class="text-label-sm">Cash Balance</span></div>
+</div>
+</div>
+<div class="h-48 w-full bg-surface-container/30 rounded-lg relative overflow-hidden">
+<svg class="w-full h-full absolute inset-0" preserveaspectratio="none" viewbox="0 0 1000 100">
+<path d="M0 80 Q 250 60, 500 70 T 1000 40" fill="none" stroke="#004b1f" stroke-width="3"></path>
+</svg>
+<div class="absolute bottom-0 w-full flex items-end justify-around h-full px-4">
+<div class="w-12 bg-primary-fixed-dim h-[60%] rounded-t-sm"></div>
+<div class="w-12 bg-primary-fixed-dim h-[40%] rounded-t-sm"></div>
+<div class="w-12 bg-primary-fixed-dim h-[70%] rounded-t-sm"></div>
+<div class="w-12 bg-primary-fixed-dim h-[55%] rounded-t-sm"></div>
+<div class="w-12 bg-primary-fixed-dim h-[85%] rounded-t-sm"></div>
+<div class="w-12 bg-primary-fixed-dim h-[65%] rounded-t-sm"></div>
+</div>
+</div>
+</section>
+<!-- Product Stream Performance (4 mini cards) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl">
+<div class="glass-card rounded-xl p-md">
+<div class="flex justify-between mb-2">
+<span class="text-label-sm font-bold uppercase text-primary">Emerald Cullet</span>
+<span class="text-secondary text-label-sm font-bold">+15%</span>
+</div>
+<div class="flex items-end gap-1 h-12 mb-2">
+<div class="flex-1 bg-primary/20 h-4"></div><div class="flex-1 bg-primary/40 h-8"></div><div class="flex-1 bg-primary/60 h-6"></div><div class="flex-1 bg-primary h-12"></div>
+</div>
+<p class="text-headline-sm font-headline font-bold">2.4 Tons</p>
+</div>
+<div class="glass-card rounded-xl p-md">
+<div class="flex justify-between mb-2">
+<span class="text-label-sm font-bold uppercase text-primary">White Cullet</span>
+<span class="text-secondary text-label-sm font-bold">+5%</span>
+</div>
+<div class="flex items-end gap-1 h-12 mb-2">
+<div class="flex-1 bg-primary/20 h-6"></div><div class="flex-1 bg-primary/40 h-10"></div><div class="flex-1 bg-primary/60 h-8"></div><div class="flex-1 bg-primary h-9"></div>
+</div>
+<p class="text-headline-sm font-headline font-bold">1.8 Tons</p>
+</div>
+<div class="glass-card rounded-xl p-md">
+<div class="flex justify-between mb-2">
+<span class="text-label-sm font-bold uppercase text-primary">Briquettes</span>
+<span class="text-warm-orange text-label-sm font-bold">-2%</span>
+</div>
+<div class="flex items-end gap-1 h-12 mb-2">
+<div class="flex-1 bg-primary/20 h-12"></div><div class="flex-1 bg-primary/40 h-10"></div><div class="flex-1 bg-primary/60 h-7"></div><div class="flex-1 bg-primary h-6"></div>
+</div>
+<p class="text-headline-sm font-headline font-bold">850 Kg</p>
+</div>
+<div class="glass-card rounded-xl p-md">
+<div class="flex justify-between mb-2">
+<span class="text-label-sm font-bold uppercase text-primary">Amber Bottles</span>
+<span class="text-secondary text-label-sm font-bold">+24%</span>
+</div>
+<div class="flex items-end gap-1 h-12 mb-2">
+<div class="flex-1 bg-primary/20 h-4"></div><div class="flex-1 bg-primary/40 h-5"></div><div class="flex-1 bg-primary/60 h-9"></div><div class="flex-1 bg-primary h-12"></div>
+</div>
+<p class="text-headline-sm font-headline font-bold">1,200 Pcs</p>
+</div>
+</section>
+<!-- Two side-by-side section (Customer & Payments) -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-lg mb-xl">
+<!-- Customer Overview -->
+<div class="glass-card rounded-xl p-lg">
+<h4 class="font-headline text-headline-sm mb-6">Customer Overview</h4>
+<div class="flex items-center gap-10">
+<div class="relative w-32 h-32">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#dfe4dc" stroke-width="4"></path>
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none" stroke="#004b1f" stroke-dasharray="65, 100" stroke-width="4"></path>
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none" stroke="#84d992" stroke-dasharray="25, 100" stroke-dashoffset="-65" stroke-width="4"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-headline-sm font-bold">156</span>
+<span class="text-[10px] text-on-surface-variant">TOTAL</span>
+</div>
+</div>
+<div class="space-y-4 flex-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-primary"></span> <span>WhatsApp</span></div>
+<span class="font-bold">65%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-primary-fixed-dim"></span> <span>Email/Portal</span></div>
+<span class="font-bold">25%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-surface-variant"></span> <span>Others</span></div>
+<span class="font-bold">10%</span>
+</div>
+<div class="pt-2 border-t border-outline-variant flex justify-between items-center">
+<span class="text-label-md">Repeat Purchase Rate</span>
+<span class="text-secondary font-bold">42%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Payment Split -->
+<div class="glass-card rounded-xl p-lg">
+<h4 class="font-headline text-headline-sm mb-6">Payment Distribution</h4>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2 font-label-md">
+<span>M-Pesa</span>
+<span class="font-bold">75%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-3">
+<div class="bg-primary h-full rounded-full w-[75%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2 font-label-md">
+<span>Bitcoin</span>
+<span class="font-bold">5%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-3">
+<div class="bg-blue-500 h-full rounded-full w-[5%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2 font-label-md">
+<span>Cash</span>
+<span class="font-bold">20%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-3">
+<div class="bg-outline h-full rounded-full w-[20%]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Geography & Operations -->
+<section class="grid grid-cols-12 gap-lg mb-xl">
+<!-- Geography Bar Chart -->
+<div class="col-span-12 lg:col-span-7 glass-card rounded-xl p-lg">
+<h4 class="font-headline text-headline-sm mb-6">Orders by Sub-County</h4>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<span class="w-24 text-label-md">Embu West</span>
+<div class="flex-1 bg-surface-container h-6 rounded-sm overflow-hidden">
+<div class="bg-primary h-full w-[85%]"></div>
+</div>
+<span class="w-8 text-label-md font-bold">42</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="w-24 text-label-md">Embu North</span>
+<div class="flex-1 bg-surface-container h-6 rounded-sm overflow-hidden">
+<div class="bg-primary h-full w-[60%]"></div>
+</div>
+<span class="w-8 text-label-md font-bold">28</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="w-24 text-label-md">Embu East</span>
+<div class="flex-1 bg-surface-container h-6 rounded-sm overflow-hidden">
+<div class="bg-primary h-full w-[45%]"></div>
+</div>
+<span class="w-8 text-label-md font-bold">19</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="w-24 text-label-md">Mbeere North</span>
+<div class="flex-1 bg-surface-container h-6 rounded-sm overflow-hidden">
+<div class="bg-primary h-full w-[30%]"></div>
+</div>
+<span class="w-8 text-label-md font-bold">12</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="w-24 text-label-md">Mbeere South</span>
+<div class="flex-1 bg-surface-container h-6 rounded-sm overflow-hidden">
+<div class="bg-primary h-full w-[20%]"></div>
+</div>
+<span class="w-8 text-label-md font-bold">8</span>
+</div>
+</div>
+</div>
+<!-- Operations & Pipeline -->
+<div class="col-span-12 lg:col-span-5 glass-card rounded-xl p-lg flex flex-col">
+<h4 class="font-headline text-headline-sm mb-6">Club Collection Tracker</h4>
+<div class="flex-1 flex flex-col justify-center space-y-6">
+<div class="p-4 bg-surface rounded-xl border border-outline-variant flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-fixed-dim/20 text-primary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+</div>
+<div class="flex-1">
+<p class="text-label-md font-bold">Partner Status</p>
+<p class="text-label-sm text-on-surface-variant">8 Active, 2 Onboarding</p>
+</div>
+<div class="h-2 w-16 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[80%]"></div>
+</div>
+</div>
+<div class="p-4 bg-surface rounded-xl border border-outline-variant flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-fixed-dim/20 text-primary rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+</div>
+<div class="flex-1">
+<p class="text-label-md font-bold">Collection Hubs</p>
+<p class="text-label-sm text-on-surface-variant">4 Processing Hubs Operational</p>
+</div>
+<div class="h-2 w-16 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[100%]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Impact & Operations History -->
+<section class="grid grid-cols-12 gap-lg">
+<!-- Impact Rings -->
+<div class="col-span-12 lg:col-span-4 glass-card rounded-xl p-lg">
+<h4 class="font-headline text-headline-sm mb-6">Environmental Impact</h4>
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-4">
+<div class="relative w-16 h-16 shrink-0">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none" stroke="#dfe4dc" stroke-width="4"></path>
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none" stroke="#004b1f" stroke-dasharray="88, 100" stroke-width="4"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-bold">88%</span>
+</div>
+</div>
+<div>
+<p class="text-label-md font-bold">Glass Diverted</p>
+<p class="text-label-sm text-on-surface-variant">42.5 Tons Target met</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-16 h-16 shrink-0">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none" stroke="#dfe4dc" stroke-width="4"></path>
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none" stroke="#84d992" stroke-dasharray="62, 100" stroke-width="4"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-bold">62%</span>
+</div>
+</div>
+<div>
+<p class="text-label-md font-bold">Clean Fuel Adoption</p>
+<p class="text-label-sm text-on-surface-variant">210 Households reached</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-16 h-16 shrink-0">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none" stroke="#dfe4dc" stroke-width="4"></path>
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831" fill="none" stroke="#f97316" stroke-dasharray="45, 100" stroke-width="4"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-bold">45%</span>
+</div>
+</div>
+<div>
+<p class="text-label-md font-bold">Youth Jobs Created</p>
+<p class="text-label-sm text-on-surface-variant">14/30 Full-time roles</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Operations History -->
+<div class="col-span-12 lg:col-span-8 glass-card rounded-xl p-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl h-full">
+<!-- Recent Activity Feed -->
+<div>
+<h4 class="font-headline text-headline-sm mb-4">Recent Operations</h4>
+<div class="space-y-3">
+<div class="flex items-start gap-3 p-3 bg-surface rounded-xl border border-outline-variant">
+<div class="w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]" data-icon="local_shipping">local_shipping</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-label-md font-bold">Delivery Completed</p>
+<p class="text-label-sm text-on-surface-variant">Embu West — 1.2T Emerald Cullet</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Today, 10:42 AM</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 bg-surface rounded-xl border border-outline-variant">
+<div class="w-8 h-8 bg-secondary/10 text-secondary rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]" data-icon="recycling">recycling</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-label-md font-bold">Club Collection</p>
+<p class="text-label-sm text-on-surface-variant">Runyenjes Youth FC — 380 Kg Glass</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Today, 08:15 AM</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 bg-surface rounded-xl border border-outline-variant">
+<div class="w-8 h-8 bg-warm-orange/10 text-warm-orange rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_bag">shopping_bag</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-label-md font-bold">Order Placed</p>
+<p class="text-label-sm text-on-surface-variant">Green Hotels Ltd — Amber Bottles (400)</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Yesterday, 3:30 PM</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 bg-surface rounded-xl border border-outline-variant">
+<div class="w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]" data-icon="groups">groups</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-label-md font-bold">Club Onboarded</p>
+<p class="text-label-sm text-on-surface-variant">Mbeere Secondary FC joined as partner</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Oct 22, 2023</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Month-over-Month Performance -->
+<div class="flex flex-col">
+<h4 class="font-headline text-headline-sm mb-4">Month-over-Month</h4>
+<div class="space-y-4">
+<div class="p-3 bg-surface rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-2">
+<span class="text-label-md font-bold">Waste Collected</span>
+<span class="text-secondary text-label-sm font-bold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">trending_up</span>+18%</span>
+</div>
+<div class="flex gap-1 items-end h-10">
+<div class="flex-1 bg-primary/20 rounded-t-sm h-[65%]"></div>
+<div class="flex-1 bg-primary/40 rounded-t-sm h-[75%]"></div>
+<div class="flex-1 bg-primary/60 rounded-t-sm h-[80%]"></div>
+<div class="flex-1 bg-primary rounded-t-sm h-full"></div>
+</div>
+<div class="flex justify-between text-[9px] text-on-surface-variant mt-1">
+<span>Aug</span><span>Sep</span><span>Oct</span><span>Now</span>
+</div>
+</div>
+<div class="p-3 bg-surface rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-2">
+<span class="text-label-md font-bold">Orders Fulfilled</span>
+<span class="text-secondary text-label-sm font-bold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">trending_up</span>+12%</span>
+</div>
+<div class="flex gap-1 items-end h-10">
+<div class="flex-1 bg-secondary/20 rounded-t-sm h-[55%]"></div>
+<div class="flex-1 bg-secondary/40 rounded-t-sm h-[70%]"></div>
+<div class="flex-1 bg-secondary/60 rounded-t-sm h-[85%]"></div>
+<div class="flex-1 bg-secondary rounded-t-sm h-full"></div>
+</div>
+<div class="flex justify-between text-[9px] text-on-surface-variant mt-1">
+<span>Aug</span><span>Sep</span><span>Oct</span><span>Now</span>
+</div>
+</div>
+<div class="p-3 bg-surface rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-2">
+<span class="text-label-md font-bold">New Customers</span>
+<span class="text-secondary text-label-sm font-bold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">trending_up</span>+24</span>
+</div>
+<div class="flex gap-1 items-end h-10">
+<div class="flex-1 bg-primary-fixed-dim/40 rounded-t-sm h-[40%]"></div>
+<div class="flex-1 bg-primary-fixed-dim/60 rounded-t-sm h-[60%]"></div>
+<div class="flex-1 bg-primary-fixed-dim/80 rounded-t-sm h-[75%]"></div>
+<div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-full"></div>
+</div>
+<div class="flex justify-between text-[9px] text-on-surface-variant mt-1">
+<span>Aug</span><span>Sep</span><span>Oct</span><span>Now</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Micro-interactions and Lightweight atmospheric effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.boxShadow = '0px 4px 20px rgba(24, 29, 23, 0.05)';
+                    card.style.transform = 'translateY(-2px)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.boxShadow = 'none';
+                    card.style.transform = 'translateY(0)';
+                });
+                card.style.transition = 'all 0.3s ease';
+            });
+        });
+    </script>
+</body></html>

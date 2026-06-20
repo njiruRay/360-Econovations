@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pages Manager | 360 Econovations Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .modal-backdrop {
+            background-color: rgba(24, 29, 23, 0.4);
+            backdrop-filter: blur(4px);
+        }
+        /* Custom thin scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f6fbf2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #becabc;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#7d283c",
+                      "secondary-container": "#98f3af",
+                      "secondary": "#006d37",
+                      "surface-container-highest": "#dfe4dc",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#84d992",
+                      "background": "#f6fbf2",
+                      "surface-container": "#ebefe7",
+                      "primary-fixed": "#9ff6ac",
+                      "primary-container": "#00652c",
+                      "on-secondary-container": "#0b723b",
+                      "tertiary-fixed-dim": "#ffb2bd",
+                      "on-primary-container": "#8ae098",
+                      "tertiary-container": "#92384c",
+                      "surface-bright": "#f6fbf2",
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-container": "#ffbbc5",
+                      "surface-container-high": "#e5eae1",
+                      "surface": "#f6fbf2",
+                      "error-container": "#ffdad6",
+                      "inverse-primary": "#84d992",
+                      "on-secondary": "#ffffff",
+                      "surface-tint": "#106d33",
+                      "surface-dim": "#d7dbd3",
+                      "tertiary": "#742136",
+                      "on-surface-variant": "#3f493f",
+                      "secondary-fixed-dim": "#80d997",
+                      "on-secondary-fixed": "#00210c",
+                      "outline": "#6f7a6e",
+                      "secondary-fixed": "#9bf6b2",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#400014",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#004b1f",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#eef2ea",
+                      "outline-variant": "#bfc9bc",
+                      "on-primary-fixed": "#00210a",
+                      "on-surface": "#181d18",
+                      "surface-variant": "#dfe4dc",
+                      "on-background": "#181d18",
+                      "inverse-surface": "#2d322c",
+                      "tertiary-fixed": "#ffd9de",
+                      "surface-container-low": "#f1f5ec",
+                      "on-primary-fixed-variant": "#005323",
+                      "on-secondary-fixed-variant": "#005228"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "xl": "32px",
+                      "2xl": "48px",
+                      "container-max": "1440px",
+                      "gutter": "24px",
+                      "margin-desktop": "32px",
+                      "xs": "4px",
+                      "base": "4px",
+                      "3xl": "64px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "body-sm": ["Inter"],
+                      "headline-lg-mobile": ["Montserrat"],
+                      "label-sm": ["Inter"],
+                      "headline-sm": ["Montserrat"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Montserrat"],
+                      "headline-lg": ["Montserrat"]
+              },
+              "fontSize": {
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-background selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
+<!-- Sidebar Navigation Shell -->
+<nav class="fixed left-0 top-0 h-screen flex flex-col p-4 bg-surface-container-lowest dark:bg-surface-dim docked left-0 h-full w-64 transition-all duration-300 border-r border-outline-variant dark:border-outline z-50">
+<div class="mb-8 px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">360 Econovations</h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Waste-to-Value Admin</p>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-colors" href="../admin_dashboard_overview/code.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-colors" href="../admin_navigation_manager/code.html">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span class="font-label-md text-label-md">Navigation Manager</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-2 bg-primary-container/10 text-primary font-bold rounded-full scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-md text-label-md">Pages Manager</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-colors" href="../admin_shop_manager/code.html">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-label-md text-label-md">Shop Manager</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-colors" href="../admin_about_page_editor/code.html">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="font-label-md text-label-md">About Page Editor</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-colors" href="../admin_contact_page_editor/code.html">
+<span class="material-symbols-outlined" data-icon="contact_mail">contact_mail</span>
+<span class="font-label-md text-label-md">Contact Page Editor</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="view_stream">view_stream</span>
+<span class="font-label-md text-label-md">Footer Manager</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-colors" href="../admin_analytics_bi_overview/code.html">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Analytics &amp; BI</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-colors" href="../admin_branding_logo/code.html">
+<span class="material-symbols-outlined" data-icon="palette">palette</span>
+<span class="font-label-md text-label-md">Branding &amp; Logo</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container transition-colors" href="../admin_settings/code.html">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant">
+<div class="flex items-center gap-3 mb-4 px-2">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a corporate administrator in a bright, modern office with soft green accents. High-quality corporate photography, natural window lighting, clean minimalist composition, sharp focus on the face, emphasizing trust and competence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkNCIwbHlZ5oh4lUP3p2xdNCdfppjMmsGVYxc3-UAHVAlqU0XsuoMalrMMU3wOCGFX9Z9VQPYG5YSwX5rAs_qfOthvOEEh2UbJQR28RR8g9iMXzCs5P6SDsMkdr2XG5d_V7D2bmRrkSvhyZF4LFvGMLxVdoiKcCDNSvQBLx10pldEGsBJrYc5OVcq79jUfIofpNiDE3fnjvAY4Oszl72VOBAua8-pXmt35ZgZJf-MEpBkw0hU1CowqmVE9TyRAbGndlAGT1viJHXbv"/>
+</div>
+<div>
+<p class="font-label-md text-label-md font-bold text-on-surface">Admin User</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Level 4 Access</p>
+</div>
+</div>
+<button class="w-full flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-error transition-colors" onclick="window.location.href='../admin_sign_in/code.html'">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</button>
+</div>
+</nav>
+<!-- Header / Top Bar -->
+<header class="sticky top-0 z-40 flex justify-between items-center px-margin-desktop h-16 w-full ml-64 bg-background/80 dark:bg-background/80 backdrop-blur-md border-b border-outline-variant dark:border-outline pr-margin-desktop">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">Pages Manager</h2>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<button class="hover:bg-surface-container-high rounded-full p-2 transition-all duration-200">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<span class="absolute top-2 right-2 w-2 h-2 bg-tertiary rounded-full"></span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md flex items-center gap-2 hover:opacity-90 transition-opacity" onclick="document.getElementById('addPageModal').classList.remove('hidden')">
+<span class="material-symbols-outlined !text-[18px]" data-icon="add">add</span>
+                New Page
+            </button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 p-margin-desktop min-h-[calc(100vh-64px)]">
+<div class="max-w-container-max mx-auto">
+<!-- Filter / Search Section (Implicitly required for Manager views) -->
+<div class="flex flex-col md:flex-row justify-between items-center mb-lg gap-md">
+<div class="w-full md:w-96 flex items-center bg-surface-container-low rounded-full px-4 py-2 border border-outline-variant focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-body-sm font-body-sm" placeholder="Search pages..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<span class="text-label-sm font-label-sm text-on-surface-variant">View:</span>
+<button class="p-2 bg-primary-container/10 text-primary rounded-lg"><span class="material-symbols-outlined" data-icon="grid_view">grid_view</span></button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg"><span class="material-symbols-outlined" data-icon="view_list">view_list</span></button>
+</div>
+</div>
+<!-- Bento Grid of Page Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-lg">
+<!-- Page Card: Homepage -->
+<div class="group bg-surface-container border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0px_4px_20px_rgba(24,29,23,0.05)] transition-all duration-300">
+<div class="h-40 bg-white relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A website homepage wireframe showing a lush green landscape background with a hero section promoting waste reduction initiatives. Clean, modern, light mode UI with professional typography and green brand colors. Soft natural light across the layout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2lgo9SmY39pyYGWiJYAS26tZKFQvhgWY0-hGNZ8HXD7erS1tCujVb0RVMCb2tPkpwhp3JaWuOqLP4B-tuVwZgbiL7a87hCE-hBFZVGcYlWPzl49C7oWMmnToU2hktJaF3rIosp5ZoOY4pMmYAHk5C30WOAE5EtjFtnB_-2jw6xdUGBVVVA3bck_r06qK8euVL4hp7yj5iLsUCwtKTxnzZXlOOrBtcNNW64oBbQFgNpYTb-_jtetZmOeKHd1OOWQAg_XjmsUp6SoL8"/>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+</div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-sm text-[18px] text-on-surface">Homepage</h3>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase">Static</span>
+</div>
+<div class="flex justify-between items-center mt-4">
+<p class="text-label-sm font-label-sm text-on-surface-variant">Last edit: 2h ago</p>
+<div class="flex gap-1">
+<button class="p-2 text-primary hover:bg-primary-container/10 rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Page Card: Shop -->
+<div class="group bg-surface-container border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0px_4px_20px_rgba(24,29,23,0.05)] transition-all duration-300">
+<div class="h-40 bg-white relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A modern e-commerce product grid showing recycled items like bamboo fiber plates and recycled plastic furniture. The aesthetic is clean and eco-friendly, using soft green and mint tones with high-key lighting and a professional product showcase feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaAOmwqV7Q61qDsRoeDBR3FjgO8VNGRBQq1hx5UhGRuZ6YEYQzP_sL95iaKzreiNTl1nfybmoZsqeDFQexN0SXqA2cGYbYnlMJhlUf8Moe0bFz444smeAm_P0dy3Sz7M4Gj7cHFWeQXj-hGqSwBEX9w4W4budHLECqrxPdJ3ncTHihJzz5r-KaXhbIAUTfafKeHkF6cDFYYeX-5E_R5SuXecbNqRC5kQsLjfTXkhWCRNE-MJ0q7KP8A9KXGDmvv0SLH3os76FHC7rG"/>
+</div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-sm text-[18px] text-on-surface">Shop</h3>
+<span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase">Shop</span>
+</div>
+<div class="flex justify-between items-center mt-4">
+<p class="text-label-sm font-label-sm text-on-surface-variant">Last edit: Yesterday</p>
+<div class="flex gap-1">
+<button class="p-2 text-primary hover:bg-primary-container/10 rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Page Card: About Us -->
+<div class="group bg-surface-container border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0px_4px_20px_rgba(24,29,23,0.05)] transition-all duration-300">
+<div class="h-40 bg-white relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An 'About Us' page design with a focus on corporate social responsibility. Features a photo placeholder of a diverse team working in a bright solar-powered office. The design layout is minimalist with large headers and ample whitespace in a light mode palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbqYCZMPKXhz9nTQ8F4_UKpVhboqgNS7YlUdTUKF1t0BnBYJKkeCG0n6j2IurQjmfedi6wrFtIEgqaKZuwIbXjoMaRtKlrRo8UuKjmNJgU4B0b-uN82zVDeDrP2nrRdoVP3NQRoHmS3KTOH7pP0VnHeCVY5Tf8iYUjX6jceIv4jQKKa97adhkJOhlOAlYjBa3sL1Y-3WEmPml8QZpDGj8QPfbuMucUiQ04LREWJzbBWdl902LNUW6iSY5D1mBSNI6Uh4SX8ry5WqsV"/>
+</div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-sm text-[18px] text-on-surface">About Us</h3>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase">Static</span>
+</div>
+<div class="flex justify-between items-center mt-4">
+<p class="text-label-sm font-label-sm text-on-surface-variant">Last edit: 3 days ago</p>
+<div class="flex gap-1">
+<button class="p-2 text-primary hover:bg-primary-container/10 rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Page Card: Impact -->
+<div class="group bg-surface-container border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0px_4px_20px_rgba(24,29,23,0.05)] transition-all duration-300">
+<div class="h-40 bg-white relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A data visualization dashboard page showing environmental impact metrics like CO2 saved and waste diverted. Beautifully designed charts in greens and teals set against a soft mint background. High-end financial-tech design aesthetic with a professional touch." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa7JwTM9zxuSoML4ljURPrRPL2t8ssckztkrOQdxEZGOpBYlMPx4Csa3tZmXuPEfLKG2IzywpgVOXF5qSm1ccdiilOIZlY6hQsIvIqjikPFDUEgHeNn4rFbRyliTfTJUruxk80T9jNo1Pp660UJi1dTA66i3OQvW9ru5jEVO9E50DdVQAb-flrT-g91PbvNaanWKXjDr_AqSTdr-KCi37K5hYHBcGQ-asJMTLMKIxj39rk2kd6aASt2v7YP12GO7fkvy3Crt9SOjUu"/>
+</div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-sm text-[18px] text-on-surface">Impact Report</h3>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase">Static</span>
+</div>
+<div class="flex justify-between items-center mt-4">
+<p class="text-label-sm font-label-sm text-on-surface-variant">Last edit: 1 week ago</p>
+<div class="flex gap-1">
+<button class="p-2 text-primary hover:bg-primary-container/10 rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Page Card: Contact Us -->
+<div class="group bg-surface-container border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0px_4px_20px_rgba(24,29,23,0.05)] transition-all duration-300">
+<div class="h-40 bg-white relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A modern contact form layout with a large map on the right and a minimalist white form on the left. The design is airy and professional, using brand green for buttons and highlighting. Soft ambient lighting, clean lines, and high contrast for readability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6kZ8hb169FdBqo5bbcTsZm5vf1Roxg1pvmXnn7I_P4x0wd5kUn0ORTKg0wzowjm8T9lkxEPt-IRwKS619tSjGIVlUL8_VivpT_nMnSeX6-pwyBU7YMlnabpsE8_zzMhVO1YgmU65Bn5NQrskZj3WqtnUruSFmKq1sQeDBl6KHp6eIDqJklA5IHfDfwvsyEf6NBpibjT_unVxBqde93w4TJwpQ_kAzU3pBCIOOTV4AEHIPUqgIR0q478yt3fiu0omwJMYudFNuI9n3"/>
+</div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-sm text-[18px] text-on-surface">Contact Us</h3>
+<span class="bg-tertiary-container text-on-tertiary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase">Form</span>
+</div>
+<div class="flex justify-between items-center mt-4">
+<p class="text-label-sm font-label-sm text-on-surface-variant">Last edit: 2 weeks ago</p>
+<div class="flex gap-1">
+<button class="p-2 text-primary hover:bg-primary-container/10 rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-full transition-colors"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Add New Page Placeholder Card -->
+<button class="group h-full flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-xl p-lg bg-surface-container-low hover:bg-primary-container/5 hover:border-primary transition-all duration-300" onclick="document.getElementById('addPageModal').classList.remove('hidden')">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-primary mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined !text-[40px]" data-icon="add_circle">add_circle</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">+ Add New Page</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 text-center">Start from scratch or use a professional template.</p>
+</button>
+</div>
+</div>
+</main>
+<!-- Modal Overlay: Add New Page -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-margin-mobile" id="addPageModal">
+<div class="modal-backdrop absolute inset-0" onclick="document.getElementById('addPageModal').classList.add('hidden')"></div>
+<div class="relative w-full max-w-2xl bg-surface-container-lowest rounded-2xl shadow-[0px_12px_32px_rgba(24,29,23,0.1)] overflow-hidden animate-in fade-in zoom-in duration-300">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Add New Page</h3>
+<button class="p-2 hover:bg-surface-container-high rounded-full" onclick="document.getElementById('addPageModal').classList.add('hidden')"><span class="material-symbols-outlined" data-icon="close">close</span></button>
+</div>
+<div class="p-lg space-y-lg max-h-[716px] overflow-y-auto">
+<!-- Page Name Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Page Name</label>
+<input class="w-full bg-white border border-outline-variant rounded-xl p-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body-md font-body-md outline-none" placeholder="e.g., Summer Collection" type="text"/>
+</div>
+<!-- Page Type Dropdown -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Page Type</label>
+<select class="w-full bg-white border border-outline-variant rounded-xl p-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body-md font-body-md outline-none appearance-none">
+<option value="standard">Standard (Static content)</option>
+<option value="shop">Shop (Product grid)</option>
+<option value="contact">Contact (Form &amp; Map)</option>
+<option value="landing">Landing (Marketing focused)</option>
+</select>
+</div>
+<!-- Template Picker -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-4">Choose a Template</label>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-md">
+<!-- Template 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/3] rounded-lg border-2 border-primary bg-white mb-2 overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-primary !text-[32px]" data-icon="description">description</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface text-center font-bold">Blank Page</p>
+</div>
+<!-- Template 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/3] rounded-lg border-2 border-transparent bg-surface-variant group-hover:border-primary/50 mb-2 overflow-hidden relative">
+<img class="w-full h-full object-cover opacity-60" data-alt="A preview of a modern article page layout with a large header image, two-column text body, and social media sharing buttons. The aesthetic is clean and professional with a focus on typography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtplX2h4hHwbCN3F75bhKcZ8p2eH0if9WrTz7fmf-2kByqxfm9s0TwASqtbDy6Hu1R_4NYiQIlKnv7LvY-mFk8x-25PQK3tVLqG3IE441J1Ky-nHCfcZau7m5rzKO4QhkdNjSAQBHm0VqiEIjxOOrjeNKx8OCamI6ev9RI0uCtYSJMza2Di2pCw7CPaGT3oGYGa2MHOnJnlVYoR3SMIXHhZ3OpEOejWsn-jZcQXiEmJU9efdbvAorR38n9AuhogXUqJajS7QICta1R"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="article">article</span>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant text-center">Article</p>
+</div>
+<!-- Template 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/3] rounded-lg border-2 border-transparent bg-surface-variant group-hover:border-primary/50 mb-2 overflow-hidden relative">
+<img class="w-full h-full object-cover opacity-60" data-alt="A product detail page preview showing a large product photo on the left, price and description on the right, and a prominent buy button. Minimalist e-commerce design style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIbuz9cnv40KW6cyor84_Z6WaZr3g5vyAzfwUhkq9JYqWSNeV_QLe6R6fhQ9RG-2q4Cdz7sya9MpvS46wp36qxE7VLhO5AYSGQEwRUBlx5u8zOjl3jfayy_RaAHoH2Ik2UibtpYjMRkpPRRVWTDk_BsH6A6BEQ63Xa6ue1xc_Hmt0AT-Oet5vu4tzCYWKsGBFQ-f-iuDR7gRzG5fGo4FoIcZI5OWc4KjNQRZZeHAUiQVom74NHhk9HFML_FDz1Qox1sU2WFh_P0DWO"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="shopping_cart">shopping_cart</span>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant text-center">Product</p>
+</div>
+<!-- Template 4 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/3] rounded-lg border-2 border-transparent bg-surface-variant group-hover:border-primary/50 mb-2 overflow-hidden relative">
+<img class="w-full h-full object-cover opacity-60" data-alt="A gallery page preview showing an asymmetrical grid of nature photography focused on waste-to-value products. High-quality imagery and clean whitespace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATPK0iUE-DEf6eKebMPkQ0Ii3uHoKxOB-YJZlNiYM0ihKBXvp8QYxLZN1iYkftAh9JafQCCUHzIW1IrJqORH4sgsSU8kUzLxlSqc03vLeTUf_jU-9EMAYWW_UwkjmCcbRvqALyIy0kAq6Olm24GV-bQAa6heGwsBtJcjXNbatLbu3XaWhZm7iuZvMp0kx5Bd1QAk8tlcqfNhmLm8RQpa9VfxBwoS1c3WKlx0LBSMJ7gZG3zTZV6G-XjVG79T9EZ8WVNNdOlK_jQCrE"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="imagesmode">imagesmode</span>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant text-center">Portfolio</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Buttons -->
+<div class="p-lg bg-surface-container-low border-t border-outline-variant flex justify-end gap-md">
+<button class="px-6 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="document.getElementById('addPageModal').classList.add('hidden')">Cancel</button>
+<button class="px-8 py-2 rounded-full font-label-md text-label-md bg-tertiary text-on-tertiary hover:opacity-90 transition-opacity shadow-lg shadow-tertiary/20">Create Page</button>
+</div>
+</div>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Placeholder for page interactions
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Potential for scale/shadow enhancements
+            });
+        });
+
+        // Simple ESC key listener for modal
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('addPageModal').classList.add('hidden');
+            }
+        });
+    </script>
+</body></html>

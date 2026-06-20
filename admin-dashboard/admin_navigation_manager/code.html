@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Navigation Manager | 360 Econovations Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#7d283c",
+                        "secondary-container": "#98f3af",
+                        "secondary": "#006d37",
+                        "surface-container-highest": "#dfe4dc",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#84d992",
+                        "background": "#f6fbf2",
+                        "surface-container": "#ebefe7",
+                        "primary-fixed": "#9ff6ac",
+                        "primary-container": "#00652c",
+                        "on-secondary-container": "#0b723b",
+                        "tertiary-fixed-dim": "#ffb2bd",
+                        "on-primary-container": "#8ae098",
+                        "tertiary-container": "#92384c",
+                        "surface-bright": "#f6fbf2",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#ffbbc5",
+                        "surface-container-high": "#e5eae1",
+                        "surface": "#f6fbf2",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#84d992",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#106d33",
+                        "surface-dim": "#d7dbd3",
+                        "tertiary": "#742136",
+                        "on-surface-variant": "#3f493f",
+                        "secondary-fixed-dim": "#80d997",
+                        "on-secondary-fixed": "#00210c",
+                        "outline": "#6f7a6e",
+                        "secondary-fixed": "#9bf6b2",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#400014",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#004b1f",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eef2ea",
+                        "outline-variant": "#bfc9bc",
+                        "on-primary-fixed": "#00210a",
+                        "on-surface": "#181d18",
+                        "surface-variant": "#dfe4dc",
+                        "on-background": "#181d18",
+                        "inverse-surface": "#2d322c",
+                        "tertiary-fixed": "#ffd9de",
+                        "surface-container-low": "#f1f5ec",
+                        "on-primary-fixed-variant": "#005323",
+                        "on-secondary-fixed-variant": "#005228"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "xl": "32px",
+                        "2xl": "48px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-desktop": "32px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "3xl": "64px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "headline-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #f6fbf2; color: #181d18; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .drag-ghost {
+            opacity: 0.4;
+            background: #eaefe6;
+            border: 2px dashed #becabc;
+        }
+        .unsaved-banner-animation {
+            animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background">
+<!-- Top Navigation Anchor -->
+<nav class="sticky top-0 z-40 flex justify-between items-center px-margin-desktop h-16 w-full ml-0 md:ml-64 bg-background/80 dark:bg-background/80 backdrop-blur-md border-b border-outline-variant transition-all duration-200">
+<div class="flex items-center gap-4">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">360 Econovations</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-high rounded-full p-2 transition-all duration-200">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional corporate headshot of a middle-aged environmental executive with a kind smile, set against a blurred background of a modern sustainable office. The lighting is bright and natural, reflecting a clean light-mode aesthetic with soft organic tones. The overall mood is trustworthy and authoritative, fitting for a waste-to-value business admin." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK8IUiyZ7le-IrbopBgZ7HEsZVyduc0GvRTyJAcZHrQNkn3WFKOtIrnbyhc7VnXLGFlhljrrysUwh4CInrBtTnwr29eqfv1-YBnZ1bqjLbXQux7yr2bzkaXSlkbMoI5G-cTViyku_YHiYU-6d6ggt0KlD8zJbRWtStifca1P0T0_KUEPFzazdO7T8i5yeGJFsQeFiIcrkv2igaldXjb6gy6xp11awShGKBz2rTN7-yA5EVcEnrIUC1S3zc3-31VnKTaqsOHB6efd_z"/>
+</div>
+</div>
+</nav>
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-0 h-screen hidden md:flex flex-col p-4 bg-surface-container-lowest border-r border-outline-variant w-64 z-50">
+<div class="mb-8 px-4">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Admin Console</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Waste-to-Value Manager</p>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full font-label-md text-label-md" href="../admin_dashboard_overview/code.html">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 bg-primary-container/10 text-primary font-bold rounded-full font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">account_tree</span> Navigation Manager
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full font-label-md text-label-md" href="../admin_pages_manager/code.html">
+<span class="material-symbols-outlined">description</span> Pages Manager
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full font-label-md text-label-md" href="../admin_shop_manager/code.html">
+<span class="material-symbols-outlined">shopping_bag</span> Shop Manager
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full font-label-md text-label-md" href="../admin_about_page_editor/code.html">
+<span class="material-symbols-outlined">edit_note</span> About Page Editor
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full font-label-md text-label-md" href="../admin_contact_page_editor/code.html">
+<span class="material-symbols-outlined">contact_mail</span> Contact Page Editor
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">view_stream</span> Footer Manager
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full font-label-md text-label-md" href="../admin_analytics_bi_overview/code.html">
+<span class="material-symbols-outlined">analytics</span> Analytics &amp; BI
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full font-label-md text-label-md" href="../admin_branding_logo/code.html">
+<span class="material-symbols-outlined">palette</span> Branding &amp; Logo
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full font-label-md text-label-md" href="../admin_settings/code.html">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-4">
+<button class="flex items-center gap-3 px-4 py-2 w-full text-error hover:bg-error-container/10 transition-colors rounded-full font-label-md text-label-md" onclick="window.location.href='../admin_sign_in/code.html'">
+<span class="material-symbols-outlined">logout</span> Logout
+            </button>
+</div>
+</aside>
+<!-- Unsaved Changes Banner -->
+<div class="fixed top-16 left-0 right-0 md:left-64 z-30 bg-tertiary-container text-on-tertiary-container px-6 py-2 flex justify-between items-center unsaved-banner-animation hidden" id="unsaved-banner">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">info</span>
+<span class="font-label-md text-label-md">You have unsaved changes to your navigation structure.</span>
+</div>
+<button class="bg-tertiary text-on-tertiary px-4 py-1 rounded-full font-label-sm text-label-sm hover:opacity-90 transition-opacity" onclick="saveChanges()">
+            Save Now
+        </button>
+</div>
+<!-- Main Content Canvas -->
+<main class="ml-0 md:ml-64 p-margin-desktop min-h-screen">
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Navigation Manager</h2>
+<p class="font-body-md text-on-surface-variant max-w-2xl">Configure your website's primary header menu. Drag items to reorder and manage their destination links.</p>
+</div>
+<button class="bg-secondary text-on-secondary px-8 py-3 rounded-full font-label-md text-label-md flex items-center gap-2 hover:shadow-lg transition-shadow sticky top-20" onclick="saveChanges()">
+<span class="material-symbols-outlined">save</span> Save Changes
+            </button>
+</header>
+<!-- Navigation List Container -->
+<section class="max-w-4xl">
+<div class="bg-surface-container rounded-xl border border-outline-variant overflow-hidden">
+<!-- Table Header -->
+<div class="grid grid-cols-[48px_1fr_1.5fr_100px_48px] items-center gap-4 px-6 py-4 border-b border-outline-variant bg-surface-container-high font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<div class="flex justify-center">#</div>
+<div>Page Label</div>
+<div>Link Destination</div>
+<div class="text-center">Visibility</div>
+<div class="text-right">Actions</div>
+</div>
+<!-- Sortable List -->
+<div class="divide-y divide-outline-variant" id="nav-items-list">
+<!-- Nav Item: Home -->
+<div class="grid grid-cols-[48px_1fr_1.5fr_100px_48px] items-center gap-4 px-6 py-4 bg-white hover:bg-surface-container-low transition-colors group" draggable="true">
+<div class="flex justify-center cursor-grab active:cursor-grabbing text-outline">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div>
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 font-body-md font-semibold text-on-surface focus:bg-surface-container-lowest rounded px-2 -mx-2 transition-all" onchange="markUnsaved()" type="text" value="Home"/>
+</div>
+<div>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm focus:border-primary focus:ring-primary py-1 px-3" onchange="markUnsaved()">
+<option selected="">Index / Home</option>
+<option>Shop All</option>
+<option>About Our Mission</option>
+<option>Sustainability Impact</option>
+<option>Contact Us</option>
+</select>
+</div>
+<div class="flex justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" onchange="markUnsaved()" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant rounded-full peer peer-focus:ring-2 peer-focus:ring-primary-fixed peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="flex justify-end">
+<button class="text-outline-variant hover:text-error transition-colors p-1" onclick="this.closest('.grid').remove(); markUnsaved();">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- Nav Item: Shop -->
+<div class="grid grid-cols-[48px_1fr_1.5fr_100px_48px] items-center gap-4 px-6 py-4 bg-white hover:bg-surface-container-low transition-colors group" draggable="true">
+<div class="flex justify-center cursor-grab active:cursor-grabbing text-outline">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div>
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 font-body-md font-semibold text-on-surface focus:bg-surface-container-lowest rounded px-2 -mx-2 transition-all" onchange="markUnsaved()" type="text" value="Shop"/>
+</div>
+<div>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm focus:border-primary focus:ring-primary py-1 px-3" onchange="markUnsaved()">
+<option>Index / Home</option>
+<option selected="">Shop All</option>
+<option>About Our Mission</option>
+<option>Sustainability Impact</option>
+<option>Contact Us</option>
+</select>
+</div>
+<div class="flex justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" onchange="markUnsaved()" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant rounded-full peer peer-focus:ring-2 peer-focus:ring-primary-fixed peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="flex justify-end">
+<button class="text-outline-variant hover:text-error transition-colors p-1" onclick="this.closest('.grid').remove(); markUnsaved();">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- Nav Item: About -->
+<div class="grid grid-cols-[48px_1fr_1.5fr_100px_48px] items-center gap-4 px-6 py-4 bg-white hover:bg-surface-container-low transition-colors group" draggable="true">
+<div class="flex justify-center cursor-grab active:cursor-grabbing text-outline">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div>
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 font-body-md font-semibold text-on-surface focus:bg-surface-container-lowest rounded px-2 -mx-2 transition-all" onchange="markUnsaved()" type="text" value="About"/>
+</div>
+<div>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm focus:border-primary focus:ring-primary py-1 px-3" onchange="markUnsaved()">
+<option>Index / Home</option>
+<option>Shop All</option>
+<option selected="">About Our Mission</option>
+<option>Sustainability Impact</option>
+<option>Contact Us</option>
+</select>
+</div>
+<div class="flex justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" onchange="markUnsaved()" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant rounded-full peer peer-focus:ring-2 peer-focus:ring-primary-fixed peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="flex justify-end">
+<button class="text-outline-variant hover:text-error transition-colors p-1" onclick="this.closest('.grid').remove(); markUnsaved();">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- Nav Item: Impact -->
+<div class="grid grid-cols-[48px_1fr_1.5fr_100px_48px] items-center gap-4 px-6 py-4 bg-white hover:bg-surface-container-low transition-colors group" draggable="true">
+<div class="flex justify-center cursor-grab active:cursor-grabbing text-outline">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div>
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 font-body-md font-semibold text-on-surface focus:bg-surface-container-lowest rounded px-2 -mx-2 transition-all" onchange="markUnsaved()" type="text" value="Impact"/>
+</div>
+<div>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm focus:border-primary focus:ring-primary py-1 px-3" onchange="markUnsaved()">
+<option>Index / Home</option>
+<option>Shop All</option>
+<option>About Our Mission</option>
+<option selected="">Sustainability Impact</option>
+<option>Contact Us</option>
+</select>
+</div>
+<div class="flex justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" onchange="markUnsaved()" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant rounded-full peer peer-focus:ring-2 peer-focus:ring-primary-fixed peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="flex justify-end">
+<button class="text-outline-variant hover:text-error transition-colors p-1" onclick="this.closest('.grid').remove(); markUnsaved();">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- Nav Item: Contact -->
+<div class="grid grid-cols-[48px_1fr_1.5fr_100px_48px] items-center gap-4 px-6 py-4 bg-white hover:bg-surface-container-low transition-colors group" draggable="true">
+<div class="flex justify-center cursor-grab active:cursor-grabbing text-outline">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div>
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 font-body-md font-semibold text-on-surface focus:bg-surface-container-lowest rounded px-2 -mx-2 transition-all" onchange="markUnsaved()" type="text" value="Contact"/>
+</div>
+<div>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm focus:border-primary focus:ring-primary py-1 px-3" onchange="markUnsaved()">
+<option>Index / Home</option>
+<option>Shop All</option>
+<option>About Our Mission</option>
+<option>Sustainability Impact</option>
+<option selected="">Contact Us</option>
+</select>
+</div>
+<div class="flex justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" onchange="markUnsaved()" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant rounded-full peer peer-focus:ring-2 peer-focus:ring-primary-fixed peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="flex justify-end">
+<button class="text-outline-variant hover:text-error transition-colors p-1" onclick="this.closest('.grid').remove(); markUnsaved();">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Add New Item Footer -->
+<div class="p-6 bg-surface-container-low flex justify-center">
+<button class="flex items-center gap-2 text-primary font-bold hover:bg-primary-container/5 px-6 py-2 rounded-full transition-colors border border-dashed border-primary/40" id="add-nav-item">
+<span class="material-symbols-outlined">add_circle</span>
+                        Add Nav Item
+                    </button>
+</div>
+</div>
+<!-- Dashboard Informational Card -->
+<div class="mt-8 bg-white border border-outline-variant rounded-xl p-6 flex flex-col md:flex-row items-center gap-6 shadow-sm">
+<div class="w-24 h-24 flex-shrink-0 bg-primary-container/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">Sustainable Architecture</h3>
+<p class="font-body-sm text-on-surface-variant">Changes made here reflect immediately on the customer-facing website header. Ensure your labels are concise (max 15 characters) for optimal mobile viewing experience. We recommend keeping the menu to 5-7 items max.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Micro-interactions Script -->
+<script>
+        const navList = document.getElementById('nav-items-list');
+        const banner = document.getElementById('unsaved-banner');
+        let dragSrcEl = null;
+
+        function markUnsaved() {
+            banner.classList.remove('hidden');
+        }
+
+        function saveChanges() {
+            banner.classList.add('hidden');
+            // Mock success notification
+            const notify = document.createElement('div');
+            notify.className = 'fixed bottom-8 right-8 bg-secondary text-white px-6 py-3 rounded-full shadow-lg z-50 flex items-center gap-2 transform translate-y-20 transition-transform duration-300';
+            notify.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Navigation saved successfully';
+            document.body.appendChild(notify);
+            setTimeout(() => notify.classList.remove('translate-y-20'), 10);
+            setTimeout(() => {
+                notify.classList.add('translate-y-20');
+                setTimeout(() => notify.remove(), 300);
+            }, 3000);
+        }
+
+        function handleDragStart(e) {
+            this.style.opacity = '0.4';
+            dragSrcEl = this;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.innerHTML);
+            this.classList.add('drag-ghost');
+        }
+
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            e.dataTransfer.dropEffect = 'move';
+            return false;
+        }
+
+        function handleDragEnter(e) {
+            this.classList.add('bg-surface-container-high');
+        }
+
+        function handleDragLeave(e) {
+            this.classList.remove('bg-surface-container-high');
+        }
+
+        function handleDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+
+            if (dragSrcEl !== this) {
+                const allItems = Array.from(navList.children);
+                const dragIdx = allItems.indexOf(dragSrcEl);
+                const dropIdx = allItems.indexOf(this);
+
+                if (dragIdx < dropIdx) {
+                    this.after(dragSrcEl);
+                } else {
+                    this.before(dragSrcEl);
+                }
+                markUnsaved();
+            }
+            return false;
+        }
+
+        function handleDragEnd(e) {
+            this.style.opacity = '1';
+            this.classList.remove('drag-ghost');
+            items.forEach(function (item) {
+                item.classList.remove('bg-surface-container-high');
+            });
+        }
+
+        function addDnDHandlers(item) {
+            item.addEventListener('dragstart', handleDragStart, false);
+            item.addEventListener('dragenter', handleDragEnter, false);
+            item.addEventListener('dragover', handleDragOver, false);
+            item.addEventListener('dragleave', handleDragLeave, false);
+            item.addEventListener('drop', handleDrop, false);
+            item.addEventListener('dragend', handleDragEnd, false);
+        }
+
+        let items = document.querySelectorAll('#nav-items-list > div');
+        items.forEach(addDnDHandlers);
+
+        document.getElementById('add-nav-item').addEventListener('click', () => {
+            const newItem = document.createElement('div');
+            newItem.className = 'grid grid-cols-[48px_1fr_1.5fr_100px_48px] items-center gap-4 px-6 py-4 bg-white hover:bg-surface-container-low transition-colors group';
+            newItem.draggable = true;
+            newItem.innerHTML = `
+                <div class="flex justify-center cursor-grab active:cursor-grabbing text-outline">
+                    <span class="material-symbols-outlined">drag_indicator</span>
+                </div>
+                <div>
+                    <input type="text" placeholder="New Page" class="w-full bg-transparent border-none focus:ring-0 p-0 font-body-md font-semibold text-on-surface focus:bg-surface-container-lowest rounded px-2 -mx-2 transition-all" onchange="markUnsaved()">
+                </div>
+                <div>
+                    <select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm focus:border-primary focus:ring-primary py-1 px-3" onchange="markUnsaved()">
+                        <option selected>Select Destination...</option>
+                        <option>Index / Home</option>
+                        <option>Shop All</option>
+                        <option>About Our Mission</option>
+                        <option>Sustainability Impact</option>
+                        <option>Contact Us</option>
+                    </select>
+                </div>
+                <div class="flex justify-center">
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" checked class="sr-only peer" onchange="markUnsaved()">
+                        <div class="w-11 h-6 bg-outline-variant rounded-full peer peer-focus:ring-2 peer-focus:ring-primary-fixed peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+                    </label>
+                </div>
+                <div class="flex justify-end">
+                    <button class="text-outline-variant hover:text-error transition-colors p-1" onclick="this.closest('.grid').remove(); markUnsaved();">
+                        <span class="material-symbols-outlined">delete</span>
+                    </button>
+                </div>
+            `;
+            navList.appendChild(newItem);
+            addDnDHandlers(newItem);
+            markUnsaved();
+            newItem.querySelector('input').focus();
+        });
+    </script>
+</body></html>
