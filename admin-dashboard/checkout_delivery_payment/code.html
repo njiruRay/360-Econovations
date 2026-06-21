@@ -195,19 +195,6 @@
 <div class="bg-surface-container-lowest rounded-xl p-md custom-shadow-low">
 <h2 class="font-headline-sm text-headline-sm mb-md text-primary">Select Payment Method</h2>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-<!-- M-PESA Card -->
-<div class="payment-card border-2 border-outline-variant rounded-xl p-md cursor-pointer flex items-center gap-md hover:bg-surface transition-all custom-shadow-hover relative group active-method border-primary-green bg-surface" onclick="selectPayment(this)">
-<div class="bg-primary-container text-on-primary-container p-xs rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="smartphone">smartphone</span>
-</div>
-<div>
-<h4 class="font-label-sm text-label-sm">M-PESA</h4>
-<p class="text-on-surface-variant text-[12px]">Pay via Sim Tool Kit</p>
-</div>
-<div class="absolute top-2 right-2 opacity-0 group-[.active-method]:opacity-100">
-<span class="material-symbols-outlined text-primary-green" data-icon="check_circle" data-weight="fill">check_circle</span>
-</div>
-</div>
 <!-- Bitcoin Card -->
 <div class="payment-card border-2 border-outline-variant rounded-xl p-md cursor-pointer flex items-center gap-md hover:bg-surface transition-all custom-shadow-hover relative group" onclick="selectPayment(this)">
 <div class="bg-tertiary-container text-on-tertiary-container p-xs rounded-lg flex items-center justify-center">
@@ -222,7 +209,7 @@
 </div>
 </div>
 <!-- Cash Card -->
-<div class="payment-card border-2 border-outline-variant rounded-xl p-md cursor-pointer flex items-center gap-md hover:bg-surface transition-all custom-shadow-hover relative group" onclick="selectPayment(this)">
+<div class="payment-card border-2 border-outline-variant rounded-xl p-md cursor-pointer flex items-center gap-md hover:bg-surface transition-all custom-shadow-hover relative group active-method border-primary-green bg-surface" onclick="selectPayment(this)">
 <div class="bg-surface-variant text-on-surface-variant p-xs rounded-lg flex items-center justify-center">
 <span class="material-symbols-outlined" data-icon="payments">payments</span>
 </div>
