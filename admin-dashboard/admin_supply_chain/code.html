@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Supply Chain Manager | 360 Econovations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .fill-icon { font-variation-settings: 'FILL' 1; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #f6fbf2; }
+  ::-webkit-scrollbar-thumb { background: #becabc; border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #6f7a6e; }
+  .slide-panel { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+  .slide-panel.open { transform: translateX(0); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .tab-btn.active { color: #004b1f; border-bottom-color: #004b1f; }
+</style>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-tertiary-fixed-variant": "#7d283c",
+          "secondary-container": "#98f3af",
+          "secondary": "#006d37",
+          "surface-container-highest": "#dfe4dc",
+          "on-primary": "#ffffff",
+          "primary-fixed-dim": "#84d992",
+          "background": "#f6fbf2",
+          "surface-container": "#ebefe7",
+          "primary-fixed": "#9ff6ac",
+          "primary-container": "#00652c",
+          "on-secondary-container": "#0b723b",
+          "tertiary-fixed-dim": "#ffb2bd",
+          "on-primary-container": "#8ae098",
+          "tertiary-container": "#92384c",
+          "surface-bright": "#f6fbf2",
+          "error": "#ba1a1a",
+          "on-error-container": "#93000a",
+          "on-tertiary-container": "#ffbbc5",
+          "surface-container-high": "#e5eae1",
+          "surface": "#f6fbf2",
+          "error-container": "#ffdad6",
+          "inverse-primary": "#84d992",
+          "on-secondary": "#ffffff",
+          "surface-tint": "#106d33",
+          "surface-dim": "#d7dbd3",
+          "tertiary": "#742136",
+          "on-surface-variant": "#3f493f",
+          "secondary-fixed-dim": "#80d997",
+          "on-secondary-fixed": "#00210c",
+          "outline": "#6f7a6e",
+          "secondary-fixed": "#9bf6b2",
+          "on-error": "#ffffff",
+          "on-tertiary-fixed": "#400014",
+          "on-tertiary": "#ffffff",
+          "primary": "#004b1f",
+          "surface-container-lowest": "#ffffff",
+          "inverse-on-surface": "#eef2ea",
+          "outline-variant": "#bfc9bc",
+          "on-primary-fixed": "#00210a",
+          "on-surface": "#181d18",
+          "surface-variant": "#dfe4dc",
+          "on-background": "#181d18",
+          "inverse-surface": "#2d322c",
+          "tertiary-fixed": "#ffd9de",
+          "surface-container-low": "#f1f5ec",
+          "on-primary-fixed-variant": "#005323",
+          "on-secondary-fixed-variant": "#005228"
+        },
+        "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        "spacing": {
+          "margin-mobile": "16px", "xl": "32px", "2xl": "48px", "container-max": "1440px",
+          "gutter": "24px", "margin-desktop": "32px", "xs": "4px", "base": "4px",
+          "3xl": "64px", "lg": "24px", "sm": "8px", "md": "16px"
+        },
+        "fontFamily": {
+          "body-sm": ["Inter"], "headline-lg-mobile": ["Montserrat"], "label-sm": ["Inter"],
+          "headline-sm": ["Montserrat"], "body-lg": ["Inter"], "label-md": ["Inter"],
+          "body-md": ["Inter"], "headline-md": ["Montserrat"], "headline-lg": ["Montserrat"]
+        },
+        "fontSize": {
+          "body-sm": ["14px", {"lineHeight":"20px","fontWeight":"400"}],
+          "headline-lg-mobile": ["24px", {"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"700"}],
+          "label-sm": ["12px", {"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"600"}],
+          "headline-sm": ["20px", {"lineHeight":"28px","fontWeight":"600"}],
+          "body-lg": ["18px", {"lineHeight":"28px","fontWeight":"400"}],
+          "label-md": ["14px", {"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],
+          "body-md": ["16px", {"lineHeight":"24px","fontWeight":"400"}],
+          "headline-md": ["24px", {"lineHeight":"32px","fontWeight":"600"}],
+          "headline-lg": ["32px", {"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}]
+        }
+      }
+    }
+  }
+</script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container">
+
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-40 flex justify-between items-center px-margin-desktop h-16 w-full md:ml-64 bg-background/80 backdrop-blur-md border-b border-outline-variant" style="width:calc(100%); padding-left:calc(16rem + 32px);">
+  <div class="flex items-center gap-4">
+    <span class="md:hidden material-symbols-outlined text-primary cursor-pointer" onclick="toggleSidebar()">menu</span>
+    <div>
+      <h1 class="font-headline-sm text-headline-sm font-bold text-primary">Supply Chain Manager</h1>
+    </div>
+  </div>
+  <div class="flex items-center gap-4">
+    <div class="hover:bg-surface-container-high rounded-full p-2 transition-all cursor-pointer">
+      <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+    </div>
+    <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant">
+      <span class="material-symbols-outlined text-on-surface-variant text-[18px]">person</span>
+    </div>
+  </div>
+</header>
+
+<!-- Sidebar -->
+<nav class="fixed left-0 top-0 h-screen flex flex-col p-4 z-50 bg-surface-container-lowest border-r border-outline-variant w-64 transition-all duration-300 -translate-x-full md:translate-x-0" id="sidebar">
+  <div class="mb-8 px-2">
+    <h2 class="font-headline-md text-headline-md font-bold text-primary">360 Econovations</h2>
+    <p class="font-label-md text-label-md text-on-surface-variant opacity-70">Waste-to-Value Admin</p>
+  </div>
+  <div class="flex-grow space-y-1 overflow-y-auto">
+    <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_dashboard_overview/code.html">
+      <span class="material-symbols-outlined">dashboard</span>
+      <span class="font-label-md text-label-md">Dashboard</span>
+    </a>
+    <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_navigation_manager/code.html">
+      <span class="material-symbols-outlined">account_tree</span>
+      <span class="font-label-md text-label-md">Navigation Manager</span>
+    </a>
+    <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_pages_manager/code.html">
+      <span class="material-symbols-outlined">description</span>
+      <span class="font-label-md text-label-md">Pages Manager</span>
+    </a>
+    <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_shop_manager/code.html">
+      <span class="material-symbols-outlined">shopping_bag</span>
+      <span class="font-label-md text-label-md">Shop Manager</span>
+    </a>
+    <!-- Supply Chain ACTIVE -->
+    <a class="flex items-center gap-3 px-4 py-2 bg-primary-container/10 text-primary font-bold rounded-full" href="#">
+      <span class="material-symbols-outlined fill-icon" style="font-variation-settings:'FILL' 1;">recycling</span>
+      <span class="font-label-md text-label-md">Supply Chain</span>
+    </a>
+    <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_about_page_editor/code.html">
+      <span class="material-symbols-outlined">edit_note</span>
+      <span class="font-label-md text-label-md">About Page Editor</span>
+    </a>
+    <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_contact_page_editor/code.html">
+      <span class="material-symbols-outlined">contact_mail</span>
+      <span class="font-label-md text-label-md">Contact Page Editor</span>
+    </a>
+    <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_analytics_bi_overview/code.html">
+      <span class="material-symbols-outlined">analytics</span>
+      <span class="font-label-md text-label-md">Analytics &amp; BI</span>
+    </a>
+    <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_branding_logo/code.html">
+      <span class="material-symbols-outlined">palette</span>
+      <span class="font-label-md text-label-md">Branding &amp; Logo</span>
+    </a>
+    <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full" href="../admin_settings/code.html">
+      <span class="material-symbols-outlined">settings</span>
+      <span class="font-label-md text-label-md">Settings</span>
+    </a>
+  </div>
+  <div class="mt-auto pt-4 border-t border-outline-variant">
+    <button class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-error transition-colors w-full" onclick="window.location.href='../admin_sign_in/code.html'">
+      <span class="material-symbols-outlined">logout</span>
+      <span class="font-label-md text-label-md">Logout</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="ml-0 md:ml-64 p-margin-desktop min-h-screen pb-32">
+
+  <!-- Page Header -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+    <div>
+      <h2 class="font-headline-md text-headline-md text-on-surface">Waste Supply Chain</h2>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">Track clubs, waste collections, and processing batches.</p>
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-md mb-8">
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="material-symbols-outlined text-primary text-[20px]">groups</span>
+        <p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Active Clubs</p>
+      </div>
+      <p class="font-headline-sm text-headline-sm font-bold text-primary">10</p>
+    </div>
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="material-symbols-outlined text-secondary text-[20px]">inventory_2</span>
+        <p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Collections</p>
+      </div>
+      <p class="font-headline-sm text-headline-sm font-bold text-primary">47</p>
+    </div>
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="material-symbols-outlined text-[#d4770a] text-[20px]">scale</span>
+        <p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Total Collected</p>
+      </div>
+      <p class="font-headline-sm text-headline-sm font-bold text-primary">42.5 T</p>
+    </div>
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="material-symbols-outlined text-tertiary text-[20px]">factory</span>
+        <p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Avg. Yield</p>
+      </div>
+      <p class="font-headline-sm text-headline-sm font-bold text-primary">86.2%</p>
+    </div>
+  </div>
+
+  <!-- Tab Navigation -->
+  <div class="border-b border-outline-variant mb-6 flex gap-0">
+    <button class="tab-btn active px-6 py-3 font-label-md text-label-md border-b-2 border-transparent transition-colors" onclick="switchTab('clubs', this)">
+      <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">groups</span> Clubs</span>
+    </button>
+    <button class="tab-btn px-6 py-3 font-label-md text-label-md text-on-surface-variant border-b-2 border-transparent hover:text-primary transition-colors" onclick="switchTab('collections', this)">
+      <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">inventory_2</span> Waste Collections</span>
+    </button>
+    <button class="tab-btn px-6 py-3 font-label-md text-label-md text-on-surface-variant border-b-2 border-transparent hover:text-primary transition-colors" onclick="switchTab('batches', this)">
+      <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">factory</span> Processing Batches</span>
+    </button>
+  </div>
+
+  <!-- ── TAB 1: CLUBS ── -->
+  <div class="tab-content active" id="tab-clubs">
+    <div class="bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-surface-container text-on-surface-variant font-label-sm uppercase tracking-wider border-b border-outline-variant">
+              <th class="px-6 py-4">Club Name</th>
+              <th class="px-6 py-4">Sub-County</th>
+              <th class="px-6 py-4">Contact Person</th>
+              <th class="px-6 py-4">Phone</th>
+              <th class="px-6 py-4">Status</th>
+              <th class="px-6 py-4">Joined</th>
+              <th class="px-6 py-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-outline-variant">
+            <tr class="hover:bg-surface-container-high transition-colors">
+              <td class="px-6 py-4 font-body-md font-semibold text-on-surface">Embu Green Youth Club</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Embu West</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface">Jane Muthoni</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">+254 712 345 678</td>
+              <td class="px-6 py-4"><span class="bg-secondary-container text-secondary px-3 py-1 rounded-full font-label-sm">Active</span></td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Jan 15, 2024</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors" onclick="openPanel('club-panel')">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="hover:bg-surface-container-high transition-colors">
+              <td class="px-6 py-4 font-body-md font-semibold text-on-surface">Mbeere High School Eco Club</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Mbeere North</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface">Peter Njiru</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">+254 723 456 789</td>
+              <td class="px-6 py-4"><span class="bg-secondary-container text-secondary px-3 py-1 rounded-full font-label-sm">Active</span></td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Mar 3, 2024</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors" onclick="openPanel('club-panel')">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="hover:bg-surface-container-high transition-colors">
+              <td class="px-6 py-4 font-body-md font-semibold text-on-surface">Embu Women's Circle</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Embu East</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface">Sarah Waweru</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">+254 734 567 890</td>
+              <td class="px-6 py-4"><span class="bg-[#fef3e2] text-[#d4770a] px-3 py-1 rounded-full font-label-sm">Onboarding</span></td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Jun 1, 2025</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors" onclick="openPanel('club-panel')">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="hover:bg-surface-container-high transition-colors">
+              <td class="px-6 py-4 font-body-md font-semibold text-on-surface">Kiritiri Youth Recyclers</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Mbeere South</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface">David Murimi</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">+254 745 678 901</td>
+              <td class="px-6 py-4"><span class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full font-label-sm">Inactive</span></td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Sep 20, 2023</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors" onclick="openPanel('club-panel')">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="p-4 bg-surface-container flex items-center justify-between">
+        <span class="font-label-sm text-on-surface-variant">Showing 4 of 10 clubs</span>
+        <div class="flex items-center gap-2">
+          <button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors disabled:opacity-50" disabled>
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB 2: WASTE COLLECTIONS ── -->
+  <div class="tab-content" id="tab-collections">
+    <div class="bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-surface-container text-on-surface-variant font-label-sm uppercase tracking-wider border-b border-outline-variant">
+              <th class="px-6 py-4">Ref</th>
+              <th class="px-6 py-4">Club</th>
+              <th class="px-6 py-4">Date</th>
+              <th class="px-6 py-4">Material</th>
+              <th class="px-6 py-4">Weight (kg)</th>
+              <th class="px-6 py-4">Sub-County</th>
+              <th class="px-6 py-4">Notes</th>
+              <th class="px-6 py-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-outline-variant">
+            <tr class="hover:bg-surface-container-high transition-colors">
+              <td class="px-6 py-4 font-label-sm text-primary font-bold">#WC-0047</td>
+              <td class="px-6 py-4 font-body-sm font-semibold text-on-surface">Embu Green Youth Club</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Apr 12, 2025</td>
+              <td class="px-6 py-4"><span class="bg-teal-50 text-teal-700 px-3 py-1 rounded-full font-label-sm">Glass</span></td>
+              <td class="px-6 py-4 font-body-md font-bold text-on-surface">850 kg</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Embu West</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant max-w-[140px] truncate">Good condition, minimal contamination</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors" onclick="openPanel('collection-panel')">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="hover:bg-surface-container-high transition-colors">
+              <td class="px-6 py-4 font-label-sm text-primary font-bold">#WC-0046</td>
+              <td class="px-6 py-4 font-body-sm font-semibold text-on-surface">Mbeere High School Eco Club</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Apr 8, 2025</td>
+              <td class="px-6 py-4"><span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full font-label-sm">Biomass</span></td>
+              <td class="px-6 py-4 font-body-md font-bold text-on-surface">320 kg</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Mbeere North</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant max-w-[140px] truncate">Dry sugarcane bagasse</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors" onclick="openPanel('collection-panel')">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="hover:bg-surface-container-high transition-colors">
+              <td class="px-6 py-4 font-label-sm text-primary font-bold">#WC-0045</td>
+              <td class="px-6 py-4 font-body-sm font-semibold text-on-surface">Embu Women's Circle</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Mar 30, 2025</td>
+              <td class="px-6 py-4"><span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-label-sm">Bottles</span></td>
+              <td class="px-6 py-4 font-body-md font-bold text-on-surface">125 kg</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Embu East</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant max-w-[140px] truncate">Mixed amber and clear glass</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors" onclick="openPanel('collection-panel')">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="p-4 bg-surface-container flex items-center justify-between">
+        <span class="font-label-sm text-on-surface-variant">Showing 3 of 47 collections</span>
+        <div class="flex items-center gap-2">
+          <button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors disabled:opacity-50" disabled>
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB 3: PROCESSING BATCHES ── -->
+  <div class="tab-content" id="tab-batches">
+    <div class="bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-surface-container text-on-surface-variant font-label-sm uppercase tracking-wider border-b border-outline-variant">
+              <th class="px-6 py-4">Batch Ref</th>
+              <th class="px-6 py-4">Source Collection</th>
+              <th class="px-6 py-4">Output Product</th>
+              <th class="px-6 py-4">Input (kg)</th>
+              <th class="px-6 py-4">Output (kg)</th>
+              <th class="px-6 py-4">Yield %</th>
+              <th class="px-6 py-4">Processed Date</th>
+              <th class="px-6 py-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-outline-variant">
+            <tr class="hover:bg-surface-container-high transition-colors">
+              <td class="px-6 py-4 font-label-sm text-primary font-bold">#PB-0041</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">#WC-0047</td>
+              <td class="px-6 py-4 font-body-sm font-semibold text-on-surface">Emerald Glass Cullet</td>
+              <td class="px-6 py-4 font-body-md text-on-surface">850</td>
+              <td class="px-6 py-4 font-body-md text-on-surface">723</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <div class="w-20 bg-surface-container rounded-full h-2">
+                    <div class="bg-secondary h-full rounded-full" style="width:85%"></div>
+                  </div>
+                  <span class="font-label-sm text-secondary font-bold">85.1%</span>
+                </div>
+              </td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Apr 14, 2025</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors" onclick="openPanel('batch-panel')">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="hover:bg-surface-container-high transition-colors">
+              <td class="px-6 py-4 font-label-sm text-primary font-bold">#PB-0040</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">#WC-0046</td>
+              <td class="px-6 py-4 font-body-sm font-semibold text-on-surface">High-Density Briquettes</td>
+              <td class="px-6 py-4 font-body-md text-on-surface">320</td>
+              <td class="px-6 py-4 font-body-md text-on-surface">272</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <div class="w-20 bg-surface-container rounded-full h-2">
+                    <div class="bg-secondary h-full rounded-full" style="width:85%"></div>
+                  </div>
+                  <span class="font-label-sm text-secondary font-bold">85.0%</span>
+                </div>
+              </td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Apr 10, 2025</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors" onclick="openPanel('batch-panel')">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr class="hover:bg-surface-container-high transition-colors">
+              <td class="px-6 py-4 font-label-sm text-primary font-bold">#PB-0039</td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">#WC-0045</td>
+              <td class="px-6 py-4 font-body-sm font-semibold text-on-surface">Sterilized Amber Bottles</td>
+              <td class="px-6 py-4 font-body-md text-on-surface">125</td>
+              <td class="px-6 py-4 font-body-md text-on-surface">118</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <div class="w-20 bg-surface-container rounded-full h-2">
+                    <div class="bg-secondary h-full rounded-full" style="width:94%"></div>
+                  </div>
+                  <span class="font-label-sm text-secondary font-bold">94.4%</span>
+                </div>
+              </td>
+              <td class="px-6 py-4 font-body-sm text-on-surface-variant">Apr 2, 2025</td>
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-2">
+                  <button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors" onclick="openPanel('batch-panel')">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="p-2 hover:bg-error-container text-error rounded-full transition-colors">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="p-4 bg-surface-container flex items-center justify-between">
+        <span class="font-label-sm text-on-surface-variant">Showing 3 of 41 batches</span>
+        <div class="flex items-center gap-2">
+          <button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors disabled:opacity-50" disabled>
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FAB -->
+<button class="fixed bottom-8 right-8 flex items-center gap-2 px-6 py-4 bg-[#f2994a] text-white rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 z-40" id="fab-btn" onclick="openActivePanel()">
+  <span class="material-symbols-outlined">add</span>
+  <span class="font-label-md font-bold" id="fab-label">+ Add Club</span>
+</button>
+
+<!-- Overlay -->
+<div class="fixed inset-0 bg-black/20 backdrop-blur-sm z-[55] hidden" id="panel-overlay" onclick="closeAllPanels()"></div>
+
+<!-- ── PANEL 1: ADD CLUB ── -->
+<aside class="slide-panel fixed top-0 right-0 h-screen w-full md:w-[480px] bg-surface-container-lowest shadow-2xl z-[60] flex flex-col p-8 overflow-y-auto border-l border-outline-variant" id="club-panel">
+  <div class="flex items-center justify-between mb-8">
+    <h3 class="font-headline-sm text-headline-sm text-on-surface">Add New Club</h3>
+    <button class="p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="closeAllPanels()">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <form class="space-y-6" onsubmit="return false;">
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Club Name</label>
+      <input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="e.g. Embu Green Youth Club" type="text"/>
+    </div>
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Sub-County</label>
+      <select class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all appearance-none">
+        <option value="">Select sub-county</option>
+        <option>Embu West</option>
+        <option>Embu East</option>
+        <option>Embu North</option>
+        <option>Mbeere North</option>
+        <option>Mbeere South</option>
+      </select>
+    </div>
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Contact Person</label>
+      <input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="Full name of liaison" type="text"/>
+    </div>
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Phone (WhatsApp)</label>
+      <input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all" placeholder="+254..." type="tel"/>
+    </div>
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Status</label>
+      <select class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all appearance-none">
+        <option value="onboarding">Onboarding</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+    </div>
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Date Joined</label>
+      <input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all" type="date"/>
+    </div>
+    <div class="flex gap-3 pt-4 border-t border-outline-variant">
+      <button class="flex-1 px-6 py-3 border border-outline-variant rounded-full font-label-md text-on-surface-variant hover:bg-surface-container transition-colors" onclick="closeAllPanels()" type="button">Cancel</button>
+      <button class="flex-1 px-6 py-3 bg-primary text-on-primary rounded-full font-label-md hover:bg-primary/90 transition-colors" type="submit">Save Club</button>
+    </div>
+  </form>
+</aside>
+
+<!-- ── PANEL 2: ADD WASTE COLLECTION ── -->
+<aside class="slide-panel fixed top-0 right-0 h-screen w-full md:w-[480px] bg-surface-container-lowest shadow-2xl z-[60] flex flex-col p-8 overflow-y-auto border-l border-outline-variant" id="collection-panel">
+  <div class="flex items-center justify-between mb-8">
+    <h3 class="font-headline-sm text-headline-sm text-on-surface">Log Waste Collection</h3>
+    <button class="p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="closeAllPanels()">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <form class="space-y-6" onsubmit="return false;">
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Club</label>
+      <select class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all appearance-none">
+        <option value="">Select club</option>
+        <option>Embu Green Youth Club</option>
+        <option>Mbeere High School Eco Club</option>
+        <option>Embu Women's Circle</option>
+        <option>Kiritiri Youth Recyclers</option>
+      </select>
+    </div>
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Collection Date</label>
+      <input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all" type="date"/>
+    </div>
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Material Type</label>
+      <select class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all appearance-none">
+        <option value="">Select material</option>
+        <option value="glass">Glass</option>
+        <option value="biomass">Biomass</option>
+        <option value="bottles">Bottles</option>
+      </select>
+    </div>
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Weight (kg)</label>
+      <input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all" min="0" placeholder="0.000" step="0.001" type="number"/>
+    </div>
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Sub-County (Collection Location)</label>
+      <select class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all appearance-none">
+        <option value="">Select sub-county</option>
+        <option>Embu West</option>
+        <option>Embu East</option>
+        <option>Embu North</option>
+        <option>Mbeere North</option>
+        <option>Mbeere South</option>
+      </select>
+    </div>
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Notes <span class="opacity-50">(optional)</span></label>
+      <textarea class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all resize-none" placeholder="Quality notes, contamination level, condition..." rows="3"></textarea>
+    </div>
+    <div class="flex gap-3 pt-4 border-t border-outline-variant">
+      <button class="flex-1 px-6 py-3 border border-outline-variant rounded-full font-label-md text-on-surface-variant hover:bg-surface-container transition-colors" onclick="closeAllPanels()" type="button">Cancel</button>
+      <button class="flex-1 px-6 py-3 bg-primary text-on-primary rounded-full font-label-md hover:bg-primary/90 transition-colors" type="submit">Log Collection</button>
+    </div>
+  </form>
+</aside>
+
+<!-- ── PANEL 3: ADD PROCESSING BATCH ── -->
+<aside class="slide-panel fixed top-0 right-0 h-screen w-full md:w-[480px] bg-surface-container-lowest shadow-2xl z-[60] flex flex-col p-8 overflow-y-auto border-l border-outline-variant" id="batch-panel">
+  <div class="flex items-center justify-between mb-8">
+    <h3 class="font-headline-sm text-headline-sm text-on-surface">Record Processing Batch</h3>
+    <button class="p-2 hover:bg-surface-container-high rounded-full transition-colors" onclick="closeAllPanels()">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <form class="space-y-6" onsubmit="return false;">
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Source Collection</label>
+      <select class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all appearance-none">
+        <option value="">Select collection</option>
+        <option>#WC-0047 — Embu Green Youth Club (Glass, 850kg)</option>
+        <option>#WC-0046 — Mbeere High School (Biomass, 320kg)</option>
+        <option>#WC-0045 — Embu Women's Circle (Bottles, 125kg)</option>
+      </select>
+    </div>
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Output Product</label>
+      <select class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all appearance-none">
+        <option value="">Select product created</option>
+        <option>Emerald Glass Cullet</option>
+        <option>High-Density Briquettes</option>
+        <option>Sterilized Amber Bottles</option>
+        <option>Clear Glass Cullet</option>
+      </select>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="block font-label-md text-on-surface-variant mb-2">Input Weight (kg)</label>
+        <input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all" id="input-weight" min="0" oninput="calcYield()" placeholder="0.000" step="0.001" type="number"/>
+      </div>
+      <div>
+        <label class="block font-label-md text-on-surface-variant mb-2">Output Weight (kg)</label>
+        <input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all" id="output-weight" min="0" oninput="calcYield()" placeholder="0.000" step="0.001" type="number"/>
+      </div>
+    </div>
+    <!-- Live yield display -->
+    <div class="bg-surface-container rounded-xl px-4 py-3 flex items-center justify-between">
+      <span class="font-label-md text-on-surface-variant">Computed Yield %</span>
+      <span class="font-headline-sm text-headline-sm font-bold text-primary" id="yield-display">—</span>
+    </div>
+    <div>
+      <label class="block font-label-md text-on-surface-variant mb-2">Processed Date</label>
+      <input class="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all" type="date"/>
+    </div>
+    <div class="flex gap-3 pt-4 border-t border-outline-variant">
+      <button class="flex-1 px-6 py-3 border border-outline-variant rounded-full font-label-md text-on-surface-variant hover:bg-surface-container transition-colors" onclick="closeAllPanels()" type="button">Cancel</button>
+      <button class="flex-1 px-6 py-3 bg-primary text-on-primary rounded-full font-label-md hover:bg-primary/90 transition-colors" type="submit">Save Batch</button>
+    </div>
+  </form>
+</aside>
+
+<script>
+  let activeTab = 'clubs';
+
+  const tabConfig = {
+    clubs:       { fab: '+ Add Club',       panel: 'club-panel' },
+    collections: { fab: '+ Log Collection', panel: 'collection-panel' },
+    batches:     { fab: '+ Record Batch',   panel: 'batch-panel' }
+  };
+
+  function switchTab(tab, btn) {
+    activeTab = tab;
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    btn.classList.add('active');
+    document.getElementById('fab-label').textContent = tabConfig[tab].fab;
+  }
+
+  function openActivePanel() {
+    openPanel(tabConfig[activeTab].panel);
+  }
+
+  function openPanel(id) {
+    closeAllPanels();
+    document.getElementById(id).classList.add('open');
+    document.getElementById('panel-overlay').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeAllPanels() {
+    document.querySelectorAll('.slide-panel').forEach(p => p.classList.remove('open'));
+    document.getElementById('panel-overlay').classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('-translate-x-full');
+  }
+
+  function calcYield() {
+    const inp = parseFloat(document.getElementById('input-weight').value);
+    const out = parseFloat(document.getElementById('output-weight').value);
+    const display = document.getElementById('yield-display');
+    if (inp > 0 && out >= 0 && out <= inp) {
+      display.textContent = ((out / inp) * 100).toFixed(1) + '%';
+    } else {
+      display.textContent = '—';
+    }
+  }
+</script>
+</body>
+</html>
