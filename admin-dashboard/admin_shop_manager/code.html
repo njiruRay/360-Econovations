@@ -3,7 +3,7 @@
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Shop Manager | 360 Econovations</title>
+<title>Services Manager | 360 Econovations</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -147,7 +147,7 @@
 <header class="sticky top-0 z-40 flex justify-between items-center px-margin-desktop h-16 w-full ml-0 md:ml-64 bg-background/80 backdrop-blur-md border-b border-outline-variant">
 <div class="flex items-center gap-4">
 <span class="md:hidden material-symbols-outlined text-primary cursor-pointer" onclick="toggleSidebar()">menu</span>
-<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Shop Manager</h1>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Services Manager</h1>
 </div>
 <div class="flex items-center gap-4">
 <div class="hover:bg-surface-container-high rounded-full p-2 transition-all duration-200 cursor-pointer">
@@ -227,18 +227,29 @@
 <!-- Main Content Canvas -->
 <main class="ml-0 md:ml-64 p-margin-desktop min-h-screen">
 <!-- Header Actions Area -->
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
 <div>
-<h2 class="font-headline-md text-headline-md text-on-surface">Product Inventory</h2>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Manage your environmental products and stock levels.</p>
+<h2 class="font-headline-md text-headline-md text-on-surface">Services Manager</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage what you sell to businesses and what you buy from clubs &amp; individuals.</p>
 </div>
 <div class="flex items-center gap-3">
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-full text-body-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all w-64" placeholder="Search products..." type="text"/>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-full text-body-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all w-64" placeholder="Search..." type="text" id="search-input"/>
 </div>
 </div>
 </div>
+<!-- Tab Switcher -->
+<div class="flex gap-2 mb-6 border-b border-outline-variant">
+<button id="tab-buy" onclick="switchTab('buy')" class="flex items-center gap-2 px-6 py-3 font-label-md text-label-md border-b-2 border-primary text-primary font-bold transition-all">
+<span class="material-symbols-outlined text-[18px]">shopping_bag</span> Buy From Us
+</button>
+<button id="tab-sell" onclick="switchTab('sell')" class="flex items-center gap-2 px-6 py-3 font-label-md text-label-md border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">recycling</span> Sell To Us
+</button>
+</div>
+<!-- BUY FROM US TAB PANEL -->
+<div id="panel-buy">
 <!-- Inventory Table Card -->
 <div class="bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden mb-24">
 <div class="overflow-x-auto">
@@ -403,6 +414,129 @@
 </div>
 </div>
 </div>
+</div><!-- end panel-buy -->
+
+<!-- SELL TO US TAB PANEL -->
+<div id="panel-sell" class="hidden mb-24">
+<!-- Used Bottles Section -->
+<div class="mb-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Used Bottles — Buying Prices</h3>
+<p class="font-body-sm text-on-surface-variant">Prices paid per bottle (KES). Toggle visibility to show/hide on the Sell To Us page.</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:opacity-90 transition-all" onclick="openAddBottlePanel()">
+<span class="material-symbols-outlined text-[18px]">add</span> Add Bottle Type
+</button>
+</div>
+<div class="bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-sm uppercase tracking-wider border-b border-outline-variant">
+<th class="px-6 py-4">Bottle Name</th>
+<th class="px-6 py-4">Size</th>
+<th class="px-6 py-4">We Pay (KES/bottle)</th>
+<th class="px-6 py-4">Visibility</th>
+<th class="px-6 py-4">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant" id="bottle-list">
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">Patiala</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">250 ml</td>
+<td class="px-6 py-4"><span class="font-headline-sm text-primary">4</span></td>
+<td class="px-6 py-4"><label class="inline-flex items-center cursor-pointer"><input checked class="sr-only peer" type="checkbox"/><div class="relative w-11 h-6 bg-outline-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div></label></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button><button class="p-2 hover:bg-error-container text-error rounded-full transition-colors"><span class="material-symbols-outlined">delete</span></button></div></td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">EABL</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">250 ml</td>
+<td class="px-6 py-4"><span class="font-headline-sm text-primary">3</span></td>
+<td class="px-6 py-4"><label class="inline-flex items-center cursor-pointer"><input checked class="sr-only peer" type="checkbox"/><div class="relative w-11 h-6 bg-outline-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div></label></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button><button class="p-2 hover:bg-error-container text-error rounded-full transition-colors"><span class="material-symbols-outlined">delete</span></button></div></td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">Zheng Hong</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">250 ml</td>
+<td class="px-6 py-4"><span class="font-headline-sm text-primary">4</span></td>
+<td class="px-6 py-4"><label class="inline-flex items-center cursor-pointer"><input checked class="sr-only peer" type="checkbox"/><div class="relative w-11 h-6 bg-outline-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div></label></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button><button class="p-2 hover:bg-error-container text-error rounded-full transition-colors"><span class="material-symbols-outlined">delete</span></button></div></td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors bg-[#D4A017]/5">
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">Paper Label <span class="ml-2 bg-[#D4A017] text-black text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Top Price</span></td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">250 ml</td>
+<td class="px-6 py-4"><span class="font-headline-sm text-[#D4A017]">14</span></td>
+<td class="px-6 py-4"><label class="inline-flex items-center cursor-pointer"><input checked class="sr-only peer" type="checkbox"/><div class="relative w-11 h-6 bg-outline-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div></label></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button><button class="p-2 hover:bg-error-container text-error rounded-full transition-colors"><span class="material-symbols-outlined">delete</span></button></div></td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">Manchester</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">250 ml</td>
+<td class="px-6 py-4"><span class="font-headline-sm text-primary">3</span></td>
+<td class="px-6 py-4"><label class="inline-flex items-center cursor-pointer"><input checked class="sr-only peer" type="checkbox"/><div class="relative w-11 h-6 bg-outline-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div></label></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button><button class="p-2 hover:bg-error-container text-error rounded-full transition-colors"><span class="material-symbols-outlined">delete</span></button></div></td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">Kwal</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">250 ml</td>
+<td class="px-6 py-4"><span class="font-headline-sm text-primary">3</span></td>
+<td class="px-6 py-4"><label class="inline-flex items-center cursor-pointer"><input checked class="sr-only peer" type="checkbox"/><div class="relative w-11 h-6 bg-outline-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div></label></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button><button class="p-2 hover:bg-error-container text-error rounded-full transition-colors"><span class="material-symbols-outlined">delete</span></button></div></td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">Platinum Distillers</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">250 ml</td>
+<td class="px-6 py-4"><span class="font-headline-sm text-primary">3</span></td>
+<td class="px-6 py-4"><label class="inline-flex items-center cursor-pointer"><input checked class="sr-only peer" type="checkbox"/><div class="relative w-11 h-6 bg-outline-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div></label></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button><button class="p-2 hover:bg-error-container text-error rounded-full transition-colors"><span class="material-symbols-outlined">delete</span></button></div></td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">LDK</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">250 ml</td>
+<td class="px-6 py-4"><span class="font-headline-sm text-primary">6</span></td>
+<td class="px-6 py-4"><label class="inline-flex items-center cursor-pointer"><input checked class="sr-only peer" type="checkbox"/><div class="relative w-11 h-6 bg-outline-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div></label></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button><button class="p-2 hover:bg-error-container text-error rounded-full transition-colors"><span class="material-symbols-outlined">delete</span></button></div></td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">TCDL</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">250 ml</td>
+<td class="px-6 py-4"><span class="font-headline-sm text-primary">3</span></td>
+<td class="px-6 py-4"><label class="inline-flex items-center cursor-pointer"><input checked class="sr-only peer" type="checkbox"/><div class="relative w-11 h-6 bg-outline-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div></label></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button><button class="p-2 hover:bg-error-container text-error rounded-full transition-colors"><span class="material-symbols-outlined">delete</span></button></div></td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="px-6 py-4 font-body-md font-semibold text-on-surface">EABL</td>
+<td class="px-6 py-4 font-body-sm text-on-surface-variant">750 ml</td>
+<td class="px-6 py-4"><span class="font-headline-sm text-primary">3</span></td>
+<td class="px-6 py-4"><label class="inline-flex items-center cursor-pointer"><input checked class="sr-only peer" type="checkbox"/><div class="relative w-11 h-6 bg-outline-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div></label></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><button class="p-2 hover:bg-surface-container-highest rounded-full text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button><button class="p-2 hover:bg-error-container text-error rounded-full transition-colors"><span class="material-symbols-outlined">delete</span></button></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-surface-container flex items-center justify-between">
+<span class="font-label-sm text-on-surface-variant">Showing 10 of 10 items</span>
+</div>
+</div>
+</div>
+<!-- Organic Waste Section -->
+<div class="bg-surface-container rounded-xl p-lg flex items-center gap-lg border border-outline-variant/40">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1; font-size:32px;">compost</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-3 mb-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Organic Waste</h3>
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-[11px] px-3 py-0.5 rounded-full uppercase tracking-wider">Coming Soon</span>
+</div>
+<p class="font-body-sm text-on-surface-variant">Organic waste collection (agricultural residues, food waste, biomass) is under development. No buying prices to configure yet.</p>
+</div>
+<button class="px-4 py-2 border-2 border-outline-variant text-on-surface-variant rounded-full font-label-md text-label-md hover:border-primary hover:text-primary transition-all flex-shrink-0">
+Configure
+</button>
+</div>
+</div><!-- end panel-sell -->
 </main>
 <!-- Floating Action Button -->
 <button class="fixed bottom-8 right-8 flex items-center gap-2 px-6 py-4 bg-[#f2994a] text-white rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 z-40" onclick="openPanel()">
@@ -508,5 +642,32 @@
                 document.getElementById('sidebar').classList.add('-translate-x-full');
             }
         });
+
+        function switchTab(tab) {
+            const panels = { buy: 'panel-buy', sell: 'panel-sell' };
+            const tabs = { buy: 'tab-buy', sell: 'tab-sell' };
+            Object.keys(panels).forEach(key => {
+                const panel = document.getElementById(panels[key]);
+                const btn = document.getElementById(tabs[key]);
+                if (key === tab) {
+                    panel.classList.remove('hidden');
+                    btn.classList.add('border-primary', 'text-primary', 'font-bold');
+                    btn.classList.remove('border-transparent', 'text-on-surface-variant');
+                } else {
+                    panel.classList.add('hidden');
+                    btn.classList.remove('border-primary', 'text-primary', 'font-bold');
+                    btn.classList.add('border-transparent', 'text-on-surface-variant');
+                }
+            });
+            // Update FAB label
+            const fab = document.querySelector('[onclick="openPanel()"] span:last-child');
+            if (fab) fab.textContent = tab === 'buy' ? '+ Add Product' : '+ Add Bottle Type';
+        }
+
+        function openAddBottlePanel() {
+            // Reuse product panel with adjusted title
+            document.getElementById('product-panel').querySelector('h3').textContent = 'Add Bottle Type';
+            openPanel();
+        }
     </script>
 </body></html>
