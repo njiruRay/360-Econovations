@@ -117,6 +117,7 @@
         .checkout-step { display: none; }
         .checkout-step.active { display: block; }
     </style>
+    <script src="../cart.js"></script>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
 <!-- TopNavBar -->
@@ -182,7 +183,7 @@
 </div>
 <div class="flex flex-col gap-xs">
 <label class="font-label-sm text-label-sm text-on-surface-variant">Sub-County</label>
-<select class="bg-surface p-md rounded-xl border border-outline-variant focus:border-primary-green focus:ring-1 focus:ring-primary-green outline-none transition-all font-body-md text-body-md">
+<select id="sub-county-select" onchange="renderCheckoutSummary()" class="bg-surface p-md rounded-xl border border-outline-variant focus:border-primary-green focus:ring-1 focus:ring-primary-green outline-none transition-all font-body-md text-body-md">
 <option>Embu West</option>
 <option>Embu North</option>
 <option>Embu East</option>
@@ -258,14 +259,14 @@
 <p class="text-on-surface-variant mb-md font-body-md">How should we send your order updates?</p>
 <div class="flex gap-md">
 <label class="flex-1 cursor-pointer">
-<input checked="" class="hidden peer" name="channel" type="radio"/>
+<input checked="" class="hidden peer" name="channel" type="radio" value="Email"/>
 <div class="p-md rounded-xl border-2 border-outline-variant flex flex-col items-center gap-xs peer-checked:border-primary-green peer-checked:bg-surface transition-all">
 <span class="material-symbols-outlined text-primary-green" data-icon="mail" data-weight="fill">mail</span>
 <span class="font-label-sm text-label-sm">Email</span>
 </div>
 </label>
 <label class="flex-1 cursor-pointer">
-<input class="hidden peer" name="channel" type="radio"/>
+<input class="hidden peer" name="channel" type="radio" value="WhatsApp"/>
 <div class="p-md rounded-xl border-2 border-outline-variant flex flex-col items-center gap-xs peer-checked:border-primary-green peer-checked:bg-surface transition-all">
 <span class="material-symbols-outlined text-[#25D366]" data-icon="chat" data-weight="fill">chat</span>
 <span class="font-label-sm text-label-sm">WhatsApp</span>
@@ -280,15 +281,15 @@
                             </h3>
 <div class="flex justify-between text-body-md py-xs border-b border-outline-variant">
 <span>Items Subtotal</span>
-<span>KES 4,500</span>
+<span id="quick-subtotal">KES 0.00</span>
 </div>
 <div class="flex justify-between text-body-md py-xs border-b border-outline-variant">
-<span>Delivery (Embu West)</span>
-<span>KES 200</span>
+<span id="quick-delivery-label">Delivery (Embu West)</span>
+<span id="quick-delivery-cost">KES 0.00</span>
 </div>
 <div class="flex justify-between font-bold text-headline-sm pt-md text-primary">
 <span>Total Payable</span>
-<span>KES 4,700</span>
+<span id="quick-total">KES 0.00</span>
 </div>
 </div>
 </div>
@@ -309,39 +310,27 @@
 <aside class="lg:col-span-4 lg:sticky lg:top-24">
 <div class="bg-surface-container rounded-xl p-md custom-shadow-low flex flex-col gap-md">
 <h3 class="font-headline-sm text-headline-sm">Order Summary</h3>
-<div class="space-y-sm">
-<!-- Item 1 -->
-<div class="flex gap-sm items-center">
-<img class="w-16 h-16 rounded-lg object-cover bg-white" data-alt="A clean, minimalist product shot of a sustainable recycled plastic planter with a grainy eco-friendly texture. The lighting is bright and industrial-modern, highlighting the durable forest green material. The product sits on a white marble surface, embodying a corporate yet environmental stewardship aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADXDGOO0Y8dHyRjs7QPIljhAkh1Z9Wekvu3kBgMPBP5RT-27fPwKpgV5UtGPLk3k7y_cjOucYrI6Ya1fSeAevYV2xqDxdCvk0SdzaeWh-65Qz7wP5QeELPS33BKRwTLxK-o21edSU1OqeasxfCpGAvyaHk2Xoi5xuo6OChFgM2IYH1JSgbKCXxv1KeIkGC8tH-C0GfI3v9KgVt40aRoD_ZMO-Z9BNbfKV-4R9cPYl-iwnL91LXuGNndQ"/>
-<div class="flex-1">
-<h4 class="font-label-sm text-label-sm line-clamp-1">Recycled Eco-Planter</h4>
-<p class="text-on-surface-variant text-[12px]">Qty: 1 • Large</p>
-<span class="font-bold text-primary">KES 2,500</span>
-</div>
-</div>
-<!-- Item 2 -->
-<div class="flex gap-sm items-center">
-<img class="w-16 h-16 rounded-lg object-cover bg-white" data-alt="A macro shot of premium organic bamboo fiber textiles neatly folded. The colors are natural creams and soft greens, lit with warm sunlight to create a trustworthy and optimistic atmosphere. The composition is clean and modular, focusing on the high-quality industrial weave of the sustainable material." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANb2W6No4MtM9jfqSnaDhYomWSs8mh4G3hUUPnu1qLLfrKaf9Lt1ktCXYEBN4fUujqvEKu9lmH5bfvv3gSZ4TA13Zmhk4JynRqNYOEevqpTRHHV6CO9DoGsTASXTvWmy8CmcJnb0FC8o9q9DW2oK961NIymbYohU4uXi2FsVOIhw2-t0S3ODzK-6datrrcNH3rhqY7RtVIhuUebspsAKpmwiwqMJwqmensbvSyBvjkitqqt17UmICX5Q"/>
-<div class="flex-1">
-<h4 class="font-label-sm text-label-sm line-clamp-1">Organic Bamboo Towel</h4>
-<p class="text-on-surface-variant text-[12px]">Qty: 2 • Cream</p>
-<span class="font-bold text-primary">KES 2,000</span>
-</div>
+<div class="space-y-sm" id="checkout-items-list">
+    <!-- Dynamic items injected here -->
 </div>
 </div>
 <hr class="border-outline-variant"/>
 <div class="space-y-xs">
 <div class="flex justify-between text-on-surface-variant">
 <span class="font-body-md text-body-md">Subtotal</span>
-<span class="font-body-md text-body-md">KES 4,500</span>
+<span class="font-body-md text-body-md" id="checkout-subtotal">KES 0.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="font-body-md text-body-md">Tax (VAT 16%)</span>
+<span class="font-body-md text-body-md" id="checkout-vat">KES 0.00</span>
 </div>
 <div class="flex justify-between text-on-surface-variant">
 <span class="font-body-md text-body-md">Estimated Shipping</span>
-<span class="font-body-md text-body-md">KES 200</span>
+<span class="font-body-md text-body-md" id="checkout-shipping">KES 0.00</span>
 </div>
-<div class="flex justify-between items-center pt-sm">
+<div class="flex justify-between items-center pt-sm border-t border-outline-variant/30">
 <span class="font-headline-sm text-headline-sm">Total</span>
-<span class="font-headline-sm text-headline-sm text-primary">KES 4,700</span>
+<span class="font-headline-sm text-headline-sm text-primary" id="checkout-total">KES 0.00</span>
 </div>
 </div>
 <div class="mt-xs">
@@ -388,6 +377,10 @@
 <p class="text-on-surface-variant font-label-sm text-label-sm text-center">
                     © 2024 360 Econovations Enterprise.
                 </p>
+<div class="flex gap-md">
+<a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../privacy_policy/code.html">Privacy Policy</a>
+<a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../terms_of_service/code.html">Terms of Service</a>
+</div>
 </div>
 </div>
 </footer>
@@ -441,12 +434,57 @@
             }
         }
 
+        function getSelectedPaymentMethod() {
+            const activeCard = document.querySelector('.payment-card.active-method');
+            if (activeCard) {
+                const heading = activeCard.querySelector('h4');
+                return heading ? heading.textContent.trim() : 'M-PESA';
+            }
+            return 'M-PESA';
+        }
+
         function nextStep() {
             if (currentStep < 3) {
                 currentStep++;
                 updateUI();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
+                // Place Order Action: Record order details dynamically
+                const cart = Cart.get();
+                if (cart.length > 0) {
+                    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+                    const shipping = subtotal > 4000 ? 0 : 500;
+                    const vat = subtotal * 0.16;
+                    const total = subtotal + shipping + vat;
+                    
+                    const selectEl = document.getElementById('sub-county-select');
+                    const subCounty = selectEl ? selectEl.value : 'Embu West';
+                    const nameInput = document.querySelector('input[placeholder="John Doe"]');
+                    const phoneInput = document.querySelector('input[placeholder="+254 7XX XXX XXX"]');
+                    const addressInput = document.querySelector('textarea[placeholder*="Hospital"]');
+                    
+                    const orderId = 'ECO-' + Math.floor(1000 + Math.random() * 9000) + '-' + String.fromCharCode(65 + Math.floor(Math.random() * 26));
+                    const orderDate = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    
+                    const newOrder = {
+                        id: orderId,
+                        date: orderDate,
+                        status: 'Processing',
+                        items: cart.map(i => ({ name: i.name, qty: i.qty, price: i.price, unit: i.unit })),
+                        shipping: shipping,
+                        total: total,
+                        deliveryAddress: addressInput ? addressInput.value : '',
+                        deliverySubCounty: subCounty,
+                        deliveryName: nameInput ? nameInput.value : '',
+                        deliveryPhone: phoneInput ? phoneInput.value : '',
+                        paymentMethod: getSelectedPaymentMethod(),
+                        notificationChannel: document.querySelector('input[name="channel"]:checked')?.value || 'Email'
+                    };
+                    
+                    Orders.add(newOrder);
+                    localStorage.setItem('360_eco_last_order', JSON.stringify(newOrder));
+                    Cart.clear();
+                }
                 window.location.href = '../order_confirmation/code.html';
             }
         }
@@ -465,6 +503,54 @@
             });
             element.classList.add('active-method', 'border-primary-green', 'bg-surface');
         }
+
+        // Render Checkout Summary
+        function renderCheckoutSummary() {
+            const cart = Cart.get();
+            const itemsList = document.getElementById('checkout-items-list');
+            
+            if (cart.length === 0) {
+                itemsList.innerHTML = '<p class="text-on-surface-variant font-label-sm text-center py-4">Your cart is empty.</p>';
+                return;
+            }
+
+            itemsList.innerHTML = cart.map(item => `
+                <div class="flex gap-sm items-center animate-in fade-in duration-300">
+                    <img class="w-16 h-16 rounded-lg object-cover bg-white" src="${item.img}"/>
+                    <div class="flex-grow flex flex-col gap-[2px]">
+                        <h4 class="font-label-sm text-label-sm line-clamp-1 text-on-surface dark:text-inverse-on-surface">${item.name}</h4>
+                        <p class="text-on-surface-variant text-[12px]">Qty: ${item.qty} • ${item.unit}</p>
+                        <span class="font-bold text-primary dark:text-primary-fixed">KES ${(item.price * item.qty).toLocaleString()}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const shipping = subtotal > 4000 ? 0 : 500;
+            const vat = subtotal * 0.16;
+            const total = subtotal + shipping + vat;
+
+            document.getElementById('checkout-subtotal').textContent = `KES ${subtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('checkout-vat').textContent = `KES ${vat.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('checkout-shipping').textContent = shipping === 0 ? 'FREE' : `KES ${shipping.toFixed(2)}`;
+            document.getElementById('checkout-total').textContent = `KES ${total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+            // Quick Review elements update
+            const selectEl = document.getElementById('sub-county-select');
+            const subCounty = selectEl ? selectEl.value : 'Embu West';
+            
+            const qSubtotal = document.getElementById('quick-subtotal');
+            const qDelLabel = document.getElementById('quick-delivery-label');
+            const qDelCost = document.getElementById('quick-delivery-cost');
+            const qTotal = document.getElementById('quick-total');
+
+            if (qSubtotal) qSubtotal.textContent = `KES ${subtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            if (qDelLabel) qDelLabel.textContent = `Delivery (${subCounty})`;
+            if (qDelCost) qDelCost.textContent = shipping === 0 ? 'FREE' : `KES ${shipping.toFixed(2)}`;
+            if (qTotal) qTotal.textContent = `KES ${total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        }
+
+        renderCheckoutSummary();
 
         // Floating WhatsApp button — dock just above footer when footer is visible
         const whatsappBtn = document.getElementById('whatsapp-float');

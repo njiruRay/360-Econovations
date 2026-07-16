@@ -132,6 +132,7 @@
             100% { top: 100%; opacity: 0; transform: translateX(100px) rotate(360deg); }
         }
     </style>
+    <script src="../cart.js"></script>
 </head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden">
 <!-- Order Confirmation Screen: Per UI Rules, Shell is suppressed for focus -->
@@ -162,7 +163,7 @@
 <div class="flex justify-between items-center mb-md border-b border-surface-variant pb-md">
 <div class="flex flex-col">
 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Order Reference</span>
-<span class="font-headline-sm text-headline-sm text-on-surface">#ECO-360-9921</span>
+<span class="font-headline-sm text-headline-sm text-on-surface" id="order-ref-id">#ECO-360-9921</span>
 </div>
 <span class="bg-highlight-gold text-black font-label-sm text-[12px] px-3 py-1 rounded-full uppercase tracking-tighter">Processed</span>
 </div>
@@ -170,18 +171,18 @@
 <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
 <div class="space-y-unit">
 <p class="font-label-sm text-label-sm text-on-surface-variant">Delivery Area</p>
-<p class="font-body-md text-body-md font-semibold">Embu Central, Kenya</p>
+<p class="font-body-md text-body-md font-semibold" id="conf-delivery-area">Embu Central, Kenya</p>
 </div>
 <div class="space-y-unit">
 <p class="font-label-sm text-label-sm text-on-surface-variant">Payment Method</p>
 <div class="flex items-center gap-xs">
-<span class="material-symbols-outlined text-secondary text-sm">payments</span>
-<p class="font-body-md text-body-md font-semibold">Pay on Delivery</p>
+<span class="material-symbols-outlined text-secondary text-sm" id="conf-payment-icon">payments</span>
+<p class="font-body-md text-body-md font-semibold" id="conf-payment-method">Pay on Delivery</p>
 </div>
 </div>
 <div class="col-span-1 md:col-span-2 bg-surface-container-low rounded-lg p-md">
 <p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Items Summary</p>
-<div class="space-y-xs">
+<div class="space-y-xs" id="conf-items-list">
 <div class="flex justify-between items-center">
 <span class="font-body-md text-body-md">2x Recycled PET Pellets (Bulk)</span>
 <span class="font-body-md text-body-md font-semibold">KES 4,500</span>
@@ -200,7 +201,7 @@
 </div>
 <!-- Action Buttons -->
 <div class="flex flex-col md:flex-row gap-md w-full md:w-auto">
-<a class="px-lg py-4 bg-action-orange text-white rounded-full font-label-sm text-label-sm text-center shadow-md hover:brightness-95 transition-all transform hover:scale-[1.02] active:scale-95" href="../product_catalog/code.html">
+<a id="conf-primary-btn" class="px-lg py-4 bg-action-orange text-white rounded-full font-label-sm text-label-sm text-center shadow-md hover:brightness-95 transition-all transform hover:scale-[1.02] active:scale-95" href="../product_catalog/code.html">
                     Continue Shopping
                 </a>
 <a class="px-lg py-4 border-2 border-primary text-primary rounded-full font-label-sm text-label-sm text-center hover:bg-primary/5 transition-all transform hover:scale-[1.02] active:scale-95" href="../my_orders_account_area/code.html">
@@ -249,6 +250,10 @@
 <p class="text-on-surface-variant font-label-sm text-label-sm text-center">
                     © 2024 360 Econovations Enterprise.
                 </p>
+<div class="flex gap-md">
+<a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../privacy_policy/code.html">Privacy Policy</a>
+<a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../terms_of_service/code.html">Terms of Service</a>
+</div>
 </div>
 </div>
 </footer>
@@ -260,13 +265,89 @@
   </svg>
 </a>
 <script>
-        // Micro-interaction for the success icon to pulse on load
+        // Micro-interaction for the success icon to pulse on load and dynamic order detail loading
         document.addEventListener('DOMContentLoaded', () => {
             const icon = document.querySelector('.float-animation');
-            icon.classList.add('scale-110');
-            setTimeout(() => {
-                icon.classList.remove('scale-110');
-            }, 500);
+            if (icon) {
+                icon.classList.add('scale-110');
+                setTimeout(() => {
+                    icon.classList.remove('scale-110');
+                }, 500);
+            }
+
+            // Dynamically load active order details
+            const orderData = localStorage.getItem('360_eco_last_order');
+            if (orderData) {
+                try {
+                    const order = JSON.parse(orderData);
+                    document.getElementById('order-ref-id').textContent = '#' + order.id;
+                    
+                    const delAreaEl = document.getElementById('conf-delivery-area');
+                    if (delAreaEl && order.deliverySubCounty) {
+                        delAreaEl.textContent = `${order.deliverySubCounty}, Kenya`;
+                    }
+                    
+                    const pmMethodEl = document.getElementById('conf-payment-method');
+                    const pmIconEl = document.getElementById('conf-payment-icon');
+                    if (pmMethodEl && order.paymentMethod) {
+                        pmMethodEl.textContent = order.paymentMethod;
+                        if (pmIconEl) {
+                            if (order.paymentMethod === 'M-PESA') {
+                                pmIconEl.textContent = 'smartphone';
+                            } else if (order.paymentMethod === 'Bitcoin') {
+                                pmIconEl.textContent = 'currency_bitcoin';
+                            } else {
+                                pmIconEl.textContent = 'payments';
+                            }
+                        }
+                    }
+
+                    const itemsContainer = document.getElementById('conf-items-list');
+                    if (itemsContainer) {
+                        itemsContainer.innerHTML = order.items.map(item => `
+                            <div class="flex justify-between items-center py-[2px] animate-in fade-in duration-300">
+                                <span class="font-body-md text-body-md">${item.qty}x ${item.name}</span>
+                                <span class="font-body-md text-body-md font-semibold text-on-surface dark:text-inverse-on-surface">KES ${(item.price * item.qty).toLocaleString()}</span>
+                            </div>
+                        `).join('') + `
+                            <div class="flex justify-between items-center py-[2px] border-t border-outline-variant/10 mt-xs pt-xs text-on-surface-variant text-[14px]">
+                                <span>Estimated Shipping</span>
+                                <span>${order.shipping === 0 ? 'FREE' : 'KES ' + order.shipping.toLocaleString()}</span>
+                            </div>
+                            <div class="pt-xs mt-xs border-t border-outline-variant flex justify-between items-center">
+                                <span class="font-headline-sm text-headline-sm text-primary">Total Amount</span>
+                                <span class="font-headline-sm text-headline-sm text-primary">KES ${order.total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+                            </div>
+                        `;
+                    }
+
+                    // Check notification channel for WhatsApp redirect
+                    if (order.notificationChannel === 'WhatsApp') {
+                        const primaryBtn = document.getElementById('conf-primary-btn');
+                        if (primaryBtn) {
+                            primaryBtn.textContent = 'Send Order via WhatsApp';
+                            primaryBtn.setAttribute('target', '_blank');
+                            primaryBtn.setAttribute('rel', 'noopener noreferrer');
+                            
+                            // Formulate WhatsApp message text
+                            const itemsText = order.items.map(item => `- ${item.qty}x ${item.name} (${item.qty} ${item.unit})`).join('\n');
+                            const message = `Hello Ray, I just placed an order at 360 Econovations!\n\n` +
+                                            `Order ID: #${order.id}\n` +
+                                            `Date: ${order.date}\n` +
+                                            `Customer Name: ${order.deliveryName || 'N/A'}\n` +
+                                            `Phone: ${order.deliveryPhone || 'N/A'}\n` +
+                                            `Sub-County: ${order.deliverySubCounty || 'N/A'}\n` +
+                                            `Address: ${order.deliveryAddress || 'N/A'}\n\n` +
+                                            `Items:\n${itemsText}\n\n` +
+                                            `Total Amount: KES ${order.total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} (${order.paymentMethod})`;
+                            
+                            primaryBtn.href = `https://wa.me/254743049413?text=${encodeURIComponent(message)}`;
+                        }
+                    }
+                } catch (e) {
+                    console.error("Failed to parse last order details", e);
+                }
+            }
         });
 
         // Simple parallax effect for confetti on scroll (if any)

@@ -112,6 +112,7 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
+    <script src="../cart.js"></script>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
 <!-- TopNavBar -->
@@ -187,7 +188,7 @@
 </div>
 </div>
 <div class="flex items-baseline gap-xs">
-<span class="font-headline-md text-headline-md text-primary">KES 40–100</span>
+<span class="font-headline-md text-headline-md text-primary">KES 25</span>
 <span class="text-on-surface-variant font-body-md text-body-md">/ kg</span>
 </div>
 <p class="text-on-surface-variant font-body-lg text-body-lg border-l-4 border-primary pl-md py-xs">
@@ -207,11 +208,11 @@
 </div>
 </div>
 <div class="flex flex-col sm:flex-row gap-sm pt-sm">
-<button class="flex-1 bg-[#F97316] text-white py-4 rounded-full font-bold shadow-low hover:bg-[#EA580C] hover:shadow-hover transition-all active:scale-95 flex items-center justify-center gap-xs" onclick="window.location.href='../shopping_cart/code.html'">
+<button id="add-to-cart-btn" class="flex-1 bg-[#F97316] text-white py-4 rounded-full font-bold shadow-low hover:bg-[#EA580C] hover:shadow-hover transition-all active:scale-95 flex items-center justify-center gap-xs">
 <span class="material-symbols-outlined">shopping_cart</span>
                             Add to Cart
                         </button>
-<button class="flex-1 bg-primary text-white py-4 rounded-full font-bold shadow-low hover:bg-secondary hover:shadow-hover transition-all active:scale-95" onclick="window.location.href='../shopping_cart/code.html'">
+<button id="buy-now-btn" class="flex-1 bg-primary text-white py-4 rounded-full font-bold shadow-low hover:bg-secondary hover:shadow-hover transition-all active:scale-95">
                             Buy Now
                         </button>
 </div>
@@ -416,6 +417,10 @@
 <p class="text-on-surface-variant font-label-sm text-label-sm text-center">
                     © 2024 360 Econovations Enterprise.
                 </p>
+<div class="flex gap-md">
+<a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../privacy_policy/code.html">Privacy Policy</a>
+<a class="text-on-surface-variant font-label-sm hover:text-secondary transition-colors" href="../terms_of_service/code.html">Terms of Service</a>
+</div>
 </div>
 </div>
 </footer>
@@ -480,5 +485,47 @@
         window.addEventListener('scroll', updateWhatsappPosition, { passive: true });
         window.addEventListener('resize', updateWhatsappPosition, { passive: true });
         updateWhatsappPosition();
+
+        // Connect Dynamic E-commerce Cart
+        const qtyInput = document.getElementById('qty');
+        
+        document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+            const qty = parseInt(qtyInput.value) || 1;
+            Cart.add(
+                'high_density_briquettes',
+                'High-Density Briquettes',
+                25,
+                'https://lh3.googleusercontent.com/aida-public/AB6AXuCTRP-RLq6j8L7pxUO9W5PI84Jw9XSm6J0OqqsMLDiPX6UPeygnjj83Z5-TICTtWEQe2rgtvkk-1ZSIITe8LV0kNLm6E_ouV313bZrL8eEgrop913d5XXHmoT9VkJ1EQaycV3EeORSnqaTvLOTidrWHNTA1m0ZkuJlzQwa4hJtVN2temxMkDYQ573JVoZmp30moP-ZlQqXCt2FXnsSycwf2VKKG24JvQCXwgs6EXh_0ngpcGHdnxIRB0Q',
+                'kg',
+                qty
+            );
+            
+            // Visual feedback
+            const originalText = this.innerHTML;
+            this.innerHTML = '<span class="material-symbols-outlined">check</span> Added to Cart';
+            this.classList.remove('bg-[#F97316]', 'hover:bg-[#EA580C]');
+            this.classList.add('bg-[#006d37]');
+            this.style.pointerEvents = 'none';
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.classList.remove('bg-[#006d37]');
+                this.classList.add('bg-[#F97316]', 'hover:bg-[#EA580C]');
+                this.style.pointerEvents = 'auto';
+            }, 2000);
+        });
+
+        document.getElementById('buy-now-btn').addEventListener('click', function() {
+            const qty = parseInt(qtyInput.value) || 1;
+            Cart.add(
+                'high_density_briquettes',
+                'High-Density Briquettes',
+                25,
+                'https://lh3.googleusercontent.com/aida-public/AB6AXuCTRP-RLq6j8L7pxUO9W5PI84Jw9XSm6J0OqqsMLDiPX6UPeygnjj83Z5-TICTtWEQe2rgtvkk-1ZSIITe8LV0kNLm6E_ouV313bZrL8eEgrop913d5XXHmoT9VkJ1EQaycV3EeORSnqaTvLOTidrWHNTA1m0ZkuJlzQwa4hJtVN2temxMkDYQ573JVoZmp30moP-ZlQqXCt2FXnsSycwf2VKKG24JvQCXwgs6EXh_0ngpcGHdnxIRB0Q',
+                'kg',
+                qty
+            );
+            window.location.href = '../shopping_cart/code.html';
+        });
     </script>
 </body></html>
