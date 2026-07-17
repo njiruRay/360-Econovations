@@ -127,6 +127,156 @@
                     background-color: #111410 !important;
                     border-color: #2c322c !important;
                 }
+
+                /* Text colors that are dark/invisible on dark backgrounds */
+                .dark .text-on-surface,
+                .dark .text-on-background {
+                    color: #e4eae1 !important;
+                }
+                .dark [class*="text-on-surface-variant/"] {
+                    color: #c2c9bf !important;
+                }
+                .dark .text-on-primary-fixed,
+                .dark .text-on-secondary-fixed,
+                .dark .text-on-tertiary-fixed,
+                .dark .text-on-secondary-fixed-variant,
+                .dark .text-on-error-container {
+                    color: #e4eae1 !important;
+                }
+                .dark .text-outline {
+                    color: #8e9a8d !important;
+                }
+                .dark .text-secondary {
+                    color: #95f8a7 !important;
+                }
+
+                /* Badge backgrounds and text in dark mode */
+                .dark .bg-tertiary-fixed {
+                    background-color: #4a2900 !important;
+                }
+                .dark .text-on-tertiary-fixed-variant {
+                    color: #ffdbca !important;
+                }
+                .dark .bg-secondary-container {
+                    background-color: #003317 !important;
+                }
+                .dark .text-on-secondary-container {
+                    color: #81f8a4 !important;
+                }
+
+                /* Footer link hover visibility */
+                .dark footer a:hover {
+                    color: #95f8a7 !important;
+                }
+
+                /* Border and background outline variants */
+                .dark [class*="border-outline-variant"] {
+                    border-color: #2c322c !important;
+                }
+                .dark .bg-outline-variant {
+                    background-color: #2c322c !important;
+                }
+
+                /* Additional surface backgrounds for dark mode */
+                .dark .bg-surface-container-low {
+                    background-color: #20261f !important;
+                }
+                .dark .bg-surface-container-high {
+                    background-color: #2c322c !important;
+                }
+                .dark .bg-surface-container-highest {
+                    background-color: #2c322c !important;
+                }
+                .dark .bg-surface-variant {
+                    background-color: #2c322c !important;
+                }
+                .dark .bg-surface-bright {
+                    background-color: #20261f !important;
+                }
+                .dark .bg-surface-dim {
+                    background-color: #111410 !important;
+                }
+
+                /* Hover states for surface backgrounds */
+                .dark [class*="hover:bg-surface-variant"]:hover {
+                    background-color: #3f493f !important;
+                }
+                .dark [class*="hover:bg-surface-container-low"]:hover {
+                    background-color: #2c322c !important;
+                }
+                .dark [class*="hover:bg-outline-variant"]:hover {
+                    background-color: #2c322c !important;
+                }
+
+                /* Secondary fixed background */
+                .dark .bg-secondary-fixed {
+                    background-color: #003317 !important;
+                }
+
+                /* Additional text color safety */
+                .dark .text-on-primary-fixed-variant {
+                    color: #95f8a7 !important;
+                }
+
+                /* Selection color in dark mode */
+                .dark ::selection {
+                    color: #00210a !important;
+                    background-color: #95f8a7 !important;
+                }
+
+                /* Keep dark text on gold/yellow badges (they stay bright in dark mode) */
+                .dark .bg-highlight-gold,
+                .dark .bg-\\[\\#D4A017\\] {
+                    color: #181d17 !important;
+                }
+                .dark .bg-highlight-gold .text-on-background,
+                .dark .bg-highlight-gold.text-on-background {
+                    color: #181d17 !important;
+                }
+
+                /* Glass card background in dark mode */
+                .dark .glass-card {
+                    background: rgba(32, 38, 31, 0.8) !important;
+                    border: 1px solid rgba(44, 50, 44, 0.3) !important;
+                }
+
+                /* Surface borders in dark mode */
+                .dark .border-surface-container,
+                .dark [class*="border-surface-container"] {
+                    border-color: #2c322c !important;
+                }
+                .dark .border-surface-variant,
+                .dark [class*="border-surface-variant"] {
+                    border-color: #2c322c !important;
+                }
+                .dark .border-surface {
+                    border-color: #2c322c !important;
+                }
+
+                /* Shadow adjustments for dark mode */
+                .dark .shadow-low,
+                .dark .shadow-sm,
+                .dark .shadow-lg,
+                .dark .eco-shadow,
+                .dark .card-shadow,
+                .dark .success-card-shadow {
+                    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3) !important;
+                }
+                .dark .shadow-hover:hover,
+                .dark .eco-shadow-hover:hover,
+                .dark .card-shadow-hover:hover {
+                    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.4) !important;
+                }
+
+                /* Error and tertiary text colors for dark mode readability */
+                .dark .text-error,
+                .dark [class*="text-error"],
+                .dark .group-hover\\:text-error:hover {
+                    color: #ff6b6b !important;
+                }
+                .dark .text-tertiary {
+                    color: #ffb690 !important;
+                }
             `;
             (document.head || document.documentElement).appendChild(style);
         };
