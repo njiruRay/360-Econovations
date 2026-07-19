@@ -150,8 +150,8 @@
 <div class="w-full max-w-xl">
 <!-- Checkout Note Banner -->
 <div class="mb-8 text-center animate-fade-in">
-<h1 class="font-headline-md text-headline-md text-primary mb-2">Checkout Security</h1>
-<p class="text-on-surface-variant font-body-md">Sign in or create an account to complete your order.</p>
+<h1 class="font-headline-md text-headline-md text-primary mb-2" id="login-header-title">Checkout Security</h1>
+<p class="text-on-surface-variant font-body-md" id="login-header-desc">Sign in or create an account to complete your order.</p>
 </div>
 <!-- Authentic Card Container -->
 <div class="bg-surface-container-lowest rounded-2xl low-shadow overflow-hidden p-8 md:p-lg">
@@ -179,7 +179,7 @@
 <input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 font-body-md focus:ring-2 focus:ring-primary/20" placeholder="••••••••" type="password"/>
 </div>
 </div>
-<button class="w-full bg-action-orange text-white py-4 rounded-full font-label-sm text-label-sm active-shadow hover:brightness-110 transition-all transform active:scale-[0.98]" onclick="window.location.href='../checkout_delivery_payment/code.html'">
+<button class="w-full bg-action-orange text-white py-4 rounded-full font-label-sm text-label-sm active-shadow hover:brightness-110 transition-all transform active:scale-[0.98]" onclick="handleLoginSuccess()">
                         Sign In
                     </button>
 <div class="relative py-2">
@@ -219,14 +219,14 @@
 <input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 font-body-md" placeholder="••••••••" type="password"/>
 </div>
 </div>
-<button class="w-full bg-action-orange text-white py-4 rounded-full font-label-sm text-label-sm active-shadow hover:brightness-110 transition-all transform active:scale-[0.98]" onclick="window.location.href='../checkout_delivery_payment/code.html'">
+<button class="w-full bg-action-orange text-white py-4 rounded-full font-label-sm text-label-sm active-shadow hover:brightness-110 transition-all transform active:scale-[0.98]" onclick="handleLoginSuccess()">
                         Create Account
                     </button>
 </div>
 <!-- Browsing Disclaimer -->
 <div class="mt-8 pt-6 border-t border-surface-container flex items-start gap-3">
 <span class="material-symbols-outlined text-highlight-gold flex-shrink-0" data-icon="info">info</span>
-<p class="text-on-surface-variant text-[13px] leading-relaxed">
+<p class="text-on-surface-variant text-[13px] leading-relaxed" id="login-disclaimer">
                         Browsing and adding to cart never requires an account — sign-in is only needed to check out.
                     </p>
 </div>
@@ -282,6 +282,42 @@
   </svg>
 </a>
 <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = Cart.get();
+            const titleEl = document.getElementById('login-header-title');
+            const descEl = document.getElementById('login-header-desc');
+            const disclaimerEl = document.getElementById('login-disclaimer');
+            
+            if (cart && cart.length === 0) {
+                if (titleEl) titleEl.textContent = "Account Access";
+                if (descEl) descEl.textContent = "Sign in or register to manage your orders, glass returns, and Eco-Tokens.";
+                if (disclaimerEl) {
+                    disclaimerEl.textContent = "Your account dashboard lets you trace your glass bottles returned under the Rudisha program, manage your business partnerships, and check your token balance.";
+                }
+            }
+        });
+
+        function handleLoginSuccess() {
+            // Record simulated login state
+            localStorage.setItem('360_eco_logged_in', 'true');
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectParam = urlParams.get('redirect');
+            
+            if (redirectParam) {
+                window.location.href = redirectParam;
+                return;
+            }
+            
+            // Smart redirect
+            const cart = Cart.get();
+            if (cart && cart.length > 0) {
+                window.location.href = '../checkout_delivery_payment/code.html';
+            } else {
+                window.location.href = '../my_orders_account_area/code.html';
+            }
+        }
+
         function switchTab(tab) {
             const signInForm = document.getElementById('signInForm');
             const registerForm = document.getElementById('registerForm');

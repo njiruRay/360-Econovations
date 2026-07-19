@@ -481,11 +481,24 @@
                         notificationChannel: document.querySelector('input[name="channel"]:checked')?.value || 'Email'
                     };
                     
-                    Orders.add(newOrder);
-                    localStorage.setItem('360_eco_last_order', JSON.stringify(newOrder));
-                    Cart.clear();
+                    // Show M-Pesa loading screen with Eco-Dino Game
+                    if (window.openEcoDinoGame) {
+                        window.openEcoDinoGame(() => {
+                            Orders.add(newOrder);
+                            localStorage.setItem('360_eco_last_order', JSON.stringify(newOrder));
+                            Cart.clear();
+                            window.location.href = '../order_confirmation/code.html';
+                        });
+                    } else {
+                        // Fallback if game failed to load
+                        Orders.add(newOrder);
+                        localStorage.setItem('360_eco_last_order', JSON.stringify(newOrder));
+                        Cart.clear();
+                        window.location.href = '../order_confirmation/code.html';
+                    }
+                } else {
+                    window.location.href = '../order_confirmation/code.html';
                 }
-                window.location.href = '../order_confirmation/code.html';
             }
         }
 
